@@ -59,28 +59,28 @@
 
   <!-- Project Section -->
   <div class="w3-container w3-padding-32" id="technologies">
-    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Technologies</h3>
+    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16" align="center">TECHNOLOGIES</h3>
   </div>
 
   <div class="w3-row-padding">
     <div class="w3-col l3 m6 w3-margin-bottom">
       <div class="w3-display-container">
-        <img src="${contextPath}/resources/Images/technologies/Ansible_logo.png" alt="House" style="width:150px;height:150px">      
+        <img src="${contextPath}/resources/Images/technologies/Ansible_logo.png" alt="DevOps" style="width:150px;height:150px">      
       </div>      
     </div>
     <div class="w3-col l3 m6 w3-margin-bottom">
       <div class="w3-display-container">
-         <img src="${contextPath}/resources/Images/technologies/aws.png" alt="House" style="width:200px;height:150px">
+         <img src="${contextPath}/resources/Images/technologies/aws.png" alt="DevOps" style="width:200px;height:150px">
       </div>
     </div>
     <div class="w3-col l3 m6 w3-margin-bottom">
       <div class="w3-display-container">
-        <img src="${contextPath}/resources/Images/technologies/git.jpg" alt="House" style="width:150px;height:150px">
+        <img src="${contextPath}/resources/Images/technologies/git.jpg" alt="DevOps" style="width:150px;height:150px">
       </div>
     </div>
     <div class="w3-col l3 m6 w3-margin-bottom">
       <div class="w3-display-container">
-        <img src="${contextPath}/resources/Images/technologies/jenkins.png" alt="House" style="width:200px;height:150px">
+        <img src="${contextPath}/resources/Images/technologies/jenkins.png" alt="DevOps" style="width:200px;height:150px">
       </div>
     </div>
   </div>
@@ -88,29 +88,29 @@
   <div class="w3-row-padding">
     <div class="w3-col l3 m6 w3-margin-bottom">
       <div class="w3-display-container">
-        <img src="${contextPath}/resources/Images/technologies/docker.png" alt="House" style="width:150px;height:150px">
+        <img src="${contextPath}/resources/Images/technologies/docker.png" alt="DevOps" style="width:150px;height:150px">
       </div>
     </div>
     <div class="w3-col l3 m6 w3-margin-bottom">
       <div class="w3-display-container">
-        <img src="${contextPath}/resources/Images/technologies/puppet.jpg" alt="House" style="width:150px;height:150px">
+        <img src="${contextPath}/resources/Images/technologies/puppet.jpg" alt="DevOps" style="width:150px;height:150px">
       </div>
     </div>
     <div class="w3-col l3 m6 w3-margin-bottom">
       <div class="w3-display-container">
-        <img src="${contextPath}/resources/Images/technologies/Vagrant.png" alt="House" style="width:150px;height:150px">
+        <img src="${contextPath}/resources/Images/technologies/Vagrant.png" alt="DevOps" style="width:150px;height:150px">
       </div>
     </div>
     <div class="w3-col l3 m6 w3-margin-bottom">
       <div class="w3-display-container">
-        <img src="${contextPath}/resources/Images/technologies/python-logo.png" alt="House" style="width:200px;height:150px">
+        <img src="${contextPath}/resources/Images/technologies/python-logo.png" alt="DevOps" style="width:200px;height:150px">
       </div>
     </div>
   </div>
 
   <!-- About Section -->
   <div class="w3-container w3-padding-32" id="about">
-    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">About</h3>
+    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">AVBOUT</h3>
     <p>VisualPath is an IT Educational Institute.Established in 2001,and Institute offers world class quality of education and wide range of courses.</p>
     <p>VisualPath Institute has a dedicated placement team to help students get job placement in various IT job roles with major companies.
     </p>
@@ -139,8 +139,8 @@
 
 
 <!-- Footer -->
-<footer class="w3-center w3-black w3-padding-16">
-  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>
+<footer class="w3-center  w3-padding-16" style="background-color:#1C3B47 ">
+  <p style="color:#FFFFFF ">Copyright @2017 <a href="#"  target="_blank" class="w3-hover-text-green"> visualpathit.com</a></p>
 </footer>
 
 
