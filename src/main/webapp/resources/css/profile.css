@@ -1,0 +1,90 @@
+.mainbody {
+    background:#f0f0f0;
+}
+/* Special class on .container surrounding .navbar, used for positioning it into place. */
+.navbar-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  margin-left: -15px;
+  margin-right: -15px;
+  //background-color:#1C3B47;
+}
+.navbar-custom {
+    background-color: #1C3B47;
+    border-color: #E7E7E7;
+    
+}
+
+/* Flip around the padding for proper display in narrow viewports */
+.navbar-wrapper .container {
+  padding-left: 0;
+  padding-right: 0;
+}
+.navbar-wrapper .navbar {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.navbar-content
+{
+    width:320px;
+    padding: 15px;
+    padding-bottom:0px;
+}
+.navbar-content:before, .navbar-content:after
+{
+    display: table;
+    content: "";
+    line-height: 0;
+}
+.navbar-nav.navbar-right:last-child {
+    margin-right: 15px !important;
+}
+.navbar-footer 
+{
+    background-color:#DDD;
+}
+.navbar-brand,.navbar-toggle,.brand_network{
+	color: #FFFFFF;
+	font-weight: bold;
+	
+}
+.navbar-custom .navbar-nav > li > a {
+    color:#FFFFFF;
+    font-weight: bold;
+}
+.navbar-custom .navbar-toggle{
+	color: #f57900;
+	background: #f57900;
+}
+.navbar-footer-content { padding:15px 15px 15px 15px; }
+.dropdown-menu {
+padding: 0px;
+overflow: hidden;
+}
+
+.brand_network {
+    color: #9D9D9D;
+    float: left;
+    position: absolute;
+    left: 70px;
+    top: 30px;
+    font-size: smaller;
+}
+
+.post-content {
+    margin-left:58px;
+}
+
+.badge-important {
+    margin-top: 3px;
+    margin-left: 25px;
+    position: absolute;
+}
+
+body {
+    background-color: #e8e8e8;
+}
