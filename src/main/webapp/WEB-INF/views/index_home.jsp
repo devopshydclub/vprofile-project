@@ -53,12 +53,16 @@
     <h1 class="w3-xxlarge w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><b>DevOps</b></h1>
   </div>
 </header>
-
+<div>
+<blockquote><p>
+     <h2 align="center" style="font-family: Verdana,sans-serif;color:#1C3B47;">Keep Learning ..</h2>
+     <h3 align="center" style="font-family: Verdana,sans-serif;color:#1C3B47;">Learning is a Treasure that will follow it's Owner Everywhere..</h3> 
+</blockquote>
 <!-- Page content -->
 <div class="w3-content w3-padding" style="max-width:1564px">
 
   <!-- Project Section -->
-  <div class="w3-container w3-padding-32" id="technologies">
+  <div class="container w3-padding-32" id="technologies">
     <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16" align="center">TECHNOLOGIES</h3>
   </div>
 
@@ -109,19 +113,20 @@
   </div>
 
   <!-- About Section -->
-  <div class="w3-container w3-padding-32" id="about">
-    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">AVBOUT</h3>
-    <p>VisualPath is an IT Educational Institute.Established in 2001,and Institute offers world class quality of education and wide range of courses.</p>
-    <p>VisualPath Institute has a dedicated placement team to help students get job placement in various IT job roles with major companies.
-    </p>
-    <p>Address:-Flat no: 205, 2nd Floor,NILGIRI Block,Aditya Encalve,Ameerpet, Hyderabad-16 Ph No: +91-9704455959,9618245689
-	,E-Mail ID : visualpath999@gmail.com</p>
-  </div>
-
-
+  <div class="container w3-padding-32" id="about">
+    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16" align="center">ABOUT</h3>
+    <div class="w3-content" style="max-width:700px">
+	    <p style="text-align:justify;">VisualPath is an IT Educational Institute.Established in 2001,and Institute offers world class quality of education and wide range of courses.VisualPath Institute has a dedicated placement team to help students get job placement in various IT job roles with major companies.
+	    </p>
+	    <p><strong>Address:</strong>  Flat no: 205, 2nd Floor,NILGIRI Block,Aditya Encalve,Ameerpet, Hyderabad-16</p> 
+	    <p><strong>Ph No: </strong>  +91-9704455959,9618245689</p>
+		<p><strong>E-Mail ID :</strong>  visualpath999@gmail.com</p>
+  	</div>
+   </div>
+  
   <!-- Contact Section -->
-  <div class="w3-container w3-padding-32" id="contact">
-    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Contact</h3>
+  <div class="container w3-padding-32" id="contact">
+    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16" align="center">CONTACT</h3>
     <p>Lets get in touch and talk about your and our next project.</p>
     <form action="/action_page.php" target="_blank">
       <input class="w3-input" type="text" placeholder="Name" required name="Name">
@@ -133,7 +138,7 @@
       </button>
     </form>
   </div>
-  
+   
 <!-- End page content -->
 </div>
 
