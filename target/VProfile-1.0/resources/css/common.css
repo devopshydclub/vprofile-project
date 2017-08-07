@@ -1,0 +1,75 @@
+body {
+    padding-top: 100px;
+    padding-bottom: 50px;
+    background-color: #ffffff;
+   
+}
+form {
+    border: 3px solid #204a87;
+}
+
+img.logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 300px;
+    height: 70px;
+    
+ }
+.form-signin {
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+.btn-custom,.btn-custom:hover, .btn-custom:focus, .btn-custom:active {
+  border-radius: 0;
+  color: #ffffff;
+  background-color: #ef2929;
+  border-color: #ef2929;
+  
+}
+.btn-custom-LOGIN {
+  border-radius: 0;
+  color: #ffffff;
+  height:3em;
+  background-color: #26C6DA;
+  border-color: #ef2929;
+  
+}
+
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+    margin-bottom: 10px;
+}
+
+.form-signin .checkbox {
+    font-weight: normal;
+}
+
+.form-signin .form-control {
+    position: relative;
+    height: auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.form-signin .form-control:focus {
+    z-index: 2;
+}
+
+.form-signin input {
+    margin-top: 10px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.form-signin button {
+    margin-top: 10px;
+}
+
+.has-error {
+    color: red
+}
