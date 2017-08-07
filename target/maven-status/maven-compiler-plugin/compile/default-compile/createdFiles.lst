@@ -1,0 +1,11 @@
+com/visualpathit/account/service/SecurityServiceImpl.class
+com/visualpathit/account/model/User.class
+com/visualpathit/account/repository/UserRepository.class
+com/visualpathit/account/model/Role.class
+com/visualpathit/account/validator/UserValidator.class
+com/visualpathit/account/service/UserServiceImpl.class
+com/visualpathit/account/service/SecurityService.class
+com/visualpathit/account/controller/UserController.class
+com/visualpathit/account/service/UserService.class
+com/visualpathit/account/service/UserDetailsServiceImpl.class
+com/visualpathit/account/repository/RoleRepository.class
