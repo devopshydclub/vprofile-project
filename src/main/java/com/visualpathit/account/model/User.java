@@ -19,7 +19,9 @@ public class User {
     private String passwordConfirm;
     /** the roles field*/
     private Set<Role> roles;
-    /**{@inheritDoc}}*/
+    /**
+     * {@inheritDoc}} 
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     /**
@@ -28,17 +30,21 @@ public class User {
     public Long getId() {
         return id;
     }
-
+    /**
+     * {@inheritDoc}} 
+     */
     public final void setId(final Long id) {
         this.id = id;
     }
     /**
-     * {@link User#username}
+     * {@inheritDoc}} 
      */
     public String getUsername() {
         return username;
     }
-
+    /**
+     * {@inheritDoc}} 
+     */
     public final void setUsername(final String username) {
         this.username = username;
     }
@@ -48,7 +54,9 @@ public class User {
     public String getPassword() {
         return password;
     }
-
+    /**
+     * {@inheritDoc}} 
+     */
     public final void setPassword(final String password) {
         this.password = password;
     }
@@ -58,12 +66,16 @@ public class User {
     public String getUserEmail() {
 		return userEmail;
 	}
-
+    /**
+     * {@inheritDoc}} 
+     */
 	public final void setUserEmail(final String userEmail) {
 		this.userEmail = userEmail;
 	}
 
-	/**{@inheritDoc}*/
+	 /**
+     * {@inheritDoc}} 
+     */
 	@Transient
 	/**
      * {@link User#passwordConfirm}
@@ -71,17 +83,23 @@ public class User {
     public String getPasswordConfirm() {
         return passwordConfirm;
     }
-
+	 /**
+     * {@inheritDoc}} 
+     */
     public final void setPasswordConfirm(final String passwordConfirm) {
         this.passwordConfirm = passwordConfirm;
     }
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}} 
+     */
     @ManyToMany
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     public Set<Role> getRoles() {
         return roles;
     }
-
+    /**
+     * {@inheritDoc}} 
+     */
     public final void setRoles( final Set<Role> roles) {
         this.roles = roles;
     }
