@@ -6,13 +6,12 @@ import java.util.Set;
 @Entity
 @Table(name = "role")
 public class Role {
-	/** the id field */
+	/** the id field !*/
     private Long id;
-    /** the name field */
+    /** the name field !*/
     private String name;
-    /** the user field */
+    /** the user field !*/
     private Set<User> users;
-
     /**
      * {@inheritDoc}} 
      */
