@@ -22,27 +22,19 @@ public class User {
     /** {@inheritDoc}} !*/
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    /**
-     * {@link User#id}
-     */
+    /** {@link User#id} */
     public Long getId() {
         return id;
     }
-    /**
-     * {@inheritDoc}} 
-     !*/
+    /** {@inheritDoc}} !*/
     public final void setId(final Long id) {
         this.id = id;
     }
-    /**
-     * {@inheritDoc}} 
-     !*/
+    /**{@inheritDoc}} !*/
     public String getUsername() {
         return username;
     }
-    /**
-     * {@inheritDoc}} 
-     !*/
+    /** {@inheritDoc}} !*/
     public final void setUsername(final String username) {
         this.username = username;
     }
@@ -66,16 +58,12 @@ public class User {
     public String getUserEmail() {
 		return userEmail;
 	}
-    /**
-     * {@inheritDoc}} 
-     !*/
+    /** {@inheritDoc}} !*/
 	public final void setUserEmail(final String userEmail) {
 		this.userEmail = userEmail;
 	}
 
-	 /**
-     * {@inheritDoc}} 
-     !*/
+	 /** {@inheritDoc}} !*/
 	@Transient
 	/**
      * {@link User#passwordConfirm}
@@ -83,24 +71,18 @@ public class User {
     public String getPasswordConfirm() {
         return passwordConfirm;
     }
-	 /**
-     * {@inheritDoc}} 
-     !*/
+	 /** {@inheritDoc}} !*/
     public final void setPasswordConfirm(final String passwordConfirm) {
         this.passwordConfirm = passwordConfirm;
     }
-    /**
-     * {@inheritDoc}} 
-     !*/
+    /** {@inheritDoc}} !*/
     @ManyToMany
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     public Set<Role> getRoles() {
         return roles;
     }
-    /**
-     * {@inheritDoc}} 
-     !*/
-    public final void setRoles( final Set<Role> roles) {
+    /** {@inheritDoc}} !*/
+    public final void setRoles(final Set<Role> roles) {
         this.roles = roles;
     }
 }
