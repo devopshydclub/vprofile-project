@@ -7,17 +7,11 @@ import java.util.Set;
 @Entity
 @Table(name = "user")
 public class User {
-	/** the id field*/
     private Long id;
-    /** the username field*/
     private String username;
-    /** the password field*/
     private String password;
-    /** the userEmail field*/
     private String userEmail;
-    /** the passwordConfirm field*/
     private String passwordConfirm;
-    /** the roles field*/
     private Set<Role> roles;
     /**
      * {@inheritDoc}} 

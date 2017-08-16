@@ -6,17 +6,9 @@ import java.util.Set;
 @Entity
 @Table(name = "role")
 public class Role {
-	/** 
-	 * the id field
-	 */
-    private Long id;
-    /** 
-     the name field
-     */
-    private String name;
-    /** 
-     * the user field
-     */
+	
+    private Long id;    
+    private String name;   
     private Set<User> users;
 
     /**
