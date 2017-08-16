@@ -12,9 +12,7 @@ public class Role {
     private String name;
     /** the user field !*/
     private Set<User> users;
-    /**
-     * {@inheritDoc}} 
-     */
+    /** {@inheritDoc}} !*/
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     /**
@@ -23,7 +21,7 @@ public class Role {
     public Long getId() {
         return id;
     }
-    /**{@inheritDoc}}*/
+    /** {@inheritDoc}} !*/
     public final void setId(final Long id) {
         this.id = id;
     }
@@ -33,9 +31,7 @@ public class Role {
     public String getName() {
         return name;
     }
-    /**
-     * {@inheritDoc}} 
-     */
+    /** {@inheritDoc}} !*/
     public final void setName(final String name) {
         this.name = name;
     }
