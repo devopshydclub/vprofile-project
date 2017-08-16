@@ -23,18 +23,20 @@ public class UserController {
 
     @Autowired
     private UserValidator userValidator;
-
+    
+    /** {@inheritDoc} */
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
-    public String registration(Model model) {
+    public final String registration(final Model model) {
         model.addAttribute("userForm", new User());
 
         return "registration";
     }
-
+    /** {@inheritDoc} */
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
+    public final String registration(final @ModelAttribute("userForm") User userForm, 
+    	final BindingResult bindingResult, final Model model) {
+    	
         userValidator.validate(userForm, bindingResult);
-
         if (bindingResult.hasErrors()) {
             return "registration";
         }
@@ -45,24 +47,25 @@ public class UserController {
 
         return "redirect:/welcome";
     }
-
+    /** {@inheritDoc} */
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login(Model model, String error, String logout) {
-        if (error != null)
+    public final String login(final Model model, final String error, final String logout) {
+        if (error != null){
             model.addAttribute("error", "Your username and password is invalid.");
-
-        if (logout != null)
+        }
+        if (logout != null){
             model.addAttribute("message", "You have been logged out successfully.");
-
+        }
         return "login";
     }
-
-    @RequestMapping(value = { "/","/welcome"}, method = RequestMethod.GET)
-    public String welcome(Model model) {
+    /** {@inheritDoc} */
+    @RequestMapping(value = { "/", "/welcome"}, method = RequestMethod.GET)
+    public final String welcome(final Model model) {
         return "welcome";
     }
-    @RequestMapping(value = { "/index"} ,method = RequestMethod.GET)
-    public String indexHome(Model model) {
+    /** {@inheritDoc} */
+    @RequestMapping(value = { "/index"} , method = RequestMethod.GET)
+    public final String indexHome(final Model model) {
         return "index_home";
     }
 }
