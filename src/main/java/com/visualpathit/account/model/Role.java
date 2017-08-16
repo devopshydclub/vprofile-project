@@ -17,7 +17,7 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.AUTO)
     /**
      * {@link Role#id}
-     */
+     !*/
     public Long getId() {
         return id;
     }
@@ -27,7 +27,7 @@ public class Role {
     }
     /**
      * {@link Role#name}
-     */
+     !*/
     public String getName() {
         return name;
     }
@@ -37,17 +37,17 @@ public class Role {
     }
     /**
      * {@inheritDoc}} 
-     */
+     !*/
     @ManyToMany(mappedBy = "roles")
     /**
      * {@link Role#id}
-     */
+     !*/
     public Set<User> getUsers() {
         return users;
     }
     /**
      * {@inheritDoc}} 
-     */
+     !*/
     public final void setUsers(Set<User> users) {
         this.users = users;
     }
