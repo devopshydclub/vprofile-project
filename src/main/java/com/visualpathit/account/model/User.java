@@ -3,7 +3,7 @@ package com.visualpathit.account.model;
 
 import javax.persistence.*;
 import java.util.Set;
-/**{@author waheedk}*/
+/**{@author waheedk} !*/
 @Entity
 @Table(name = "user")
 public class User {
@@ -11,17 +11,15 @@ public class User {
     private Long id;
     /** the user name field !*/
     private String username;
-    /** the id field !*/
-    private String password;
     /** the password field !*/
+    private String password;
+    /** the userEmail field !*/
     private String userEmail;
     /** the passwordConfirm field !*/
     private String passwordConfirm;
     /** the roles field !*/
     private Set<Role> roles;
-    /**
-     * {@inheritDoc}} 
-     !*/
+    /** {@inheritDoc}} !*/
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     /**
@@ -50,6 +48,7 @@ public class User {
     }
     /**
      * {@link User#password}
+     * @return The {@link String} instance representing password
      !*/
     public String getPassword() {
         return password;
@@ -62,6 +61,7 @@ public class User {
     }
     /**
      * {@link User#userEmail}
+     * @return The {@link String} instance representing userEmail.
      !*/
     public String getUserEmail() {
 		return userEmail;
