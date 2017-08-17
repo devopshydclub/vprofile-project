@@ -16,7 +16,7 @@ import com.visualpathit.account.model.User;
 public class RoleTest {
 
 	public static final Long EXPECTED_ID = 1L;	
-    public static final String EXPECTED_USERNAME = "Wahidkhan74";
+    public static final String EXPECTED_ROLENAME = "Admin";
     public static final int EXPECTED_SIZE = 1;
     private Role role;
     @Before
@@ -31,8 +31,8 @@ public class RoleTest {
     	users.add(user);    	
     	role = new Role();
     	role.setId(1L);
-        role.setName("Wahidkhan74");
-        role.setUsers(users);;
+        role.setName("Admin");
+        role.setUsers(users);
     }
 
     @After
@@ -44,7 +44,7 @@ public class RoleTest {
     @Test
     public void testUserDetailsHappyFlow() throws Exception {
     	Assert.assertEquals(EXPECTED_ID, role.getId());
-        Assert.assertEquals(EXPECTED_USERNAME, role.getName());
+        Assert.assertEquals(EXPECTED_ROLENAME, role.getName());
         Assert.assertEquals(EXPECTED_SIZE,role.getUsers().size());
 
     }
