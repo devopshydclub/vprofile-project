@@ -1,15 +1,20 @@
 package com.visualpathit.account.controller;
 
+import com.visualpathit.account.beans.Components;
 import com.visualpathit.account.model.User;
 import com.visualpathit.account.service.SecurityService;
 import com.visualpathit.account.service.UserService;
+import com.visualpathit.account.utils.MemchachedUtils;
 import com.visualpathit.account.validator.UserValidator;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 /**{@author waheedk}*/
@@ -68,4 +73,83 @@ public class UserController {
     public final String indexHome(final Model model) {
         return "index_home";
     }
+    @RequestMapping(value = "/users", method = RequestMethod.GET)
+    public String getAllUsers(Model model)
+    {	
+   
+        List<User> users = userService.getList();
+        //JSONObject jsonObject
+        System.out.println("All User Data:::" + users);
+        model.addAttribute("users", users);
+        return "userList";
+    }
+    
+    @RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
+    public String getOneUser(@PathVariable(value="id") String id,Model model)
+    {	
+    	String Result ="";
+    	try{
+    		if( id != null && MemchachedUtils.memchachedGetData(id)!= null){    			
+    			User userData =  MemchachedUtils.memchachedGetData(id);
+    			Result ="Data is From Chache";
+    			System.out.println("--------------------------------------------");
+    			System.out.println("Data is From Chache");
+    			System.out.println("--------------------------------------------");
+    			System.out.println("Father ::: "+userData.getFatherName());
+    			model.addAttribute("user", userData);
+    			model.addAttribute("Result", Result);
+    		}
+    		else{
+	    		User user = userService.findById(Long.parseLong(id)); 
+	    		Result = MemchachedUtils.memchachedSetData(user,id);  
+	    		System.out.println("--------------------------------------------");
+    			System.out.println("Data is From Database");
+    			System.out.println("--------------------------------------------");
+		        System.out.println("Result ::: "+ Result);	       
+		        model.addAttribute("user", user);
+		        model.addAttribute("Result", Result);
+    		}
+    	} catch (Exception e) {    		
+    		System.out.println( e.getMessage() );
+		}
+        return "user";
+    }
+    
+    /** {@inheritDoc} */
+    @RequestMapping(value = { "/user/{username}"} , method = RequestMethod.GET)
+    public final String userUpdate(@PathVariable(value="username") String username,final Model model) {
+    	User user = userService.findByUsername(username); 
+    	System.out.println("User Data:::" + user);
+    	model.addAttribute("user", user);
+    	return "userUpdate";
+    }
+    @RequestMapping(value = { "/user/{username}"} , method = RequestMethod.POST)
+    public final String userUpdateProfile(@PathVariable(value="username") String username,final @ModelAttribute("user") User userForm,final Model model) {
+    	User user = userService.findByUsername(username);
+    	user.setUsername(userForm.getUsername());
+    	user.setUserEmail(userForm.getUserEmail());
+    	user.setDateOfBirth(userForm.getDateOfBirth());
+    	user.setFatherName(userForm.getFatherName());
+    	user.setMotherName(userForm.getMotherName());
+    	user.setGender(userForm.getGender());
+    	user.setLanguage(userForm.getLanguage());
+    	user.setMaritalStatus(userForm.getMaritalStatus());
+    	user.setNationality(userForm.getNationality());
+    	user.setPermanentAddress(userForm.getPermanentAddress());
+    	user.setTempAddress(userForm.getTempAddress());
+    	user.setPhoneNumber(userForm.getPhoneNumber());
+    	user.setSecondaryPhoneNumber(userForm.getSecondaryPhoneNumber());
+    	user.setPrimaryOccupation(userForm.getPrimaryOccupation());
+    	user.setSecondaryOccupation(userForm.getSecondaryOccupation());
+    	user.setSkills(userForm.getSkills());
+    	user.setWorkingExperience(userForm.getWorkingExperience());    	
+    	userService.save(user); 
+    	/*model.addAttribute("user", user);*/
+    	return "welcome";
+    }
+    
+
+    
+
+    
 }
