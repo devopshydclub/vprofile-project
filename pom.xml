@@ -28,13 +28,13 @@
             <artifactId>spring-web</artifactId>
             <version>${spring.version}</version>
         </dependency>
-
+	    
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
             <version>${spring.version}</version>
         </dependency>
-
+	    
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-web</artifactId>
@@ -90,53 +90,51 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-    		<groupId>org.mockito</groupId>
-    		<artifactId>mockito-core</artifactId>
-    		<version>1.9.5</version>
-    		<scope>test</scope>
-		</dependency>
-		<dependency>
-		    <groupId>org.springframework</groupId>
-		    <artifactId>spring-test</artifactId>
-		    <version>3.2.3.RELEASE</version>
-		    <scope>test</scope>
-		</dependency>
-		<dependency>
-		        <groupId>javax.servlet</groupId>
-			    <artifactId>javax.servlet-api</artifactId>
-			    <version>3.1.0</version>
-			    <scope>provided</scope>
-		</dependency>		
+	    <groupId>org.mockito</groupId>
+    	    <artifactId>mockito-core</artifactId>
+            <version>1.9.5</version>
+            <scope>test</scope>
+	</dependency>
+	<dependency>
+	     <groupId>org.springframework</groupId>
+	     <artifactId>spring-test</artifactId>
+	     <version>3.2.3.RELEASE</version>
+	     <scope>test</scope>
+	</dependency>
+	<dependency>
+	     <groupId>javax.servlet</groupId>
+	     <artifactId>javax.servlet-api</artifactId>
+	     <version>3.1.0</version>
+	     <scope>provided</scope>
+	</dependency>		
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>${logback.version}</version>
         </dependency>
         <dependency>
-    		<groupId>org.hamcrest</groupId>
-    		<artifactId>hamcrest-all</artifactId>
-    		<version>1.3</version>
-    		<scope>test</scope>
-		</dependency>
-		<!--Commons IO -->
+    	    <groupId>org.hamcrest</groupId>
+    	    <artifactId>hamcrest-all</artifactId>
+    	    <version>1.3</version>
+    	    <scope>test</scope>
+	</dependency>
         <dependency>
-			<groupId>commons-fileupload</groupId>
-			<artifactId>commons-fileupload</artifactId>
-			<version>1.3.1</version>
-		</dependency>
-		<dependency>
-		    <groupId>net.spy</groupId>
-		    <artifactId>spymemcached</artifactId>
-		    <version>2.12.3</version>
-		</dependency>				
-		<!-- Apache Commons IO --> 
-		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
-			<version>2.4</version>
-		</dependency>
+	    <groupId>commons-fileupload</groupId>
+	    <artifactId>commons-fileupload</artifactId>
+	    <version>1.3.1</version>
+	</dependency>
+	<dependency>
+	    <groupId>net.spy</groupId>
+	    <artifactId>spymemcached</artifactId>
+	    <version>2.12.3</version>
+	</dependency>				
+	<dependency>
+	    <groupId>commons-io</groupId>
+	    <artifactId>commons-io</artifactId>
+	    <version>2.4</version>
+        </dependency>
     </dependencies>
-    <build>
+     <build>
         <plugins>
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
