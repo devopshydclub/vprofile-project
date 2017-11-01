@@ -1,10 +1,9 @@
 package com.visualpathit.account.controller;
 
-import com.visualpathit.account.beans.Components;
 import com.visualpathit.account.model.User;
 import com.visualpathit.account.service.SecurityService;
 import com.visualpathit.account.service.UserService;
-import com.visualpathit.account.utils.MemchachedUtils;
+import com.visualpathit.account.utils.MemcachedUtils;
 import com.visualpathit.account.validator.UserValidator;
 
 import java.util.List;
@@ -89,11 +88,11 @@ public class UserController {
     {	
     	String Result ="";
     	try{
-    		if( id != null && MemchachedUtils.memchachedGetData(id)!= null){    			
-    			User userData =  MemchachedUtils.memchachedGetData(id);
+    		if( id != null && MemcachedUtils.memcachedGetData(id)!= null){    			
+    			User userData =  MemcachedUtils.memcachedGetData(id);
     			Result ="Data is From Chache";
     			System.out.println("--------------------------------------------");
-    			System.out.println("Data is From Chache");
+    			System.out.println("Data is From Chache !!");
     			System.out.println("--------------------------------------------");
     			System.out.println("Father ::: "+userData.getFatherName());
     			model.addAttribute("user", userData);
@@ -101,7 +100,10 @@ public class UserController {
     		}
     		else{
 	    		User user = userService.findById(Long.parseLong(id)); 
-	    		Result = MemchachedUtils.memchachedSetData(user,id);  
+	    		Result = MemcachedUtils.memcachedSetData(user,id);
+	    		if(Result == null ){
+	    			Result ="Memcached Connection Failure !!";
+	    		}
 	    		System.out.println("--------------------------------------------");
     			System.out.println("Data is From Database");
     			System.out.println("--------------------------------------------");
