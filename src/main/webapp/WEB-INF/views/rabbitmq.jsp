@@ -4,9 +4,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Rabbitmq</title>
 </head>
 <body>
 	<h1>Rabbitmq initiated</h1>
+	<h3>Generated 2 Connections</h3>
+	<h3>6 Chanels 1 Exchage and 2 Que</h3>
 </body>
 </html>
