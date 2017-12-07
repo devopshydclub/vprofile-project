@@ -6,7 +6,12 @@
 <html>
 <head>
     <title>allUser</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+  <link href="${contextPath}/resources/css/profile.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://bootswatch.com/cosmo/bootstrap.min.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
@@ -24,7 +29,44 @@ body{
   position: relative;
 }
 </style>
-<body>    
+<body>
+	<div class="mainbody container-fluid">
+    <div class="row">
+        <div class="navbar-wrapper">
+            <div class="container-fluid">
+                <div class="navbar navbar-custom navbar-static-top" role="navigation">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span><span
+                                    class="icon-bar"></span><span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="${contextPath}/index">VISUAL PATH</a>
+                            <i class="brand_network"><small><small>VProfile</small></small></i>
+                        </div>
+                        <div class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <li><a href="#technologies">TECHNOLOGIES</a></li>
+                                <li><a href="#about">ABOUT</a></li>
+                                <li><a href="#contact">CONTACT</a></li>
+                                <li><a href="#">BLOG</a></li>
+                            </ul>
+                            <div class="navbar-collapse navbar-right collapse">
+	                            <ul class="nav navbar-nav">
+	                        	 <li><a href="${contextPath}/login">LOGIN</a></li>
+	                        	 <li><a href="${contextPath}/registration">SIGN UP</a></li>
+	                       	 	</ul>
+                            </div>
+                            
+                         </div>
+                         
+                    </div>
+                </div>
+            </div>
+ 		</div>
+	</div>
+</div>
+<!-- Header -->    
 	<div class="container">
 	<div class="table-responsive">
 	<h2 align="center"> Users List</h2> 
