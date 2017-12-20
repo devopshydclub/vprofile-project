@@ -37,7 +37,12 @@ public class UserController {
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public final String registration(final Model model) {
         model.addAttribute("userForm", new User());
+        if(!producerService.produceMessage("registration").isEmpty()) {
+        	System.out.println("Response via rabbitmq ::");
         	return "registration";
+        }else {
+        	return "registration";
+        }
         
     }
     /** {@inheritDoc} */
@@ -59,7 +64,8 @@ public class UserController {
     /** {@inheritDoc} */
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public final String login(final Model model, final String error, final String logout) {
-        if (error != null){
+        System.out.println("Model data"+model.toString());
+    	if (error != null){
             model.addAttribute("error", "Your username and password is invalid.");
         }
         if (logout != null){
