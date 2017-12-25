@@ -37,14 +37,8 @@ public class UserController {
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public final String registration(final Model model) {
         model.addAttribute("userForm", new User());
-        if(!producerService.produceMessage("registration").isEmpty()) {
-        	System.out.println("Response via rabbitmq ::");
-        	return "registration";
-        }else {
-        	return "registration";
-        }
-        
-    }
+             	return "registration";
+      }
     /** {@inheritDoc} */
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public final String registration(final @ModelAttribute("userForm") User userForm, 
