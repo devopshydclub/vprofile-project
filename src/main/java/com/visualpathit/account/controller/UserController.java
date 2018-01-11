@@ -95,9 +95,9 @@ public class UserController {
     	try{
     		if( id != null && MemcachedUtils.memcachedGetData(id)!= null){    			
     			User userData =  MemcachedUtils.memcachedGetData(id);
-    			Result ="Data is From Chache";
+    			Result ="Data is From Cache";
     			System.out.println("--------------------------------------------");
-    			System.out.println("Data is From Chache !!");
+    			System.out.println("Data is From Cache !!");
     			System.out.println("--------------------------------------------");
     			System.out.println("Father ::: "+userData.getFatherName());
     			model.addAttribute("user", userData);
