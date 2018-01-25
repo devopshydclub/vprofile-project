@@ -50,9 +50,26 @@ CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) DEFAULT NULL,
   `userEmail` varchar(255) DEFAULT NULL,
+  `profileImg` varchar(255) DEFAULT NULL,
+  `profileImgPath` varchar(255) DEFAULT NULL,
+  `dateOfBirth` varchar(255) DEFAULT NULL,
+  `fatherName` varchar(255) DEFAULT NULL,
+  `motherName` varchar(255) DEFAULT NULL,
+  `gender` varchar(255) DEFAULT NULL,
+  `maritalStatus` varchar(255) DEFAULT NULL,
+  `permanentAddress` varchar(255) DEFAULT NULL,
+  `tempAddress` varchar(255) DEFAULT NULL,
+  `primaryOccupation` varchar(255) DEFAULT NULL,
+  `secondaryOccupation` varchar(255) DEFAULT NULL,
+  `skills` varchar(255) DEFAULT NULL,
+  `phoneNumber` varchar(255) DEFAULT NULL,
+  `secondaryPhoneNumber` varchar(255) DEFAULT NULL,
+  `nationality` varchar(255) DEFAULT NULL,
+  `language` varchar(255) DEFAULT NULL,
+  `workingExperience` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -61,7 +78,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (4,'admin_vp','admin@visualpathit.com','$2a$11$DSEIKJNrgPjG.iCYUwErvOkREtC67mqzQ.ogkZbc/KOW1OPOpZfY6');
+INSERT INTO `user` VALUES (4,'admin_vp','admin_vp@vp.com',NULL,NULL,'28/03/1994','M Khan','R Khan','male','unMarried','Ameerpet,Hyderabad','Ameerpet,Hyderabad','Software Engineer','Software Engineer','Java HTML CSS ','9960862529','9960862529','India','english','2 ','$2a$11$enwqb8vLp6TNRuSQwuJs9.p.0RsBVmvJYAsLq.g883Ly87YCiaxKi'),(5,'admin_vp2','admin@visualpathit.com',NULL,NULL,'28/03/1994','M Khan','R Khan','male','unMarried','Ameerpet,Hyderabad','Ameerpet,Hyderabad','Software Engineer','Software Engineer','Java HTML CSS ','9960862529','9960862529','India','english','12','$2a$11$Yflhl432jiLZQqr0DBcQKuJ.bxhZlR1YDFilK3SKeFX/WIulEsW2q'),(6,'admin_vp3','admin@visualpathit.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'$2a$11$PDx0mSd5lf22zP4ulURwp.jVP.AG.wUO94MY72j1FRogs/FcadNCa');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -88,7 +105,7 @@ CREATE TABLE `user_role` (
 
 LOCK TABLES `user_role` WRITE;
 /*!40000 ALTER TABLE `user_role` DISABLE KEYS */;
-INSERT INTO `user_role` VALUES (4,1);
+INSERT INTO `user_role` VALUES (4,1),(5,1),(6,1);
 /*!40000 ALTER TABLE `user_role` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -101,4 +118,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-08-28 10:50:51
+-- Dump completed on 2017-10-24 15:03:57
