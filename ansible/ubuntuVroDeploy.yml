@@ -1,0 +1,40 @@
+---
+- hosts: tomcatservers
+  become: yes
+  gather_facts: False
+  tasks:
+
+  - name: Install EPEL-release
+    apt: 
+      name: "{{item}}" 
+      state: latest
+      update_cache: yes
+      cache_valid_time: 86400
+    with_items:
+      - tomcat8
+      - tomcat8-admin
+      - tomcat8-docs
+      - tomcat8-common
+
+
+  - name: Clean old artifact
+      file:
+        path: "{{item}}"
+        state: absent
+      with_items:
+         - /var/lib/tomcat8/webapps/ROOT.war
+         - /var/lib/tomcat8/webapps/ROOT
+
+  - name: Download latest VProfile.war file
+    get_url: 
+       url: "http://{{nexusip}}:8081/nexus/content/repositories/VProfile-repo/{{groupid}}/{{time}}/{{build}}/{{vprofile_version}}"
+       dest= /var/lib/tomcat8/webapps/ROOT.war
+    register: wardeploy
+      
+  - name: Restart tomcat8
+    service: 
+      name: tomcat8
+      state: restarted
+    when: wardeploy.changed
+
+  
