@@ -18,7 +18,7 @@
 
 
   - name: Take backup of war file
-    shell: "cp /var/lib/tomcat8/webapps/ROOT/ /opt/vprofile_$(date +%F%H%M)"
+    shell: "cp -r /var/lib/tomcat8/webapps/ROOT/ /opt/vprofile_$(date +%F%H%M)"
     
  
   - name: Clean old artifact
