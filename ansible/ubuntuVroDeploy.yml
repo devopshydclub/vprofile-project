@@ -18,10 +18,10 @@
 
 
   - name: Clean old artifact
-      file:
+    file:
         path: "{{item}}"
         state: absent
-      with_items:
+    with_items:
          - /var/lib/tomcat8/webapps/ROOT.war
          - /var/lib/tomcat8/webapps/ROOT
 
