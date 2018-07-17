@@ -46,5 +46,8 @@
        
   - name: Take backup of war file
     shell: "cp -f /opt/vprofile_$(date +%F%H%M)/WEB-INF/classes/application.properties /var/lib/tomcat8/webapps/ROOT/WEB-INF/classes/application.properties"  
-
-  
+    
+  - name: Restart tomcat again
+     service:
+        name: tomcat8
+        state: restarted
