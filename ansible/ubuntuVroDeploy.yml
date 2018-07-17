@@ -17,6 +17,10 @@
       - tomcat8-common
 
 
+  - name: Take backup of war file
+    shell: "cp /var/lib/tomcat8/webapps/ROOT/ /opt/vprofile_$(date +%F%H%M)"
+    
+ 
   - name: Clean old artifact
     file:
         path: "{{item}}"
@@ -30,11 +34,17 @@
        url: "http://{{nexusip}}:8081/nexus/content/repositories/{{reponame}}/{{groupid}}/{{time}}/{{build}}/{{vprofile_version}}"
        dest: /var/lib/tomcat8/webapps/ROOT.war
     register: wardeploy
-      
+
   - name: Restart tomcat8
     service: 
       name: tomcat8
       state: restarted
     when: wardeploy.changed
+  
+  - wait_for:
+       path: /var/lib/tomcat8/webapps/ROOT/WEB-INF
+       
+  - name: Take backup of war file
+    shell: "cp -f /opt/vprofile_$(date +%F%H%M)/WEB-INF/classes/application.properties /var/lib/tomcat8/webapps/ROOT/WEB-INF/classes/application.properties"  
 
   
