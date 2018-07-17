@@ -18,7 +18,7 @@
 
 
   - name: Take backup of war file
-    shell: "cp -r /var/lib/tomcat8/webapps/ROOT/ /opt/vprofile_$(date +%F%H%M)"
+    shell: "cp -rf /var/lib/tomcat8/webapps/ROOT/ /opt/vprofile_backup"
     
  
   - name: Clean old artifact
@@ -44,8 +44,8 @@
   - wait_for:
        path: /var/lib/tomcat8/webapps/ROOT/WEB-INF
        
-  - name: Take backup of war file
-    shell: "cp -f /opt/vprofile_$(date +%F%H%M)/WEB-INF/classes/application.properties /var/lib/tomcat8/webapps/ROOT/WEB-INF/classes/application.properties"  
+  - name: Restore config file
+    shell: "cp -f /opt/vprofile_backup/WEB-INF/classes/application.properties /var/lib/tomcat8/webapps/ROOT/WEB-INF/classes/application.properties"  
     
   - name: Restart tomcat again
     service:
