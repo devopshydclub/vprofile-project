@@ -28,7 +28,7 @@
   - name: Download latest VProfile.war file
     get_url: 
        url: "http://{{nexusip}}:8081/nexus/content/repositories/{{reponame}}/{{groupid}}/{{time}}/{{build}}/{{vprofile_version}}"
-       dest= /var/lib/tomcat8/webapps/ROOT.war
+       dest: /var/lib/tomcat8/webapps/ROOT.war
     register: wardeploy
       
   - name: Restart tomcat8
