@@ -16,10 +16,13 @@
       - tomcat8-docs
       - tomcat8-common
 
-
+  - stat:
+      path: /var/lib/tomcat8/webapps/ROOT
+    register: artifact
+    
   - name: Take backup of war file
     shell: "cp -rf /var/lib/tomcat8/webapps/ROOT/ /opt/vprofile_backup"
-    
+    when: artifact.stat.isdir is defined and artifact.stat.isdir
  
   - name: Clean old artifact
     file:
