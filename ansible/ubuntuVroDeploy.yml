@@ -4,7 +4,7 @@
   gather_facts: False
   tasks:
 
-  - name: Install EPEL-release
+  - name: Install Dependencies
     apt: 
       name: "{{item}}" 
       state: latest
