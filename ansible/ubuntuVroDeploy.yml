@@ -20,8 +20,13 @@
       path: /var/lib/tomcat8/webapps/ROOT
     register: artifact
     
+  - name: Create directory for backup
+    file:
+        path: /opt/vprofile_backup
+        state: directory
+        
   - name: Take backup of war file
-    shell: "cp -rf /var/lib/tomcat8/webapps/ROOT/ /opt/vprofile_backup"
+    shell: "cp -rf /var/lib/tomcat8/webapps/ROOT /opt/vprofile_backup/"
     when: artifact.stat.isdir is defined and artifact.stat.isdir
  
   - name: Clean old artifact
@@ -48,7 +53,7 @@
        path: /var/lib/tomcat8/webapps/ROOT/WEB-INF
        
   - name: Restore config file
-    shell: "cp -f /opt/vprofile_backup/WEB-INF/classes/application.properties /var/lib/tomcat8/webapps/ROOT/WEB-INF/classes/application.properties"  
+    shell: "cp -f /opt/vprofile_backup/ROOT/WEB-INF/classes/application.properties /var/lib/tomcat8/webapps/ROOT/WEB-INF/classes/application.properties"  
     
   - name: Restart tomcat again
     service:
