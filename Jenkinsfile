@@ -22,6 +22,16 @@ pipeline {
                 }
             }
         }
+		stage ('Code Artifact to Nexus Job'){
+            steps {
+                sh 'cp /var/lib/jenkins/workspace/Vprofile-pipeline/target/vprofile-v2.war /var/lib/jenkins/workspace/Vprofile-Nexus-Versioning/vprofile-v2.war'
+            }
+            post {
+                success {
+                    echo 'Artifact Copied'
+                }
+            }
+        }
         stage ('Nexus Versioning'){
             steps {
                 build job: 'Vprofile-Nexus-Versioning'
