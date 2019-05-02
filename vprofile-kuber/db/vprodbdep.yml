@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vprodb
+  labels:
+    app: vprodb
+spec:
+  selector:
+    matchLabels:
+      app: vprodb
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: vprodb
+    spec:
+      containers:
+      - name: vprodb
+        image: imranvisualpath/8amysql-db_1:V1
+        ports:
+        - name: vprodb-port
+          containerPort: 3306
+        env:
+         - name: MYSQL_ROOT_PASSWORD
+           value: "vprodbpass"
+
