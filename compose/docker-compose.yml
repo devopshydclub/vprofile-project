@@ -1,15 +1,15 @@
 version: '3'
 services:
-  vpronginx:
+vpronginx:
     image: visualpath/vpronginx
     ports:
       - "80:80"
   vproapp:
-    image: visualpath/vpromultiapp
+    image: imranvisualpath/vproappfix
     ports:
       - "8080:8080"
   vprodb:
-    image: visualpath/vpromultidb
+    image: imranvisualpath/vprdbfix
     ports:
       - "3306:3306"
     environment:
