@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: vprocache01
+spec:
+  ports:
+  - port: 11211
+#    nodePort: 11201
+    targetPort: vpromc-port
+    protocol: TCP
+  selector:
+    app: vpromc 
+  type: NodePort
