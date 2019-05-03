@@ -1,4 +1,5 @@
-name: Setup Tomcat8 & Deploy Artifact
+
+- name: Setup Tomcat8 & Deploy Artifact
   hosts: appsrvgrp
   vars:
     timestamp: "{{ansible_date_time.date}}_{{ansible_date_time.hour}}_{{ansible_date_time.minute}}"
