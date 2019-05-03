@@ -1,5 +1,5 @@
 - name: Common tool setup on all the servers
-  hosts: websrvgrp
+  hosts: appsrvgrp
   become: yes
   vars:
     tom_url: https://archive.apache.org/dist/tomcat/tomcat-8/v8.5.37/bin/apache-tomcat-8.5.37.tar.gz
