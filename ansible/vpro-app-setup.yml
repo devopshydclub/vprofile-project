@@ -8,7 +8,7 @@
     - name: Download latest VProfile.war from nexus
       get_url:
         url: "http://{{nexusip}}:8081/repository/{{reponame}}/{{groupid}}/vproapp-{{time}}/{{build}}/vproapp-{{vprofile_version}}"
-        dest: /tmp/ROOT.war
+        dest: "/tmp/vproapp-{{vprofile-version}}"
       register: wardeploy
 
     - stat:
@@ -55,7 +55,7 @@
         block:
          - name: Deploy vprofile artifact
            copy:
-             src: /tmp/vprofile-v3.war
+             src: "/tmp/vproapp-{{vprofile-version}}"
              dest: /usr/local/tomcat8/webapps/ROOT.war
              remote_src: yes
            register: deploy_info
