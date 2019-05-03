@@ -57,6 +57,7 @@
            copy:
              src: /tmp/vprofile-v3.war
              dest: /usr/local/tomcat8/webapps/ROOT.war
+             remote_src: yes
            register: deploy_info
            tags:
             - deploy
