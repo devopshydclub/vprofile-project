@@ -24,7 +24,7 @@ pipeline {
         }
 		stage ('Copy Artifact to Nexus Job'){
             steps {
-                sh 'cp /var/lib/jenkins/workspace/Vprofile-pipeline/target/vprofile-v2.war /var/lib/jenkins/workspace/Vprofile-Nexus-Versioning/vprofile-v2.war'
+                sh 'cp /var/lib/jenkins/workspace/Vprofile-pipeline/target/vprofile-v3.war /var/lib/jenkins/workspace/Vprofile-Nexus-Versioning/vprofile-v2.war'
             }
             post {
                 success {
