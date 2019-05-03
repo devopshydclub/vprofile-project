@@ -17,9 +17,9 @@
       tags:
        - deploy
 
-    - name: Stop tomcat8 svc
+    - name: Stop tomcat svc
       service:
-        name: tomcat8
+        name: tomcat
         state: stopped
       tags:
        - deploy
@@ -66,14 +66,14 @@
               chdir: /usr/local/tomcat8/webapps/
 
       rescue:
-       - name: Start tomcat8 svc
+       - name: Start tomcat svc
          service:
-          name: tomcat8
+          name: tomcat
           state: started
 
-    - name: Start tomcat8 svc
+    - name: Start tomcat svc
       service:
-        name: tomcat8
+        name: tomcat
         state: started
       when: deploy_info.changed
       tags:
@@ -98,5 +98,5 @@
   handlers:
    - name: Restart Tomcat
      service:
-      name: tomcat8
+      name: tomcat
       state: restarted
