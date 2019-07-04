@@ -138,13 +138,13 @@
 	    <dependency>
 	            <groupId>org.springframework.amqp</groupId>
 	            <artifactId>spring-rabbit</artifactId>
-	            <version>1.7.1.RELEASE</version>
+	            <version>2.1.7.RELEASE</version>
 	    </dependency>
 	
 	    <dependency>
 	            <groupId>com.rabbitmq</groupId>
 	            <artifactId>amqp-client</artifactId>
-	            <version>4.0.2</version>
+	            <version>5.7.1</version>
 	   </dependency>
 	   <!-- Elasticsearch Dependency-->
 		<dependency>
