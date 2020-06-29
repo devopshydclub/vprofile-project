@@ -51,7 +51,7 @@ pipeline {
 		
         stage ('Staging Deployment'){
             steps {
-                build job: 'vprofile-deploy-to-staging'
+                build job: 'Vprofile-Deploy-to-Staging'
             }
         }
         }
