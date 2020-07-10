@@ -2,7 +2,6 @@ package com.visualpathit.account.model;
 
 import javax.persistence.*;
 import java.util.Set;
-/**{@author waheedk} !*/
 @Entity
 @Table(name = "role")
 public class Role {
