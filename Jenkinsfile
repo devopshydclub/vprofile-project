@@ -32,29 +32,31 @@ pipeline {
                 }
             }
         }
-        stage ('Nexus Versioning'){
-            steps {
-                build job: 'vprofile-nexus-versioning'
-            }
+       freeStyleJob('NexusArtifactUploaderJob') {
+        steps {
+         nexusArtifactUploader {
+         nexusVersion('nexus3')
+         protocol('http')
+         nexusUrl('172.31.22.110:8080')
+         groupId('sp.sd')
+         version('2.4')
+         repository('vprofile-repo')
+         credentialsId('ff8f0688-e38e-4cc6-938c-dcbb8d8cb2df')
+         artifact {
+            artifactId('nexus-artifact-uploader')
+            type('war')
+            classifier('debug')
+            file('vprofile-v2.war')
+         }
+         }
         }
+       }
+
 		
-        stage ('Copy Artifact to Staging Deploy Job'){
-            steps {
-                sh 'cp /var/lib/jenkins/workspace/vprofile-pipeline/target/vprofile-v2.war /var/lib/jenkins/workspace/vprofile-deploy-to-staging/vprofile-v2.war'
-            }
-            post {
-                success {
-                    echo 'Artifact Copied'
-                }
-            }
-        }
 		
-        stage ('Staging Deployment'){
-            steps {
-                build job: 'vprofile-deploy-to-staging'
-            }
-        }
+        
         }
 
 
     }
+
