@@ -8,7 +8,7 @@ pipeline {
         NEXUS_CREDENTIAL_ID = "ff8f0688-e38e-4cc6-938c-dcbb8d8cb2df"
     }
     stages{
-        stage('Build'){
+        stage('BuildAndTest'){
             steps {
                 sh 'mvn install'
             }
