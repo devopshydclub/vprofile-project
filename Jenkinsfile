@@ -29,6 +29,22 @@ pipeline {
                 }
             }
         }
+
+	stage('Sonarqube') {
+          environment {
+             scannerHome = tool 'sonarscanner4'
+          }
+
+          steps {
+            withSonarQubeEnv('sonar-pro') {
+               sh "${scannerHome}/bin/sonar-scanner"
+            }
+
+            timeout(time: 10, unit: 'MINUTES') {
+               waitForQualityGate abortPipeline: true
+            }
+          }
+        }
 		
        stage("Publish to Nexus Repository Manager") {
             steps {
