@@ -17,15 +17,21 @@ pipeline {
 	
     stages{
         
-        stage('BuildAndTest'){
+        stage('BUILD'){
             steps {
-                sh 'mvn install'
+                sh 'mvn package'
             }
             post {
                 success {
                     echo 'Now Archiving...'
                     archiveArtifacts artifacts: '**/target/*.war'
                 }
+            }
+        }
+
+	stage('TEST'){
+            steps {
+                sh 'mvn test'
             }
         }
 		
