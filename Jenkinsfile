@@ -6,7 +6,7 @@ pipeline {
         NEXUS_URL = "172.31.40.209:8081"
         NEXUS_REPOSITORY = "vprofile-release"
         NEXUS_CREDENTIAL_ID = "nexuslogin"
-	ARTVERSION = "$BUILD_ID" 
+	ARTVERSION = "${env.BUILD_ID}" 
     }
     stages{
         stage('BuildAndTest'){
@@ -69,7 +69,7 @@ pipeline {
                             protocol: NEXUS_PROTOCOL,
                             nexusUrl: NEXUS_URL,
                             groupId: pom.groupId,
-                            version: {env.BUILD_ID},
+                            version: ARTVERSION,
                             repository: NEXUS_REPOSITORY,
                             credentialsId: NEXUS_CREDENTIAL_ID,
                             artifacts: [
