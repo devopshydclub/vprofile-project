@@ -35,7 +35,7 @@ pipeline {
             }
         }
 		
-        stage ('Code Analysis'){
+        stage ('CODE ANALYSIS WITH CHECKSTYLE'){
             steps {
                 sh 'mvn checkstyle:checkstyle'
             }
@@ -46,7 +46,7 @@ pipeline {
             }
         }
 
-        stage('Sonarqube') {
+        stage('CODE ANALYSIS with SONARQUBE') {
           
 		  environment {
              scannerHome = tool 'sonarscanner4'
