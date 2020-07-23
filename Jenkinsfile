@@ -1,14 +1,22 @@
 pipeline {
-    agent any
-	environment {
+    
+	agent any
+	
+	tools {
+        maven "Maven"
+    }
+	
+    environment {
         NEXUS_VERSION = "nexus3"
         NEXUS_PROTOCOL = "http"
         NEXUS_URL = "172.31.40.209:8081"
         NEXUS_REPOSITORY = "vprofile-release"
         NEXUS_CREDENTIAL_ID = "nexuslogin"
-	ARTVERSION = "${env.BUILD_ID}" 
+        ARTVERSION = "${env.BUILD_ID}"
     }
+	
     stages{
+        
         stage('BuildAndTest'){
             steps {
                 sh 'mvn install'
@@ -20,7 +28,8 @@ pipeline {
                 }
             }
         }
-		stage ('Code Analysis'){
+		
+        stage ('Code Analysis'){
             steps {
                 sh 'mvn checkstyle:checkstyle'
             }
@@ -31,8 +40,9 @@ pipeline {
             }
         }
 
-	stage('Sonarqube') {
-          environment {
+        stage('Sonarqube') {
+          
+		  environment {
              scannerHome = tool 'sonarscanner4'
           }
 
@@ -53,8 +63,8 @@ pipeline {
             }
           }
         }
-		
-       stage("Publish to Nexus Repository Manager") {
+
+        stage("Publish to Nexus Repository Manager") {
             steps {
                 script {
                     pom = readMavenPom file: "pom.xml";
@@ -83,18 +93,16 @@ pipeline {
                                 type: "pom"]
                             ]
                         );
-                    } else {
+                    } 
+		    else {
                         error "*** File: ${artifactPath}, could not be found";
                     }
                 }
             }
         }
 
-		
-		
-        
-        }
-
 
     }
 
+
+}
