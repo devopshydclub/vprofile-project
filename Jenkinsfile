@@ -3,9 +3,9 @@ pipeline {
 	environment {
         NEXUS_VERSION = "nexus3"
         NEXUS_PROTOCOL = "http"
-        NEXUS_URL = "172.31.22.110:8081"
-        NEXUS_REPOSITORY = "vprofile-repo"
-        NEXUS_CREDENTIAL_ID = "ff8f0688-e38e-4cc6-938c-dcbb8d8cb2df"
+        NEXUS_URL = "172.31.40.209:8081"
+        NEXUS_REPOSITORY = "vprofile-release"
+        NEXUS_CREDENTIAL_ID = "nexuslogin"
     }
     stages{
         stage('BuildAndTest'){
