@@ -20,7 +20,7 @@ pipeline {
         
         stage('BUILD'){
             steps {
-                sh 'mvn package'
+                sh 'mvn clean install -DskipTests'
             }
             post {
                 success {
@@ -30,9 +30,15 @@ pipeline {
             }
         }
 
-	stage('TEST'){
+	stage('UNIT TEST'){
             steps {
                 sh 'mvn test'
+            }
+        }
+
+	stage('INTEGRATION TEST'){
+            steps {
+                sh 'mvn verify -DskipUnitTests'
             }
         }
 		
@@ -85,7 +91,7 @@ pipeline {
                             nexusVersion: NEXUS_VERSION,
                             protocol: NEXUS_PROTOCOL,
                             nexusUrl: NEXUS_URL,
-                            groupId: NEXUS_REPO_ID,
+                            groupId: pom.groupId,
                             version: ARTVERSION,
                             repository: NEXUS_REPOSITORY,
                             credentialsId: NEXUS_CREDENTIAL_ID,
