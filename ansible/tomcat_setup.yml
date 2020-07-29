@@ -65,28 +65,28 @@
 
     - name: Setup tomcat SVC file on Centos 7
       template:
-         src: templates/tomcat7-svcfile.j2
+         src: templates/epel7-svcfile.j2
          dest: /etc/systemd/system/tomcat.service
          mode: "a+x"
       when: ansible_distribution == 'CentOS' and ansible_distribution_major_version == '7'      
 
     - name: Setup tomcat SVC file on Centos 6
       template:
-         src: templates/tomcat6-svcfile.j2
+         src: templates/epel6-svcfile.j2
          dest: /etc/init.d/tomcat
          mode: "a+x"
       when: ansible_distribution == 'CentOS' and ansible_distribution_major_version == '6'
 
     - name: Setup tomcat SVC file on ubuntu 14/15
       template:
-         src: templates/tomcat14_15-svcfile.j2
+         src: templates/ubuntu14_15-svcfile.j2
          dest: /etc/init.d/tomcat
          mode: "a+x"
       when: ansible_distribution == 'Ubuntu' and ansible_distribution_major_version < '16'
 
     - name: Setup tomcat SVC file on ubuntu 16 and 18
       template:
-         src: templates/tomcat16-svcfile.j2
+         src: templates/ubuntu16-svcfile.j2
          dest: /etc/systemd/system/tomcat.service
          mode: "a+x"
       when: ansible_distribution == 'Ubuntu' and ansible_distribution_major_version >= '16'
