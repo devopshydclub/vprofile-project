@@ -1,0 +1,6 @@
+SeleniumSmoke\Selenium\homepage.class
+SeleniumSmoke\Selenium\baseDriver.class
+SeleniumSmoke\Selenium\login.class
+SeleniumSmoke\Selenium\AppTest.class
+SeleniumSmoke\Selenium\pageObjects.class
+SeleniumSmoke\Selenium\PrincipleTestSuite.class
