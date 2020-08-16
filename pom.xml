@@ -203,6 +203,7 @@
 		
         </plugins>
     </build>
+	    <repositories>
     <repository>
       <id>vprofile-grp-repo</id>
       <url>http://${NEXUSIP}:${NEXUSPORT}/repository/${REPONAME}/</url>
