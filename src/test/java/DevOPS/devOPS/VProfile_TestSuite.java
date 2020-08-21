@@ -18,7 +18,7 @@ public class VProfile_TestSuite {
 		
 		WebDriver driver = baseDriver.Chromedriver();
 		vprofileHomePagePO vpo = new vprofileHomePagePO(driver);
-		vpo.loginPage("http://192.168.33.12:8080/login");
+		vpo.loginPage("http://54.90.50.239:8080/vprofile/login");
 		vpo.loginAction("admin_vp", "admin_vp");
 		driver.close();
 	    
