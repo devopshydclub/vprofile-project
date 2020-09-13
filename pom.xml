@@ -159,7 +159,7 @@
 	<repositories>
     <repository>
       <id>${NEXUS_GRP_REPO}</id>
-      <url>http://${NEXUSIP}:${NEXUSPORT}/repository/${REPONAME}/</url>
+      <url>http://${NEXUSIP}:${NEXUSPORT}/repository/${NEXUS_GRP_REPO}/</url>
     </repository>
   </repositories>
 </project>
