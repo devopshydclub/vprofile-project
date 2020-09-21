@@ -14,6 +14,11 @@
       <username>${NEXUS-USER}</username>
       <password>${NEXUS-PASS}</password>
     </server>
+        <server>
+        <id>{CENTRAL-REPO}</id>
+      <username>${NEXUS-USER}</username>
+      <password>${NEXUS-PASS}</password>
+    </server>
   </servers>
 
   <mirrors>
