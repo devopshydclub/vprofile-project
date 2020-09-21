@@ -19,6 +19,11 @@
       <username>${NEXUS-USER}</username>
       <password>${NEXUS-PASS}</password>
     </server>
+    <server>
+        <id>{NEXUS-GRP-REPO}</id>
+      <username>${NEXUS-USER}</username>
+      <password>${NEXUS-PASS}</password>
+    </server>
   </servers>
 
   <mirrors>
