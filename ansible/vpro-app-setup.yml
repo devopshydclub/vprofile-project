@@ -7,7 +7,7 @@
   tasks:
     - name: Download latest VProfile.war from nexus
       get_url:
-        url: "http://{{USER}}:{{PASS}}@{{nexusip}}:8081/repository/{{reponame}}/{{groupid}}/vproapp-{{time}}/{{build}}/vproapp-{{vprofile_version}}"
+        url: "http://{{USER}}:{{PASS}}@{{nexusip}}:8081/repository/{{reponame}}/{{groupid}}/{{time}}/{{build}}/{{vprofile_version}}"
         dest: "/tmp/vproapp-{{vprofile_version}}"
       register: wardeploy
       tags:
