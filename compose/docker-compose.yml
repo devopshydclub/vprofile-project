@@ -18,10 +18,10 @@ services:
   vpromq01:
     image: rabbitmq
     ports:
-      - "15672:15672"
+      - "5672:15672"
     environment:
-      - RABBITMQ_DEFAULT_USER=test
-      - RABBITMQ_DEFAULT_PASS=test
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
 
   vprodb:
     image: imranvisualpath/vprdbfix
