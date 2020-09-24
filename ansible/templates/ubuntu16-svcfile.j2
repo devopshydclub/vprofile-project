@@ -1,0 +1,18 @@
+[Unit]
+Description=Tomcat
+After=network.target
+
+[Service]
+User=tomcat
+WorkingDirectory=/usr/local/tomcat8
+Environment=JRE_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre
+Environment=JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre
+Environment=CATALINA_HOME=/usr/local/tomcat8
+Environment=CATALINE_BASE=/usr/local/tomcat8
+ExecStart=/usr/local/tomcat8/bin/catalina.sh run
+ExecStop=/usr/local/tomcat8/bin/shutdown.sh
+SyslogIdentifier=tomcat-%i
+
+[Install]
+WantedBy=multi-user.target
+
