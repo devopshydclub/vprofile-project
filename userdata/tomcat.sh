@@ -17,43 +17,32 @@ Description=Tomcat
 After=network.target
 
 [Service]
-
 User=tomcat
-Group=tomcat
-
 WorkingDirectory=/usr/local/tomcat8
-
-#Environment=JRE_HOME=/usr/lib/jvm/jre
+Environment=JRE_HOME=/usr/lib/jvm/jre
 Environment=JAVA_HOME=/usr/lib/jvm/jre
-
-Environment=CATALINA_PID=/var/tomcat/%i/run/tomcat.pid
 Environment=CATALINA_HOME=/usr/local/tomcat8
 Environment=CATALINE_BASE=/usr/local/tomcat8
-
 ExecStart=/usr/local/tomcat8/bin/catalina.sh run
 ExecStop=/usr/local/tomcat8/bin/shutdown.sh
-
-
-RestartSec=10
-Restart=always
+SyslogIdentifier=tomcat-%i
 
 [Install]
 WantedBy=multi-user.target
-
 EOT
 
 systemctl daemon-reload
 systemctl start tomcat
 systemctl enable tomcat
 
-git clone -b local-setup https://github.com/devopshydclub/vprofile-project.git
-cd vprofile-project
+git clone -b vp-rem https://github.com/devopshydclub/vprofile-repo.git
+cd vprofile-repo
 mvn install
 systemctl stop tomcat
-sleep 60
+sleep 120
 rm -rf /usr/local/tomcat8/webapps/ROOT*
 cp target/vprofile-v2.war /usr/local/tomcat8/webapps/ROOT.war
 systemctl start tomcat
-sleep 120
-cp /vagrant/application.properties /usr/local/tomcat8/webapps/ROOT/WEB-INF/classes/application.properties
-systemctl restart tomcat
+sleep 300
+cp /vprofile-vm-data/application.properties /usr/local/tomcat8/webapps/ROOT/WEB-INF/classes/application.properties
+systemctl restart tomcat8
