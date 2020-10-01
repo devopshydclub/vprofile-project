@@ -10,6 +10,10 @@ EXTOUT=`tar xzvf tomcatbin.tar.gz`
 TOMDIR=`echo $EXTOUT | cut -d '/' -f1`
 useradd --shell /sbin/nologin tomcat
 rsync -avzh /tmp/$TOMDIR/ /usr/local/tomcat8/
+rm -rf /usr/local/tomcat8/conf/tomcat-users.xml
+rm -rf /usr/local/tomcat8/webapps/manager/META-INF/context.xml
+touch /usr/local/tomcat8/webapps/manager/META-INF/context.xml
+touch /usr/local/tomcat8/conf/tomcat-users.xml
 cat <<EOT>> /usr/local/tomcat8/conf/tomcat-users.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
