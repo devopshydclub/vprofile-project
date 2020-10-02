@@ -203,4 +203,11 @@
 		
         </plugins>
     </build>
+  <repositories>
+      <repository>
+        <id>codeartifact</id>
+        <name>codeartifact</name>
+    <url>https://domainame-accountid.d.codeartifact.regioncode.amazonaws.com/maven/maven-central-store/</url>
+      </repository>
+    </repositories>
 </project>
