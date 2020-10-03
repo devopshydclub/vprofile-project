@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [CI_CD_TEST]">
+  <test thread-count="5" name="PrincipleTestSuite(failed)">
+    <classes>
+      <class name="DevOPS.devOPS.VProfile_TestSuite">
+        <methods>
+          <include name="Homepageverification"/>
+          <include name="logintest"/>
+        </methods>
+      </class> <!-- DevOPS.devOPS.VProfile_TestSuite -->
+    </classes>
+  </test> <!-- PrincipleTestSuite(failed) -->
+</suite> <!-- Failed suite [CI_CD_TEST] -->

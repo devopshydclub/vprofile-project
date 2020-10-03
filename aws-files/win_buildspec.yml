@@ -14,6 +14,7 @@ phases:
       - choco install git -y
       - mkdir C:\output
       - Start-Sleep -s 360
+      - cd src\seleniumscripts\
       - mvn clean test -Dsurefire  -Durl=http://pineapple-env.eba-xvrnrqp3.us-east-1.elasticbeanstalk.com/login -Dusr=admin_vp -Dpass=admin_vp -DsShotPath=C:\\output\\ScrnSht_
       - cp C:\output\* .
 artifacts:
