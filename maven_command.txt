@@ -1,0 +1,1 @@
+mvn clean test -Dsurefire  -Durl=http://192.168.33.12:8080/login -Dusr=admin_vp -Dpass=admin_vp -DsShotPath=C:\\jenkins\\screnshots
