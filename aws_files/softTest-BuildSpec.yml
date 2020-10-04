@@ -1,9 +1,8 @@
 version: 0.2
+env:
+  parameter-store:
+    VPROFILE-STAGE-URL: VPROFILE-STAGE-URL
 
-#env:
-#  variables:
-#    PROJECT: AspNetMvcSampleApp
-#   DOTNET_FRAMEWORK: 4.6.1
 phases:
   pre_build:
     commands:
