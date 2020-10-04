@@ -8,7 +8,7 @@ phases:
     commands:
       - ls src\
       - git status
-      - git checkout cd-aws
+      - git checkout cd-aws-jenkins
       - git status
       - ls src\
       - Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
