@@ -1,0 +1,29 @@
+version: 0.2
+
+#env:
+#  variables:
+#    PROJECT: AspNetMvcSampleApp
+#   DOTNET_FRAMEWORK: 4.6.1
+phases:
+  pre_build:
+    commands:
+      - ls src\
+      - git status
+      - git checkout cd-aws
+      - git status
+      - ls src\
+      - Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+      - choco install jdk8 -y
+      - choco install maven -y
+      - choco install googlechrome -y
+      - choco install git -y
+      - mkdir C:\output 
+  build:
+    commands:
+      - Start-Sleep -s 10
+      - cd src\seleniumscripts\
+      - mvn clean test -Dsurefire  -Durl=$VPROFILE-STAGE-URL -Dusr=admin_vp -Dpass=admin_vp -DsShotPath=C:\\output\\ScrnSht_
+      - cp C:\output\* .
+artifacts:
+  files:
+    - '.\ScrnShts\*'

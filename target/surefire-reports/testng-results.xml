@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="2" passed="2">
+  <reporter-output>
+  </reporter-output>
+  <suite name="CI_CD_TEST" duration-ms="36623" started-at="2020-10-01T19:32:39Z" finished-at="2020-10-01T19:33:16Z">
+    <groups>
+    </groups>
+    <test name="PrincipleTestSuite" duration-ms="36623" started-at="2020-10-01T19:32:39Z" finished-at="2020-10-01T19:33:16Z">
+      <class name="DevOPS.devOPS.VProfile_TestSuite">
+        <test-method status="PASS" signature="logintest()[pri:1, instance:DevOPS.devOPS.VProfile_TestSuite@6c49835d]" name="logintest" duration-ms="14345" started-at="2020-10-01T19:32:39Z" finished-at="2020-10-01T19:32:53Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- logintest -->
+        <test-method status="PASS" signature="Homepageverification()[pri:2, instance:DevOPS.devOPS.VProfile_TestSuite@6c49835d]" name="Homepageverification" duration-ms="22248" started-at="2020-10-01T19:32:53Z" finished-at="2020-10-01T19:33:16Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Homepageverification -->
+      </class> <!-- DevOPS.devOPS.VProfile_TestSuite -->
+    </test> <!-- PrincipleTestSuite -->
+  </suite> <!-- CI_CD_TEST -->
+</testng-results>
