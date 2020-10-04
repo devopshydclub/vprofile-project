@@ -1,0 +1,17 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="CI_CD_TEST" verbose="1">
+	
+<!-- 	<test name="BasicTest">
+		<classes>
+			<class name="SeleniumSmoke.Selenium.login"/>
+			</classes>
+	</test> -->
+	<test name="PrincipleTestSuite">
+		<classes>
+			<class name="DevOPS.devOPS.VProfile_TestSuite"/>
+			</classes>
+	</test>
+	
+
+		
+</suite>
