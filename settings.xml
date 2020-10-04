@@ -1,34 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+<settings xmlns="http://maven.apache.org/SETTINGS/1.1.0"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+  xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.1.0 http://maven.apache.org/xsd/settings-1.1.0.xsd">
+
   <servers>
+    <server>
+      <id>${SNAP-REPO}</id>
+      <username>${NEXUS-USER}</username>
+      <password>${NEXUS-PASS}</password>
+    </server>
+    <server>
+      <id>${RELEASE-REPO}</id>
+      <username>${NEXUS-USER}</username>
+      <password>${NEXUS-PASS}</password>
+    </server>
         <server>
-            <id>codeartifact</id>
-            <username>aws</username>
-            <password>${env.CODEARTIFACT_AUTH_TOKEN}</password>
-        </server>
-    </servers>
-<profiles>
-  <profile>
-    <id>default</id>
-    <repositories>
-      <repository>
-        <id>codeartifact</id>
-    <url>https://visualpath-499770825737.d.codeartifact.us-east-1.amazonaws.com/maven/maven-central-store/</url>
-      </repository>
-    </repositories>
-  </profile>
-</profiles>
-<activeProfiles>
-        <activeProfile>default</activeProfile>
-    </activeProfiles>
-<mirrors>
-  <mirror>
-    <id>codeartifact</id>
-    <name>visualpath--maven-central-store</name>
-    <url>https://visualpath-499770825737.d.codeartifact.us-east-1.amazonaws.com/maven/maven-central-store/</url>
-    <mirrorOf>*</mirrorOf>
-  </mirror>
-</mirrors>
+        <id>{CENTRAL-REPO}</id>
+      <username>${NEXUS-USER}</username>
+      <password>${NEXUS-PASS}</password>
+    </server>
+    <server>
+        <id>{NEXUS-GRP-REPO}</id>
+      <username>${NEXUS-USER}</username>
+      <password>${NEXUS-PASS}</password>
+    </server>
+  </servers>
+
+  <mirrors>
+    <mirror>
+      <id>${CENTRAL-REPO}</id>
+      <name>${CENTRAL-REPO}</name>
+      <url>http://${NEXUSIP}:${NEXUSPORT}/repository/${NEXUS-GRP-REPO}/</url>
+      <mirrorOf>*</mirrorOf>
+    </mirror>
+  </mirrors>
+
 </settings>

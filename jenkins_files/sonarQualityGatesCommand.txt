@@ -1,3 +1,4 @@
+sleep 60
 Project=ProjectKey
 
 curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=$Project >result.json
