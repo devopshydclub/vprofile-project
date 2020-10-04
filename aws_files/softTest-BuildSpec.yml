@@ -16,13 +16,17 @@ phases:
       - choco install maven -y
       - choco install googlechrome -y
       - choco install git -y
-      - mkdir C:\output 
+      - mkdir C:\output
   build:
     commands:
-      - Start-Sleep -s 10
+      - Start-Sleep -s 5
       - cd src\seleniumscripts\
-      - mvn clean test -Dsurefire  -Durl=$VPROFILE-STAGE-URL -Dusr=admin_vp -Dpass=admin_vp -DsShotPath=C:\\output\\ScrnSht_
-      - cp C:\output\* .
+      - mvn clean test -Dsurefire  -Durl=$VPROFILE-STAGE-URL -Dusr=admin_vp -Dpass=admin_vp -DsShotPath=screenshots_
+  post_build:
+    commands:
+      - ls 
+      - pwd
 artifacts:
   files:
-    - '.\ScrnShts\*'
+    - 'src\seleniumscripts\ScrnShts\*'
+  name: $Env:TEST_ENV_VARIABLE-$(Get-Date -UFormat "%Y%m%d-%H%M%S")
