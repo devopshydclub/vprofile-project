@@ -1,0 +1,14 @@
+Project=ProjectKey
+
+curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=$Project >result.json
+
+cat result.json
+
+EXITSTATUS=`cat result.json | cut -d: -f3 | cut -d, -f1`
+
+
+if [ $EXITSTATUS = \"ERROR\" ] ; 
+then 
+  exit 1 ;
+fi
+
