@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="vprofile:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>vprofile</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="vprofile-v2.war">
+      <element id="artifact" artifact-name="vprofile:war exploded" />
+    </root>
+  </artifact>
+</component>
