@@ -50,7 +50,7 @@ EOF
   systemctl daemon-reload
   systemctl restart docker
   sudo systemctl enable docker
-  
+
 else
   # (Install Docker CE)
   ## Set up the repository:
@@ -90,7 +90,7 @@ fi
 
 sleep 30
 
-## Installing kubeadm, kubelet and kubectl 
+## Installing kubeadm, kubelet and kubectl
 yum --help &>> /dev/null
 if [ $? -eq 0 ]
 then
@@ -104,19 +104,19 @@ then
    gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
    exclude=kubelet kubeadm kubectl
 EOF
-   
+
    # Set SELinux in permissive mode (effectively disabling it)
    sudo setenforce 0
    sudo sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
-   
+
    sudo yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
-   
+
    sudo systemctl enable --now kubelet
    systemctl stop firewalld
    systemctl disable firewalld
-   
+
 else
-   
+
    sudo apt-get update && sudo apt-get install -y apt-transport-https curl
    curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
    cat <<EOF | sudo tee /etc/apt/sources.list.d/kubernetes.list
@@ -135,7 +135,7 @@ sudo kubeadm init --pod-network-cidr 10.244.0.0/16 --apiserver-advertise-address
 sleep 360
 /vagrant/set-kubeconfig.sh
 sudo kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
 sleep 60
 sudo cat /tmp/kubeadm_out.log | grep -A1 'kubeadm join' > /vagrant/cltjoincommand.sh
 sudo chmod +x /vagrant/cltjoincommand.sh
-

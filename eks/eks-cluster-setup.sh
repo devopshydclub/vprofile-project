@@ -1,8 +1,8 @@
 # Variables
-CLUSTER_NAME=santra-eks-cluster
-REGION=eu-west-1
-NODE_NAME=Lin-nodes
-KEY_NAME=santra-eks-key
+CLUSTER_NAME=vprofile-eks-cluster
+REGION=us-east-2
+NODE_NAME=Linux-nodes
+KEY_NAME=vprofile-eks-key
 
 # Set AWS credentials before script execution
 

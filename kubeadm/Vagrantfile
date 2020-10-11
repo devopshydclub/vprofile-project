@@ -18,7 +18,7 @@ Vagrant.configure("2") do |config|
 	kubenode1.vm.network "private_network", ip: "192.168.56.3"
         kubenode1.vm.provider "virtualbox" do |vb|
             vb.name = "kubenode1"
-            vb.memory = 2048
+            vb.memory = 1028
             vb.cpus = 2
         end
         kubenode1.vm.hostname = "kubenode1"
@@ -30,7 +30,7 @@ Vagrant.configure("2") do |config|
         kubenode2.vm.network "private_network", ip: "192.168.56.4"
         kubenode2.vm.provider "virtualbox" do |vb|
             vb.name = "kubenode2"
-            vb.memory = 2048
+            vb.memory = 1028
             vb.cpus = 2
         end
         kubenode2.vm.hostname = "kubenode2"
