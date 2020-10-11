@@ -16,17 +16,27 @@ spec:
     spec:
       containers:
       - name: vprodb
-        image: imranvisualpath/8pmdbimg:v1
+        image: vprofile/vprofiledb:V1
+        args:
+         - "--ignore-db-dir=lost+found"
+        volumeMounts:
+        - mountPath: /var/lib/mysql
+          name: vpro-db-data
         ports:
         - name: vprodb-port
           containerPort: 3306
-        env: 
+        env:
          - name: MYSQL_ROOT_PASSWORD
            valueFrom:
              secretKeyRef:
                name: app-secret
                key: db-pass
-#        env:
-#         - name: MYSQL_ROOT_PASSWORD
-#           value: "vprodbpass"
+      nodeSelector:
+        zone: us-east-2b
+      volumes:
+        - name: vpro-db-data
+          # This AWS EBS volume must already exist.
+          awsElasticBlockStore:
+             volumeID: vol-0cf3d659eba6861d4
+             fsType: ext4
 
