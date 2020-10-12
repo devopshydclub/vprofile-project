@@ -1,0 +1,101 @@
+Parameters:
+  RoleTempName:
+    Description: Name of the base stack with all infra resources
+    Type: String
+    Default: cicds3role
+  MyIP:
+    Type: String
+  KeyName: 
+    Type: String
+  InstanceType:                                        
+    Type: String
+    Default: t2.micro
+
+Mappings:
+  AmiRegionMap:
+    us-east-1:
+      AMI: ami-0bcc094591f354be2 
+    us-east-2:
+      AMI: ami-0bbe28eb2173f6167
+    eu-west-1:
+      AMI: ami-0ea3405d2d2522162
+    us-west-1:
+      AMI: ami-0dd005d3eb03f66e8
+    ap-south-1:
+      AMI: ami-02b5fbc2cb28b77b8 
+    us-west-2:
+      AMI: ami-0a634ae95e11c6f91 
+Resources:
+  JenkinsInst:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      InstanceType: !Ref InstanceType
+      KeyName: !Ref KeyName
+      ImageId: !FindInMap
+#        Fn::FindInMap:
+        - AmiRegionMap
+        - !Ref AWS::Region
+        - AMI
+      Tags:
+        - Key: "Name"
+          Value: !Join 
+            - ""
+            - - "Jenkins in "
+              - !Ref AWS::Region
+      SecurityGroups: 
+        - !Ref JenkinsSG
+      IamInstanceProfile: 
+        Fn::ImportValue:
+            Fn::Sub: "${RoleTempName}-VPS3RoleProfileName"
+      UserData:
+        Fn::Base64:                                # YAML makes userdata much cleaner
+          !Sub |
+              #!/bin/bash
+              sudo apt update
+              sudo apt install openjdk-8-jdk -y
+              sudo apt install maven git wget unzip -y
+              sudo apt install awscli -y
+              wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
+              sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+              sudo apt-get update
+              sudo apt-get install jenkins -y
+              sleep 10
+              systemctl stop jenkins
+              sleep 10
+              aws s3 cp s3://cicd-data-vprofile/jenkins_cicdjobs.tar.gz /var/lib/
+              cd /var/lib/
+              tar xzvf jenkins_cicdjobs.tar.gz
+              chown jenkins.jenkins /var/lib/jenkins -R
+              reboot 
+  JenkinsSG:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      GroupName: JenkinsSG
+      GroupDescription: Allow SSH & HTTP from myip
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: '22'
+          ToPort: '22'
+          CidrIp: !Ref MyIP
+          
+        - IpProtocol: tcp
+          FromPort: '8080'
+          ToPort: '8080'
+          CidrIp: 0.0.0.0/0
+        
+Outputs:
+  MyEC2InstancePublicIP:
+    Value: !GetAtt JenkinsInst.PublicIp
+  MyEC2InstancePrivateIP:
+    Value: !GetAtt JenkinsInst.PrivateIp
+  MyEC2InstanceID:
+    Value: !Ref JenkinsInst
+  JenkSecurityGroupId:
+    Description: Security Group 1 ID
+    Value:
+      Fn::GetAtt:
+      - JenkinsSG
+      - GroupId
+    Export:
+      Name: jenk-SGID
+#        Fn::Sub: "${AWS::StackName}-SecurityGroupID"

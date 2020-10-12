@@ -1,0 +1,95 @@
+Parameters:
+  RoleTempName:
+    Description: Name of the base stack with all infra resources
+    Type: String
+    Default: cicds3role
+  JenkStackName:
+    Description: Name of the base stack with all infra resources
+    Type: String
+    Default: jenk
+  MyIP:
+    Type: String
+  KeyName: 
+    Type: String
+  InstanceType:                                        
+    Type: String
+    Default: t2.small
+Mappings:
+  AmiRegionMap:
+    us-east-1:
+      AMI: ami-032c2c4b952586f02
+    us-east-2:
+      AMI: ami-0239d3998515e9ed1
+    eu-west-1:
+      AMI: ami-0b5271aea7b566f9a
+    us-west-1:
+      AMI: ami-08bcc13ad2c143073
+    ap-south-1:
+      AMI: ami-07f7b791cbd0812bf 
+    us-west-2:
+      AMI: ami-029e27fb2fc8ce9d8 
+Resources:
+  WintestInst:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      InstanceType: !Ref InstanceType
+      KeyName: !Ref KeyName
+      ImageId: !FindInMap
+#        Fn::FindInMap:
+        - AmiRegionMap
+        - !Ref AWS::Region
+        - AMI
+      Tags:
+        - Key: "Name"
+          Value: !Join 
+            - ""
+            - - "Wintest in "
+              - !Ref AWS::Region
+      SecurityGroups: 
+        - !Ref wintestSG
+      IamInstanceProfile: 
+        Fn::ImportValue:
+            Fn::Sub: "${RoleTempName}-VPS3RoleProfileName"
+      UserData:
+        Fn::Base64:                                # YAML makes userdata much cleaner
+          !Sub |
+              <powershell>
+              Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+              choco install jdk8 -y 
+              choco install mvn -y 
+              choco install googlechrome -y
+              choco install git.install -y
+              mkdir C:\jenkins
+              </powershell>
+  wintestSG:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      GroupName: wintestSG
+      GroupDescription: Allow SSH & HTTP from myip
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: '3389'
+          ToPort: '3389'
+          CidrIp: !Ref MyIP
+  wintestSGIngress:
+   Type: 'AWS::EC2::SecurityGroupIngress'
+   Properties:
+      GroupId: 
+        Fn::GetAtt:
+        - wintestSG
+        - GroupId
+      IpProtocol: -1
+      SourceSecurityGroupId:
+        Fn::ImportValue:
+            Fn::Sub: "${JenkStackName}-SGID"
+  JenkinsSGIngress:
+   Type: 'AWS::EC2::SecurityGroupIngress'
+   Properties:
+      GroupId: 
+        Fn::ImportValue:
+            Fn::Sub: "${JenkStackName}-SGID"
+      IpProtocol: -1
+      SourceSecurityGroupId:
+        Fn::GetAtt:
+        - wintestSG
+        - GroupId

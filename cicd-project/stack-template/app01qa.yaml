@@ -1,0 +1,131 @@
+Parameters:
+  RoleTempName:
+    Description: Name of the base stack with all infra resources
+    Type: String
+    Default: cicds3role
+  JenkStackName:
+    Description: Name of the base stack with all infra resources
+    Type: String
+    Default: jenk
+  MyIP:
+    Type: String
+  KeyName: 
+    Type: String
+  InstanceType:                                        
+    Type: String
+    Default: t2.micro
+Mappings:
+  AmiRegionMap:
+    us-east-1:
+      AMI: ami-0bcc094591f354be2 
+    us-east-2:
+      AMI: ami-0bbe28eb2173f6167
+    eu-west-1:
+      AMI: ami-0ea3405d2d2522162
+    us-west-1:
+      AMI: ami-0dd005d3eb03f66e8
+    ap-south-1:
+      AMI: ami-02b5fbc2cb28b77b8 
+    us-west-2:
+      AMI: ami-0a634ae95e11c6f91 
+Resources:
+  App01qaInst:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      InstanceType: !Ref InstanceType
+      KeyName: !Ref KeyName
+      ImageId: !FindInMap
+#        Fn::FindInMap:
+        - AmiRegionMap
+        - !Ref AWS::Region
+        - AMI
+      Tags:
+        - Key: "Name"
+          Value: !Join 
+            - ""
+            - - "app01-qa-vpro in "
+              - !Ref AWS::Region
+      SecurityGroups: 
+        - !Ref vproappSG
+      IamInstanceProfile: 
+        Fn::ImportValue:
+            Fn::Sub: "${RoleTempName}-VPS3RoleProfileName"
+      UserData:
+        Fn::Base64:                                # YAML makes userdata much cleaner
+          !Sub |
+              #!/bin/bash
+              sudo apt update
+              sudo apt install openjdk-8-jdk -y
+              sudo apt install git wget unzip -y
+              sudo apt install awscli -y
+              TOMURL="https://archive.apache.org/dist/tomcat/tomcat-8/v8.5.37/bin/apache-tomcat-8.5.37.tar.gz"
+              cd /tmp/
+              wget $TOMURL -O tomcatbin.tar.gz
+              EXTOUT=`tar xzvf tomcatbin.tar.gz`
+              TOMDIR=`echo $EXTOUT | cut -d '/' -f1`
+              useradd --shell /sbin/nologin tomcat
+              rsync -avzh /tmp/$TOMDIR/ /usr/local/tomcat8/
+              aws s3 cp s3://cicd-data-vprofile/tomcat-users.xml /usr/local/tomcat8/conf/tomcat-users.xml
+              aws s3 cp s3://cicd-data-vprofile/context.xml /usr/local/tomcat8/webapps/manager/META-INF/context.xml
+              chown -R tomcat.tomcat /usr/local/tomcat8 
+              cat <<EOT>> /etc/systemd/system/tomcat.service
+              [Unit]
+              Description=Tomcat
+              After=network.target
+
+              [Service]
+              User=tomcat
+              WorkingDirectory=/usr/local/tomcat8
+              Environment=CATALINA_HOME=/usr/local/tomcat8
+              Environment=CATALINE_BASE=/usr/local/tomcat8
+              ExecStart=/usr/local/tomcat8/bin/catalina.sh run
+              ExecStop=/usr/local/tomcat8/bin/shutdown.sh
+              SyslogIdentifier=tomcat-%i
+
+              [Install]
+              WantedBy=multi-user.target
+              EOT
+
+              systemctl daemon-reload
+              systemctl start tomcat
+              systemctl enable tomcat
+
+
+
+  vproappSG:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      GroupName: vproappSG
+      GroupDescription: Allow SSH & HTTP from myip
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: '22'
+          ToPort: '22'
+          CidrIp: !Ref MyIP
+          
+        - IpProtocol: tcp
+          FromPort: '8080'
+          ToPort: '8080'
+          CidrIp: 0.0.0.0/0
+  vproappSGIngress:
+   Type: 'AWS::EC2::SecurityGroupIngress'
+   Properties:
+      GroupId: 
+        Fn::GetAtt:
+        - vproappSG
+        - GroupId
+      IpProtocol: tcp
+      FromPort: 8080
+      ToPort: 8080
+      SourceSecurityGroupId:
+        Fn::ImportValue:
+            Fn::Sub: "${JenkStackName}-SGID"
+Outputs:
+  appSecurityGroupId:
+    Description: Security Group 1 ID
+    Value:
+      Fn::GetAtt:
+      - vproappSG
+      - GroupId
+    Export:
+      Name: app01qa-SGID

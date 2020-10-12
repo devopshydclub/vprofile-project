@@ -1,0 +1,225 @@
+Parameters:
+  RoleTempName:
+    Description: Name of the base stack with all infra resources
+    Type: String
+    Default: cicds3role
+  JenkStackName:
+    Description: Name of the base stack with all infra resources
+    Type: String
+    Default: jenk
+  MyIP:
+    Type: String
+  KeyName: 
+    Type: String
+  InstanceType:                                        
+    Type: String
+    Default: t2.medium
+Mappings:
+  AmiRegionMap:
+    us-east-1:
+      AMI: ami-0bcc094591f354be2 
+    us-east-2:
+      AMI: ami-0bbe28eb2173f6167
+    eu-west-1:
+      AMI: ami-0ea3405d2d2522162
+    us-west-1:
+      AMI: ami-0dd005d3eb03f66e8
+    ap-south-1:
+      AMI: ami-02b5fbc2cb28b77b8 
+    us-west-2:
+      AMI: ami-0a634ae95e11c6f91 
+Resources:
+  SonarInst:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      InstanceType: !Ref InstanceType
+      KeyName: !Ref KeyName
+      ImageId: !FindInMap
+#        Fn::FindInMap:
+        - AmiRegionMap
+        - !Ref AWS::Region
+        - AMI
+      Tags:
+        - Key: "Name"
+          Value: !Join 
+            - ""
+            - - "SonarServer in "
+              - !Ref AWS::Region
+      SecurityGroups: 
+        - !Ref sonarSG
+      IamInstanceProfile: 
+        Fn::ImportValue:
+            Fn::Sub: "${RoleTempName}-VPS3RoleProfileName"
+      UserData:
+        Fn::Base64:                                # YAML makes userdata much cleaner
+          !Sub |
+              #!/bin/bash
+              cp /etc/sysctl.conf /root/sysctl.conf_backup
+              cat <<EOT> /etc/sysctl.conf
+              vm.max_map_count=262144
+              fs.file-max=65536
+              ulimit -n 65536
+              ulimit -u 4096
+              EOT
+              cp /etc/security/limits.conf /root/sec_limit.conf_backup
+              cat <<EOT> /etc/security/limits.conf
+              sonarqube   -   nofile   65536
+              sonarqube   -   nproc    409
+              EOT
+
+              sudo apt-get update -y
+              sudo apt-get install openjdk-11-jdk -y
+              sudo update-alternatives --config java
+              java -version
+
+              sudo apt update
+              wget -q https://www.postgresql.org/media/keys/ACCC4CF8.asc -O - | sudo apt-key add -
+
+              sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
+              sudo apt install postgresql postgresql-contrib -y
+              #sudo -u postgres psql -c "SELECT version();"
+              sudo systemctl enable postgresql.service
+              sudo systemctl start  postgresql.service
+              sudo echo "postgres:admin123" | chpasswd
+              runuser -l postgres -c "createuser sonar"
+              sudo -i -u postgres psql -c "ALTER USER sonar WITH ENCRYPTED PASSWORD 'admin123';"
+              sudo -i -u postgres psql -c "CREATE DATABASE sonarqube OWNER sonar;"
+              sudo -i -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE sonarqube to sonar;"
+              systemctl restart  postgresql
+              #systemctl status -l   postgresql
+              netstat -tulpena | grep postgres
+              sudo mkdir -p /sonarqube/
+              cd /sonarqube/
+              sudo curl -O https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-8.3.0.34182.zip
+              sudo apt-get install zip -y
+              sudo unzip -o sonarqube-8.3.0.34182.zip -d /opt/
+              sudo mv /opt/sonarqube-8.3.0.34182/ /opt/sonarqube
+              sudo groupadd sonar
+              sudo useradd -c "SonarQube - User" -d /opt/sonarqube/ -g sonar sonar
+              sudo chown sonar:sonar /opt/sonarqube/ -R
+              cp /opt/sonarqube/conf/sonar.properties /root/sonar.properties_backup
+              cat <<EOT> /opt/sonarqube/conf/sonar.properties
+              sonar.jdbc.username=sonar
+              sonar.jdbc.password=admin123
+              sonar.jdbc.url=jdbc:postgresql://localhost/sonarqube
+              sonar.web.host=0.0.0.0
+              sonar.web.port=9000
+              sonar.web.javaAdditionalOpts=-server
+              sonar.search.javaOpts=-Xmx512m -Xms512m -XX:+HeapDumpOnOutOfMemoryError
+              sonar.log.level=INFO
+              sonar.path.logs=logs
+              EOT
+
+              cat <<EOT> /etc/systemd/system/sonarqube.service
+              [Unit]
+              Description=SonarQube service
+              After=syslog.target network.target
+
+              [Service]
+              Type=forking
+
+              ExecStart=/opt/sonarqube/bin/linux-x86-64/sonar.sh start
+              ExecStop=/opt/sonarqube/bin/linux-x86-64/sonar.sh stop
+
+              User=sonar
+              Group=sonar
+              Restart=always
+
+              LimitNOFILE=65536
+              LimitNPROC=4096
+
+
+              [Install]
+              WantedBy=multi-user.target
+              EOT
+              
+              systemctl daemon-reload
+              systemctl enable sonarqube.service
+              systemctl start sonarqube.service
+              apt-get install nginx -y
+              rm -rf /etc/nginx/sites-enabled/default
+              rm -rf /etc/nginx/sites-available/default
+              cat <<EOT> /etc/nginx/sites-available/sonarqube
+              server{
+                  listen      80;
+                  server_name sonarqube.groophy.in;
+              
+                  access_log  /var/log/nginx/sonar.access.log;
+                  error_log   /var/log/nginx/sonar.error.log;
+              
+                  proxy_buffers 16 64k;
+                  proxy_buffer_size 128k;
+              
+                  location / {
+                      proxy_pass  http://127.0.0.1:9000;
+                      proxy_next_upstream error timeout invalid_header http_500 http_502 http_503 http_504;
+                      proxy_redirect off;
+                            
+                      proxy_set_header    Host            \$host;
+                      proxy_set_header    X-Real-IP       \$remote_addr;
+                      proxy_set_header    X-Forwarded-For \$proxy_add_x_forwarded_for;
+                      proxy_set_header    X-Forwarded-Proto http;
+                  }
+              }
+              EOT
+              ln -s /etc/nginx/sites-available/sonarqube /etc/nginx/sites-enabled/sonarqube
+              systemctl enable nginx.service
+              #systemctl restart nginx.service
+              sudo ufw allow 80,9000,9001/tcp
+              systemctl stop sonarqube
+              systemctl stop postgresql
+              sleep 10
+              apt install awscli -y
+              aws s3 cp s3://cicd-data-vprofile/sonarqube-vpro-pro-data.tgz /opt/              
+              cd /opt/
+              tar xzvf sonarqube-vpro-pro-data.tgz
+              sudo chown sonar:sonar /opt/sonarqube/ -R
+              aws s3 cp s3://cicd-data-vprofile/postgresql_sonar.tgz  /var/lib/
+              cd /var/lib
+              tar xzvf postgresql_sonar.tgz 
+              chown postgres.postgres /var/lib/postgresql -R
+              systemctl start postgresql
+              systemctl start sonarqube
+              sleep 10              
+              reboot
+
+
+
+
+  sonarSG:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      GroupName: sonarSG
+      GroupDescription: Allow SSH & HTTP from myip
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: '22'
+          ToPort: '22'
+          CidrIp: !Ref MyIP
+          
+        - IpProtocol: tcp
+          FromPort: '80'
+          ToPort: '80'
+          CidrIp: !Ref MyIP
+  sonarSGIngress:
+   Type: 'AWS::EC2::SecurityGroupIngress'
+   Properties:
+      GroupId: 
+        Fn::GetAtt:
+        - sonarSG
+        - GroupId
+      IpProtocol: -1
+      SourceSecurityGroupId:
+        Fn::ImportValue:
+            Fn::Sub: "${JenkStackName}-SGID"
+  JenkinsSGIngress:
+   Type: 'AWS::EC2::SecurityGroupIngress'
+   Properties:
+      GroupId: 
+        Fn::ImportValue:
+            Fn::Sub: "${JenkStackName}-SGID"
+      IpProtocol: -1
+      SourceSecurityGroupId:
+        Fn::GetAtt:
+        - sonarSG
+        - GroupId
