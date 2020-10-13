@@ -8,7 +8,7 @@ pipeline {
         NEXUS_REPOSITORY = "${env.NEXUS_REPOSITORY}"
         NEXUS_CREDENTIAL_ID = "${env.NEXUS_CREDENTIAL_ID}"
         ARTVERSION = "${env.BUILD_ID}"
-        SCANNERHOME = tool "${env.SCANNERHOME}"
+        scannerHome = tool "sonar4"
         NEXUS_REPOGRP_ID  = "${env.NEXUS_REPOGRP_ID}"
     }
 
@@ -58,7 +58,7 @@ pipeline {
 
             steps {
                 withSonarQubeEnv('sonar-pro') {
-                    sh '''${SCANNERHOME}/bin/sonar-scanner -Dsonar.projectKey=vprofile \
+                    sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=vprofile \
                    -Dsonar.projectName=vprofile-repo \
                    -Dsonar.projectVersion=1.0 \
                    -Dsonar.sources=src/ \
