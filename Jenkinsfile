@@ -1,24 +1,24 @@
 pipeline {
-    
-	agent any
-/*	
-	tools {
-        maven "maven3"
-    }
-*/	
+    agent any
+
     environment {
-        NEXUS_VERSION = "nexus3"
-        NEXUS_PROTOCOL = "http"
-        NEXUS_URL = "172.31.40.209:8081"
-        NEXUS_REPOSITORY = "vprofile-release"
-	NEXUS_REPO_ID    = "vprofile-release"
-        NEXUS_CREDENTIAL_ID = "nexuslogin"
-        NEXUS_REPOGRP_ID  = "vprofile-grp-repo"
+        NEXUS_VERSION = "${env.NEXUS_VERSION}"
+        NEXUS_PROTOCOL = "${env.NEXUS_PROTOCOL}"
+        NEXUS_URL = "${env.NEXUS_URL}"
+        NEXUS_REPOSITORY = "${env.NEXUS_REPOSITORY}"
+        NEXUS_CREDENTIAL_ID = "${env.NEXUS_CREDENTIAL_ID}"
         ARTVERSION = "${env.BUILD_ID}"
+        SCANNERHOME = tool "${env.SCANNERHOME}"
+        NEXUS_REPOGRP_ID  = "${env.NEXUS_REPOGRP_ID}"
     }
-	
+
     stages{
-        
+        stage('Fetch Code') {
+            steps {
+                git branch: 'paac', url: 'https://github.com/devopshydclub/vprofile-project.git'
+            }
+        }
+
         stage('BUILD'){
             steps {
                 sh 'mvn clean install -DskipTests'
@@ -31,18 +31,18 @@ pipeline {
             }
         }
 
-	stage('UNIT TEST'){
+        stage('UNIT TEST'){
             steps {
                 sh 'mvn test'
             }
         }
 
-	stage('INTEGRATION TEST'){
+        stage('INTEGRATION TEST'){
             steps {
                 sh 'mvn verify -DskipUnitTests'
             }
         }
-		
+
         stage ('CODE ANALYSIS WITH CHECKSTYLE'){
             steps {
                 sh 'mvn checkstyle:checkstyle'
@@ -55,14 +55,10 @@ pipeline {
         }
 
         stage('CODE ANALYSIS with SONARQUBE') {
-          
-		  environment {
-             scannerHome = tool 'sonarscanner4'
-          }
 
-          steps {
-            withSonarQubeEnv('sonar-pro') {
-               sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=vprofile \
+            steps {
+                withSonarQubeEnv('sonar-pro') {
+                    sh '''${SCANNERHOME}/bin/sonar-scanner -Dsonar.projectKey=vprofile \
                    -Dsonar.projectName=vprofile-repo \
                    -Dsonar.projectVersion=1.0 \
                    -Dsonar.sources=src/ \
@@ -70,12 +66,12 @@ pipeline {
                    -Dsonar.junit.reportsPath=target/surefire-reports/ \
                    -Dsonar.jacoco.reportsPath=target/jacoco.exec \
                    -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml'''
-            }
+                }
 
-            timeout(time: 10, unit: 'MINUTES') {
-               waitForQualityGate abortPipeline: true
+                timeout(time: 10, unit: 'MINUTES') {
+                    waitForQualityGate abortPipeline: true
+                }
             }
-          }
         }
 
         stage("Publish to Nexus Repository Manager") {
@@ -89,26 +85,26 @@ pipeline {
                     if(artifactExists) {
                         echo "*** File: ${artifactPath}, group: ${pom.groupId}, packaging: ${pom.packaging}, version ${pom.version} ARTVERSION";
                         nexusArtifactUploader(
-                            nexusVersion: NEXUS_VERSION,
-                            protocol: NEXUS_PROTOCOL,
-                            nexusUrl: NEXUS_URL,
-                            groupId: pom.groupId,
-                            version: ARTVERSION,
-                            repository: NEXUS_REPOSITORY,
-                            credentialsId: NEXUS_CREDENTIAL_ID,
-                            artifacts: [
-                                [artifactId: pom.artifactId,
-                                classifier: '',
-                                file: artifactPath,
-                                type: pom.packaging],
-                                [artifactId: pom.artifactId,
-                                classifier: '',
-                                file: "pom.xml",
-                                type: "pom"]
-                            ]
+                                nexusVersion: NEXUS_VERSION,
+                                protocol: NEXUS_PROTOCOL,
+                                nexusUrl: NEXUS_URL,
+                                groupId: NEXUS_REPOGRP_ID,
+                                version: ARTVERSION,
+                                repository: NEXUS_REPOSITORY,
+                                credentialsId: NEXUS_CREDENTIAL_ID,
+                                artifacts: [
+                                        [artifactId: pom.artifactId,
+                                         classifier: '',
+                                         file: artifactPath,
+                                         type: pom.packaging],
+                                        [artifactId: pom.artifactId,
+                                         classifier: '',
+                                         file: "pom.xml",
+                                         type: "pom"]
+                                ]
                         );
-                    } 
-		    else {
+                    }
+                    else {
                         error "*** File: ${artifactPath}, could not be found";
                     }
                 }
@@ -117,6 +113,4 @@ pipeline {
 
 
     }
-
-
 }
