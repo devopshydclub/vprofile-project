@@ -22,7 +22,7 @@ public class Role {
         return id;
     }
     /** {@inheritDoc}} !*/
-    public final void setId(final Long id) {
+    public  void setId(final Long id) {
         this.id = id;
     }
     /**
@@ -32,17 +32,17 @@ public class Role {
         return name;
     }
     /** {@inheritDoc}} !*/
-    public final void setName(final String name) {
+    public  void setName(final String name) {
         this.name = name;
     }
     /**
      * {@inheritDoc}} 
      !*/
-    @ManyToMany(mappedBy = "roles")
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "roles",cascade = CascadeType.ALL)
     /**
      * {@link Role#id}
      !*/
-    public Set<User> getUsers() {
+    public Set <User> getUsers() {
         return users;
     }
     /**

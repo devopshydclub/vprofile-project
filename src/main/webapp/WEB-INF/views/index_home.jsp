@@ -7,7 +7,7 @@
     <link href="${contextPath}/resources/css/profile.css" rel="stylesheet">
   	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://bootswatch.com/cosmo/bootstrap.min.css">
-	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="${contextPath}/resources/css/w3.css">
 </head>
 <body>
 <div class="mainbody container-fluid">
