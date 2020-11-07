@@ -1,0 +1,3 @@
+dbuser: admin
+dbpass: admin123
+dbname: accounts
