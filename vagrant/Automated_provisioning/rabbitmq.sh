@@ -5,7 +5,7 @@ sudo yum install wget -y
 cd /tmp/
 wget http://packages.erlang-solutions.com/erlang-solutions-2.0-1.noarch.rpm
 sudo rpm -Uvh erlang-solutions-2.0-1.noarch.rpm
-sudo yum -y install erlang
+sudo yum -y install erlang socat
 curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.
 sh | sudo bash
 yum install rabbitmq-server -y
