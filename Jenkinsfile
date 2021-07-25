@@ -1,11 +1,11 @@
 pipeline{
     agent any
-    tools{
+    tools {
         jdk "jdk"
         maven "maven"
     }
     stages {
-        stage( build code) {
+        stage( 'build code') {
             steps{
                 script{
                     sh 'mvn clean'
@@ -13,7 +13,7 @@ pipeline{
                 }
             }
         }
-        stage(integrate test){
+        stage('integrate test'){
            steps{
               script{
                 sh 'mvn test'
