@@ -13,12 +13,11 @@ pipeline{
                 }
             }
         }
-    }
-    stage(integrate test){
-        steps{
-            script{
+        stage(integrate test){
+           steps{
+              script{
                 sh 'mvn test'
             }
         }
     }
-    
+}
