@@ -1,9 +1,9 @@
 pipeline{
     agent any
-    tools {
+    /*tools {
         jdk "jdk"
         maven "maven"
-    }
+    }*/
     stages {
         stage( 'build code') {
             steps{
