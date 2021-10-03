@@ -26,7 +26,7 @@ mysql -u root -p"$DATABASE_PASS" -e "grant all privileges on accounts.* TO 'admi
 mysql -u root -p"$DATABASE_PASS" -e "grant all privileges on accounts.* TO 'admin'@'%' identified by 'admin123'"
 mysql -u root -p"$DATABASE_PASS" accounts < /tmp/db_backup.sql
 mysql -u root -p"$DATABASE_PASS" -e "FLUSH PRIVILEGES"
-
+#####
 # Restart mariadb-server
 systemctl restart mariadb
 # SETUP MEMCACHE
