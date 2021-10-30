@@ -1,0 +1,30 @@
+pipeline {
+    agent any
+    tools {
+        maven 'Maven'
+    }
+    environment {
+        ECR_REPO_URL = '664574038682.dkr.ecr.eu-west-3.amazonaws.com'
+        IMAGE_REPO = "${ECR_REPO_URL}/java-maven-app"
+    }}
+        stage('build app') {
+            steps {
+               script {
+                   echo "building the application..."
+                   sh 'mvn clean package'
+               }
+            }
+        }
+        stage('build image') {
+            steps {
+                script {
+                    echo "building the docker image..."
+                    withCredentials([usernamePassword(credentialsId: 'ecr-credentials', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
+                        sh "docker build -t ${IMAGE_REPO}:${IMAGE_NAME} ."
+                        sh "echo $PASS | docker login -u $USER --password-stdin ${ECR_REPO_URL}"
+                        sh "docker push ${IMAGE_REPO}:${IMAGE_NAME}"
+                    }
+                }
+            }
+        }
+
