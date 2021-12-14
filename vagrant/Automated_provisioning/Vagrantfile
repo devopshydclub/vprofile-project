@@ -28,15 +28,15 @@ Vagrant.configure("2") do |config|
   end
   
 ### tomcat vm ###
-   config.vm.define "app01" do |app01|
+config.vm.define "app01" do |app01|
     app01.vm.box = "geerlingguy/centos7"
     app01.vm.hostname = "app01"
     app01.vm.network "private_network", ip: "192.168.33.12"
-    app01.vm.provision "shell", path: "tomcat.sh"  
     app01.vm.provider "virtualbox" do |vb|
-     vb.memory = "1024"
-   end
-   end
+     	vb.memory = "1024"
+    end
+    app01.vm.provision "shell", path: "tomcat.sh"  
+end
    
   
 ### Nginx VM ###
