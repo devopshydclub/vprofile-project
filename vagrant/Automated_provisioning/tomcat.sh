@@ -1,11 +1,18 @@
-TOMURL="https://archive.apache.org/dist/tomcat/tomcat-8/v8.5.37/bin/apache-tomcat-8.5.37.tar.gz"
+#!/bin/bash
+sudo -i
+yum update -y
+yum install epel-release -y
 yum install java-1.8.0-openjdk -y
 yum install git maven wget -y
+
+
+TOMURL="https://archive.apache.org/dist/tomcat/tomcat-8/v8.5.37/bin/apache-tomcat-8.5.37.tar.gz"
 cd /tmp/
 wget $TOMURL -O tomcatbin.tar.gz
 EXTOUT=`tar xzvf tomcatbin.tar.gz`
 TOMDIR=`echo $EXTOUT | cut -d '/' -f1`
-useradd --shell /sbin/nologin tomcat
+
+useradd --home-dir /usr/local/tomcat8 --shell /sbin/nologin tomcat
 rsync -avzh /tmp/$TOMDIR/ /usr/local/tomcat8/
 chown -R tomcat.tomcat /usr/local/tomcat8
 
