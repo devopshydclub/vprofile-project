@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Role.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Visualpathit VProfile Webapp</a> &gt; <a href="index.source.html" class="el_package">com.visualpathit.account.model</a> &gt; <span class="el_source">Role.java</span></div><h1>Role.java</h1><pre class="source lang-java linenums">package com.visualpathit.account.model;
+
+import javax.persistence.*;
+import java.util.Set;
+/**{@author waheedk} !*/
+@Entity
+@Table(name = &quot;role&quot;)
+<span class="fc" id="L8">public class Role {</span>
+	/** the id field !*/
+    private Long id;
+    /** the name field !*/
+    private String name;
+    /** the user field !*/
+    private Set&lt;User&gt; users;
+    /** {@inheritDoc}} !*/
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    /**
+     * {@link Role#id}
+     !*/
+    public Long getId() {
+<span class="fc" id="L22">        return id;</span>
+    }
+    /** {@inheritDoc}} !*/
+    public  void setId(final Long id) {
+<span class="fc" id="L26">        this.id = id;</span>
+<span class="fc" id="L27">    }</span>
+    /**
+     * {@link Role#name}
+     !*/
+    public String getName() {
+<span class="fc" id="L32">        return name;</span>
+    }
+    /** {@inheritDoc}} !*/
+    public  void setName(final String name) {
+<span class="fc" id="L36">        this.name = name;</span>
+<span class="fc" id="L37">    }</span>
+    /**
+     * {@inheritDoc}} 
+     !*/
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = &quot;roles&quot;,cascade = CascadeType.ALL)
+    /**
+     * {@link Role#id}
+     !*/
+    public Set &lt;User&gt; getUsers() {
+<span class="fc" id="L46">        return users;</span>
+    }
+    /**
+     * {@inheritDoc}} 
+     !*/
+    public final void setUsers(Set&lt;User&gt; users) {
+<span class="fc" id="L52">        this.users = users;</span>
+<span class="fc" id="L53">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span></div></body></html>

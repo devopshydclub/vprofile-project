@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ProducerServiceImpl.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Visualpathit VProfile Webapp</a> &gt; <a href="index.source.html" class="el_package">com.visualpathit.account.service</a> &gt; <span class="el_source">ProducerServiceImpl.java</span></div><h1>ProducerServiceImpl.java</h1><pre class="source lang-java linenums">package com.visualpathit.account.service;
+
+import com.rabbitmq.client.Connection;
+import com.rabbitmq.client.ConnectionFactory;
+import com.visualpathit.account.utils.RabbitMqUtil;
+
+import org.springframework.stereotype.Service;
+import com.rabbitmq.client.Channel;
+
+import java.io.IOException;
+import java.util.concurrent.TimeoutException;
+
+@Service
+<span class="nc" id="L14">public class ProducerServiceImpl implements ProducerService {</span>
+
+    /**
+     *  The name of the Exchange
+     */
+    private static final String EXCHANGE_NAME = &quot;messages&quot;;
+
+    /**
+     *  This method publishes a message
+     * @param message
+     */
+    @Override
+    public String produceMessage(String message) {
+        try {
+<span class="nc" id="L28">            ConnectionFactory factory = new ConnectionFactory();</span>
+            /**
+            * System.out.println(&quot;Rabitmq host: ::&quot; + RabbitMqUtil.getRabbitMqHost());
+            * System.out.println(&quot;Rabitmq port: ::&quot; + RabbitMqUtil.getRabbitMqPort());
+            * System.out.println(&quot;Rabitmq user: ::&quot; + RabbitMqUtil.getRabbitMqUser());
+            * System.out.println(&quot;Rabitmq password: ::&quot; + RabbitMqUtil.getRabbitMqPassword());
+            **/
+<span class="nc" id="L35">            factory.setHost(RabbitMqUtil.getRabbitMqHost());</span>
+<span class="nc" id="L36">            factory.setPort(Integer.parseInt(RabbitMqUtil.getRabbitMqPort()));</span>
+<span class="nc" id="L37">            factory.setUsername(RabbitMqUtil.getRabbitMqUser());</span>
+<span class="nc" id="L38">            factory.setPassword(RabbitMqUtil.getRabbitMqPassword());</span>
+<span class="nc" id="L39">            Connection connection = factory.newConnection();</span>
+<span class="nc" id="L40">            System.out.println(&quot;Connection open status&quot;+connection.isOpen());</span>
+<span class="nc" id="L41">            Channel channel = connection.createChannel();</span>
+<span class="nc" id="L42">            channel.exchangeDeclare(EXCHANGE_NAME, &quot;fanout&quot;);</span>
+<span class="nc" id="L43">            channel.basicPublish(EXCHANGE_NAME, &quot;&quot;, null, message.getBytes());</span>
+<span class="nc" id="L44">            System.out.println(&quot; [x] Sent '&quot; + message + &quot;'&quot;);</span>
+<span class="nc" id="L45">            channel.close();</span>
+<span class="nc" id="L46">            connection.close();</span>
+<span class="nc" id="L47">        } catch (IOException io) {</span>
+<span class="nc" id="L48">            System.out.println(&quot;IOException&quot;);</span>
+<span class="nc" id="L49">            io.printStackTrace();</span>
+<span class="nc" id="L50">        } catch (TimeoutException toe) {</span>
+<span class="nc" id="L51">            System.out.println(&quot;TimeoutException : &quot; + toe.getMessage());</span>
+<span class="nc" id="L52">            toe.printStackTrace();</span>
+<span class="nc" id="L53">        }</span>
+<span class="nc" id="L54">        return &quot;response&quot;;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span></div></body></html>
