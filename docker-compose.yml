@@ -3,7 +3,7 @@ services:
   vprodb:
     image: vprofileshuk/vprofiledb:V1
     ports:
-      - "3306:
+      - "3306"
     volumes:
       - vprodbdata: /var/lib/mysql
     environment:
@@ -16,7 +16,7 @@ services:
   vpromq01:
     image: rabbitmq
     ports:
-      - "15672:15672"
+      - "15672:5672"
     environment:
       - RABBITMQ_DEFAULT_USER: guest
       - RABBITMQ_DEFAULT_PASS: guest
