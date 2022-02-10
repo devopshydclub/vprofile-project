@@ -1,19 +1,17 @@
 version: '3'
 services:
   vprodb:
-    image: vprofile/vprofiledb:V1
+    image : kalyandockernew/vprodb:V1
     ports:
       - "3306:3306"
     volumes:
       - vprodbdata:/var/lib/mysql
     environment:
-      - MYSQL_ROOT_PASSWORD=vprodbpass
-
-  vprocache01:
+      - MYQL_ROOT_PASSWORD=vprodbpass
+  vprocacheo1:
     image: memcached
     ports:
       - "11211:11211"
-
   vpromq01:
     image: rabbitmq
     ports:
@@ -21,14 +19,12 @@ services:
     environment:
       - RABBITMQ_DEFAULT_USER=guest
       - RABBITMQ_DEFAULT_PASS=guest
-
   vproapp:
-    image: vprofile/vprofileapp:V1
+    image: kalyandockernew/vprofileapp:V1
     ports:
       - "8080:8080"
-    volumes: 
+    volumes:
       - vproappdata:/usr/local/tomcat/webapps
-
   vproweb:
     image: vprofile/vprofileweb:V1
     ports:
