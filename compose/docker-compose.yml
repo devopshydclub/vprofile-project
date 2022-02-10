@@ -26,7 +26,7 @@ services:
     volumes:
       - vproappdata:/usr/local/tomcat/webapps
   vproweb:
-    image: vprofile/vprofileweb:V1
+    image: kalyandockernew/vprofileweb:V1
     ports:
       - "80:80"
 volumes:
