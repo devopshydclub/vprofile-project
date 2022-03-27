@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.1.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.1.0 http://maven.apache.org/xsd/settings-1.1.0.xsd">
+
+  <servers>
+    <server>
+      <id>${SNAP-REPO}</id>
+      <username>${NEXUS-USER}</username>
+      <password>${NEXUS-PASS}</password>
+    </server>
+    <server>
+      <id>${RELEASE-REPO}</id>
+      <username>${NEXUS-USER}</username>
+      <password>${NEXUS-PASS}</password>
+    </server>
+        <server>
+        <id>{CENTRAL-REPO}</id>
+      <username>${NEXUS-USER}</username>
+      <password>${NEXUS-PASS}</password>
+    </server>
+    <server>
+        <id>{NEXUS-GRP-REPO}</id>
+      <username>${NEXUS-USER}</username>
+      <password>${NEXUS-PASS}</password>
+    </server>
+  </servers>
+
+  <mirrors>
+    <mirror>
+      <id>${CENTRAL-REPO}</id>
+      <name>${CENTRAL-REPO}</name>
+      <url>http://${NEXUSIP}:${NEXUSPORT}/repository/${NEXUS-GRP-REPO}/</url>
+      <mirrorOf>*</mirrorOf>
+    </mirror>
+  </mirrors>
+
+</settings>
