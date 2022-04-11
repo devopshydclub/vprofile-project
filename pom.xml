@@ -210,7 +210,7 @@
       <repository>
         <id>codeartifact</id>
         <name>codeartifact</name>
-    <url>https://domainame-accountid.d.codeartifact.regioncode.amazonaws.com/maven/maven-central-store/</url>
+   <url>https://manrodri-423754860743.d.codeartifact.eu-west-1.amazonaws.com/maven/maven-central-store/</url>
       </repository>
     </repositories>
 </project>
