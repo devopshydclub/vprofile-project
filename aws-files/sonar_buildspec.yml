@@ -1,11 +1,11 @@
 version: 0.2
 env:
   parameter-store:
-    LOGIN: LOGIN
-    HOST: HOST
-    Organization: Organization
-    Project: Project
-    CODEARTIFACT_AUTH_TOKEN: CODEARTIFACT_AUTH_TOKEN
+    LOGIN: /sonarcloud/token
+    HOST: /sonarcloud/url
+    Organization: /sonarcloud/organisation
+    Project: /sonarcloud/project
+    CODEARTIFACT_AUTH_TOKEN: /codeartifact/CODE_ARTIFACT_TOKEN
 phases:
   install:
     runtime-versions:
