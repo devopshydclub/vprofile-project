@@ -3,25 +3,28 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
   <servers>
-        <server>
-            <id>codeartifact</id>
-            <username>aws</username>
-            <password>eyJ2ZXIiOjEsImlzdSI6MTY0OTY5MzczMSwiZW5jIjoiQTEyOEdDTSIsInRhZyI6InEwN1hnS2FNcWVxd0FDdUt2cGVrTGciLCJleHAiOjE2NDk3MzY5MzEsImFsZyI6IkExMjhHQ01LVyIsIml2IjoiNERLY0lsU2dla0N2TG95ViJ9.Uk2FTdk_GB9icvzIhursvQ.l5ku7T_U2qCdCSjq.c88NJqCYOlppPFJ1T6PFb4gpJxpAN6-d1pc9BsgZcSGJCsZmPyMNSGD5MkHSGxvfk77csFF2m-n39KekYH9hK44MYNACepln9VBtfHrGnQz1eVHplPYX_fHJxWFoEjyVqI9c8YATr6bwaghC7Tys2Tlnpr_eJo79vFVcOStSmHMVFRUNaqRUCuQ0aSltedyCX6iqDtrDJ7z9uH9lleP-DKOEv6PVqtFHXUUcGRg-GE4m2_dBLg4sYvMQNogVQd4uANZs4J9qQBN1PWJ_JD9u65supGTnNkcvB3G9i8u1enSujrOPM3UTeadPSKOZHMr37PFLkkLKaTFP5YErGalHF1gVvVpRe4AVoq8CGrG4qhnvAeId-1ou7zacDz7F40rmzuEDwmujLvKlHWAY9Hr9rYrhyF_3dALsaxmiXD1rYNyKKB9CZgWj2gW2Rrpv5ssKYkvK0qMXHeIfgO7i7Od567QwafNJrRdpmGLLhAFkK-tVgtEzsrg3bgXe4GNXt5AIhDmBMk9Z-z5OsEu43pez5r1Q0YNOQddrwyudTl3X7JXlLRfk6G61gTJ7EkU05FHykHWT4OadhZEtX7yBfeD7e90z3wVqABPSE8CFTmP92cEAzoqU0ddMVubj19vE1ktfFi8EhYy-TOWQ6YAKQZ1_PqiSdg8lT5tIrBHZl__F3-WzR2KzrdP-bGasr4l2NTg8Ibt5f2-s1ItTbWdF9JXiOCCWlLB6rr1AVzPfkYup-dtdk9-hRcMZFTQ7cJ48Luq9YvXbdR5_JQkFJyIIV7gWvje9jNOczzRzwAZC7i2lGGaqNpby0MsdhComzrrovA6DKS6KCnVjE4n0D4zK-eX2f_Cwb9UKtLi0-aPA6dfq7iAwOVTlIVeP4Icx46h2e8sNggafn7QhdrfQFz8JAuHAtdHedXQZO4YD8xy037INHCvkQk0SH10stA.y4xmDxP997urF6lhkcha7A</password>
-        </server>
-    </servers>
+  <server>
+    <id>manrodri-maven-central-store</id>
+    <username>aws</username>
+    <password>${env.CODEARTIFACT_AUTH_TOKEN}</password>
+  </server>
+</servers>
 <profiles>
-  <profile>
-    <id>default</id>
+    <profile>
+    <id>manrodri-maven-central-store</id>
+    <activation>
+      <activeByDefault>true</activeByDefault>
+    </activation>
     <repositories>
       <repository>
-        <id>codeartifact</id>
-    <url>https://manrodri-423754860743.d.codeartifact.eu-west-1.amazonaws.com/maven/maven-central-store/</url>
+        <id>manrodri-maven-central-store</id>
+        <url>https://manrodri-423754860743.d.codeartifact.eu-west-1.amazonaws.com/maven/maven-central-store/</url>
       </repository>
     </repositories>
   </profile>
 </profiles>
 <activeProfiles>
-        <activeProfile>default</activeProfile>
+        <activeProfile>manrodri-maven-central-store</activeProfile>
     </activeProfiles>
 <mirrors>
   <mirror>
