@@ -10,7 +10,7 @@
   </server>
 </servers>
 <profiles>
-    <profile>
+  <profile>
     <id>manrodri-maven-central-store</id>
     <activation>
       <activeByDefault>true</activeByDefault>
