@@ -6,7 +6,7 @@
   <server>
     <id>manrodri-maven-central-store</id>
     <username>aws</username>
-    <password>${env.CODEARTIFACT_AUTH_TOKEN}</password>
+    <password>${CODEARTIFACT_AUTH_TOKEN}</password>
   </server>
 </servers>
 <profiles>
