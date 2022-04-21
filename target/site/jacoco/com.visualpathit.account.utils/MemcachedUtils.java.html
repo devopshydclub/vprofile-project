@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>MemcachedUtils.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Visualpathit VProfile Webapp</a> &gt; <a href="index.source.html" class="el_package">com.visualpathit.account.utils</a> &gt; <span class="el_source">MemcachedUtils.java</span></div><h1>MemcachedUtils.java</h1><pre class="source lang-java linenums">package com.visualpathit.account.utils;
+
+import java.net.InetSocketAddress;
+import java.net.SocketAddress;
+import java.util.concurrent.Future;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.visualpathit.account.beans.Components;
+import com.visualpathit.account.model.User;
+
+import net.spy.memcached.MemcachedClient;
+@Service
+<span class="nc" id="L15">public class MemcachedUtils {</span>
+	
+	private static Components object;
+    @Autowired
+    public void setComponents(Components object){
+<span class="nc" id="L20">    	MemcachedUtils.object = object;</span>
+<span class="nc" id="L21">    }</span>
+    public static String memcachedSetData(User user,String key){    	
+<span class="nc" id="L23">    	String Result = &quot;&quot;;</span>
+<span class="nc" id="L24">    	int expireTime =  900;</span>
+    	try{
+<span class="nc" id="L26">    			MemcachedClient mactiveClient = memcachedConnection();</span>
+<span class="nc" id="L27">    			System.out.println(&quot;--------------------------------------------&quot;);</span>
+<span class="nc" id="L28">    			System.out.println(&quot;Client is ::&quot;+ mactiveClient.getStats());</span>
+<span class="nc" id="L29">    			System.out.println(&quot;--------------------------------------------&quot;);</span>
+<span class="nc" id="L30">	            Future future = mactiveClient.set(key,expireTime, user);	        	         </span>
+<span class="nc" id="L31">	     	    System.out.println(&quot;set status:&quot; + future.get());</span>
+<span class="nc" id="L32">	     	    Result =&quot; Data is From DB and Data Inserted In Cache !!&quot;;</span>
+<span class="nc" id="L33">	     	    mactiveClient.shutdown();             </span>
+	           
+    		
+<span class="nc" id="L36">    	} catch (Exception e) {    		</span>
+<span class="nc" id="L37">    		System.out.println( e.getMessage() );</span>
+<span class="nc" id="L38">		}</span>
+<span class="nc" id="L39">    	return Result;</span>
+    }
+    public static User memcachedGetData(String key){
+<span class="nc" id="L42">    	String Result = &quot;&quot;;</span>
+<span class="nc" id="L43">    	User userData = null;</span>
+    	try{
+<span class="nc" id="L45">    			MemcachedClient mclient = memcachedConnection();</span>
+<span class="nc" id="L46">    			System.out.println(&quot;--------------------------------------------&quot;);</span>
+<span class="nc" id="L47">    			System.out.println(&quot;Client Status :: &quot;+mclient.getStats());</span>
+<span class="nc" id="L48">    			System.out.println(&quot;--------------------------------------------&quot;);</span>
+<span class="nc" id="L49">	            userData = (User) mclient.get(key);</span>
+<span class="nc" id="L50">	     	    System.out.println(&quot;user value in cache - &quot; + mclient.get(key));</span>
+<span class="nc" id="L51">	     	    Result =&quot; Data Retrieval From Cache !!&quot;;</span>
+<span class="nc" id="L52">	     	    System.out.println(Result);</span>
+<span class="nc" id="L53">	     	    mclient.shutdown();               </span>
+	           
+<span class="nc" id="L55">    	} catch (Exception e) {    		</span>
+<span class="nc" id="L56">    		System.out.println( e.getMessage() );</span>
+<span class="nc" id="L57">		}</span>
+<span class="nc" id="L58">    	return userData;</span>
+    }
+    public static MemcachedClient memcachedConnection(){ 
+<span class="nc" id="L61">    	MemcachedClient mcconn = null;</span>
+<span class="nc" id="L62">    	boolean active = true;</span>
+<span class="nc" id="L63">    	String key=&quot;pid&quot;;</span>
+<span class="nc" id="L64">    	String port = &quot;&quot;;</span>
+<span class="nc" id="L65">    	String activeHost =object.getActiveHost();</span>
+<span class="nc" id="L66">    	String activePort =object.getActivePort();    	</span>
+    	try{   		
+<span class="nc bnc" id="L68" title="All 6 branches missed.">    		if(!activeHost.isEmpty() &amp;&amp; !activePort.isEmpty() &amp;&amp; active){</span>
+<span class="nc" id="L69">	    		mcconn = new MemcachedClient(new InetSocketAddress(activeHost,Integer.parseInt(activePort)));</span>
+<span class="nc bnc" id="L70" title="All 2 branches missed.">	    		for(SocketAddress innerKey:mcconn.getStats().keySet()){</span>
+<span class="nc" id="L71">	    			System.out.println(&quot;Connection  SocketAddress ::&quot; + innerKey);</span>
+	    			//System.out.println(&quot;Connection port ::&quot; + mcconn.getStats().get(innerKey).get(key));
+<span class="nc" id="L73">	    			port = mcconn.getStats().get(innerKey).get(key);	    			</span>
+<span class="nc" id="L74">	    		} </span>
+<span class="nc bnc" id="L75" title="All 2 branches missed.">	    		if(port == null){</span>
+<span class="nc" id="L76">    				System.out.println(&quot;Port::&quot;+ port);</span>
+<span class="nc" id="L77">    				mcconn.shutdown();</span>
+<span class="nc" id="L78">    				System.out.println(&quot;--------------------------------------------&quot;);</span>
+<span class="nc" id="L79">		       		System.out.println(&quot;Connection Failure By Active Host ::&quot; + activeHost);</span>
+<span class="nc" id="L80">		       		System.out.println(&quot;--------------------------------------------&quot;);</span>
+<span class="nc" id="L81">		       		mcconn = null;</span>
+<span class="nc" id="L82">		       		active =false;</span>
+<span class="nc" id="L83">		       		return mcconn = standByMemcachedConn();</span>
+    			}
+<span class="nc bnc" id="L85" title="All 2 branches missed.">    			if(!port.isEmpty()){</span>
+<span class="nc" id="L86">	    			System.out.println(&quot;--------------------------------------------&quot;);</span>
+<span class="nc" id="L87">		    		System.out.println(&quot;Connection to server sucessfull for active Host ::&quot;+activeHost);</span>
+<span class="nc" id="L88">		            System.out.println(&quot;--------------------------------------------&quot;);</span>
+<span class="nc" id="L89">		            active =true;</span>
+<span class="nc" id="L90">		            return mcconn;</span>
+	    		}
+<span class="nc bnc" id="L92" title="All 6 branches missed.">	    	}else if(!activeHost.isEmpty() &amp;&amp; !activePort.isEmpty() &amp;&amp; !active){</span>
+<span class="nc" id="L93">	    		return mcconn = standByMemcachedConn();</span>
+	    	}else {
+<span class="nc" id="L95">	    		 System.out.println(&quot;--------------------------------------------&quot;);</span>
+<span class="nc" id="L96">	    		 System.out.println(&quot;Connection to Failure Due to Incorrect or Empty Host:: &quot;);</span>
+<span class="nc" id="L97">	    		 System.out.println(&quot;--------------------------------------------&quot;);</span>
+	    	}
+	    	}
+<span class="nc" id="L100">    	catch (Exception e) {</span>
+<span class="nc" id="L101">    		System.out.println( e.getMessage() );</span>
+<span class="nc" id="L102">		}</span>
+<span class="nc" id="L103">    	return mcconn;</span>
+    }   
+    public static MemcachedClient standByMemcachedConn(){
+<span class="nc" id="L106">    	MemcachedClient mcconn = null;</span>
+<span class="nc" id="L107">    	String port = &quot;&quot;;</span>
+<span class="nc" id="L108">    	String key=&quot;pid&quot;;</span>
+<span class="nc" id="L109">    	String standByHost = object.getStandByHost();</span>
+<span class="nc" id="L110">    	String standByPort = object.getStandByPort();</span>
+    	try{
+<span class="nc bnc" id="L112" title="All 8 branches missed.">    	if(!standByHost.isEmpty() &amp;&amp; !standByPort.isEmpty() &amp;&amp; mcconn == null &amp;&amp; port.isEmpty()){</span>
+<span class="nc" id="L113">    		mcconn = new MemcachedClient(new InetSocketAddress(standByHost,Integer.parseInt(standByPort)));</span>
+<span class="nc bnc" id="L114" title="All 2 branches missed.">    		for(SocketAddress innerKey:mcconn.getStats().keySet()){</span>
+<span class="nc" id="L115">    			port = mcconn.getStats().get(innerKey).get(key);    		</span>
+<span class="nc" id="L116">    		}</span>
+<span class="nc bnc" id="L117" title="All 2 branches missed.">    		if(!port.isEmpty()){</span>
+<span class="nc" id="L118">	    		System.out.println(&quot;--------------------------------------------&quot;);</span>
+<span class="nc" id="L119">	    		System.out.println(&quot;Connection to server sucessful by StandBy Host::&quot; + standByHost);</span>
+<span class="nc" id="L120">	            System.out.println(&quot;--------------------------------------------&quot;);</span>
+<span class="nc" id="L121">	            return mcconn;</span>
+    		}else {
+<span class="nc" id="L123">	    		 mcconn.shutdown();</span>
+<span class="nc" id="L124">	       		 System.out.println(&quot;--------------------------------------------&quot;);</span>
+<span class="nc" id="L125">	       		 System.out.println(&quot;Connection Failure By StandBy Host ::&quot; +standByHost);</span>
+<span class="nc" id="L126">	       		 System.out.println(&quot;--------------------------------------------&quot;);</span>
+    		}
+    	}
+<span class="nc" id="L129">    	}catch (Exception e) {</span>
+<span class="nc" id="L130">    		System.out.println( e.getMessage() );</span>
+<span class="nc" id="L131">		}</span>
+<span class="nc" id="L132">    	return mcconn;</span>
+    }    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span></div></body></html>
