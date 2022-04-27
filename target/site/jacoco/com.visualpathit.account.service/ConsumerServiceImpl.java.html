@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ConsumerServiceImpl.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Visualpathit VProfile Webapp</a> &gt; <a href="index.source.html" class="el_package">com.visualpathit.account.service</a> &gt; <span class="el_source">ConsumerServiceImpl.java</span></div><h1>ConsumerServiceImpl.java</h1><pre class="source lang-java linenums">package com.visualpathit.account.service;
+
+import org.springframework.amqp.core.ExchangeTypes;
+import org.springframework.amqp.rabbit.annotation.Exchange;
+import org.springframework.amqp.rabbit.annotation.Queue;
+import org.springframework.amqp.rabbit.annotation.QueueBinding;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.stereotype.Service;
+
+@Service
+<span class="nc" id="L11">public class ConsumerServiceImpl implements ConsumerService {</span>
+
+    /**
+        The name of the exchange.
+     */
+    private static final String EXCHANGE_NAME = &quot;messages&quot;;
+
+    /**
+     *  The function that consumes messages from the broker(RabbitMQ)
+     * @param data
+     */
+    @Override
+    @RabbitListener(bindings = @QueueBinding( value = @Queue(),
+            exchange = @Exchange(value = EXCHANGE_NAME, type = ExchangeTypes.FANOUT)))
+    public void consumerMessage(byte[] data) {
+<span class="nc" id="L26">        String consumedMessage = new String(data);</span>
+<span class="nc" id="L27">        System.out.println(&quot; [x] Consumed  '&quot; + consumedMessage + &quot;'&quot;);</span>
+<span class="nc" id="L28">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span></div></body></html>

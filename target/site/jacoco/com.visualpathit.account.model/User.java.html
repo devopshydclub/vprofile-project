@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>User.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Visualpathit VProfile Webapp</a> &gt; <a href="index.source.html" class="el_package">com.visualpathit.account.model</a> &gt; <span class="el_source">User.java</span></div><h1>User.java</h1><pre class="source lang-java linenums">package com.visualpathit.account.model;
+
+
+import javax.persistence.*;
+
+import java.io.Serializable;
+import java.util.Set;
+/**{@author waheedk} !*/
+@Entity
+@Table(name = &quot;user&quot;)
+<span class="fc" id="L11">public class User implements Serializable {</span>
+	/** the id field !*/
+    private Long id;
+    /** the user name field !*/
+    private String username;
+    /** the password field !*/
+    private String password;
+    /** the userEmail field !*/
+    private String userEmail;
+    /** the passwordConfirm field !*/
+    private String passwordConfirm;
+    /** the profileImg field !*/
+    private String profileImg;
+    /** the profileImgPath field !*/
+    private String profileImgPath;
+    private String dateOfBirth;
+    private String fatherName;
+    private String motherName;
+    private String gender;
+    private String maritalStatus;
+    private String permanentAddress;
+    private String tempAddress;
+    private String primaryOccupation;
+    private String secondaryOccupation;
+    private String skills;
+    private String phoneNumber;
+    private String secondaryPhoneNumber;
+    private String nationality;
+    private String language;
+    private String workingExperience;
+    
+    
+    /** the roles field !*/
+    private Set&lt;Role&gt; roles;
+    /** {@inheritDoc}} !*/
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    /** {@link User#id} */
+    public Long getId() {
+<span class="fc" id="L50">        return id;</span>
+    }
+    /** {@inheritDoc}} !*/
+    public  void setId(final Long id) {
+<span class="fc" id="L54">        this.id = id;</span>
+<span class="fc" id="L55">    }</span>
+    /**{@inheritDoc}} !*/
+    public String getUsername() {
+<span class="fc" id="L58">        return username;</span>
+    }
+    /** {@inheritDoc}} !*/
+    public  void setUsername(final String username) {
+<span class="fc" id="L62">        this.username = username;</span>
+<span class="fc" id="L63">    }</span>
+    /**
+     * {@link User#password}
+     * @return The {@link String} instance representing password
+     !*/
+    public String getPassword() {
+<span class="fc" id="L69">        return password;</span>
+    }
+    /**
+     * {@inheritDoc}} 
+     !*/
+    public  void setPassword(final String password) {
+<span class="fc" id="L75">        this.password = password;</span>
+<span class="fc" id="L76">    }</span>
+    /**
+     * {@link User#userEmail}
+     * @return The {@link String} instance representing userEmail.
+     !*/
+    public String getUserEmail() {
+<span class="fc" id="L82">		return userEmail;</span>
+	}
+    /** {@inheritDoc}} !*/
+	public  void setUserEmail(final String userEmail) {
+<span class="fc" id="L86">		this.userEmail = userEmail;</span>
+<span class="fc" id="L87">	}</span>
+
+	 /** {@inheritDoc}} !*/
+	@Transient
+	/**
+     * {@link User#passwordConfirm}
+     !*/
+    public String getPasswordConfirm() {
+<span class="nc" id="L95">        return passwordConfirm;</span>
+    }
+	 /** {@inheritDoc}} !*/
+    public  void setPasswordConfirm(final String passwordConfirm) {
+<span class="nc" id="L99">        this.passwordConfirm = passwordConfirm;</span>
+<span class="nc" id="L100">    }</span>
+    /** {@inheritDoc}} !*/
+    @ManyToMany
+    @JoinTable(name = &quot;user_role&quot;, joinColumns = @JoinColumn(name = &quot;user_id&quot;), inverseJoinColumns = @JoinColumn(name = &quot;role_id&quot;))
+    public Set&lt;Role&gt; getRoles() {
+<span class="fc" id="L105">        return roles;</span>
+    }
+    /** {@inheritDoc}} !*/
+    public void setRoles(final Set&lt;Role&gt; roles) {
+<span class="fc" id="L109">        this.roles = roles;</span>
+<span class="fc" id="L110">    }</span>
+	public String getProfileImg() {
+<span class="nc" id="L112">		return profileImg;</span>
+	}
+	public void setProfileImg(String profileImg) {
+<span class="nc" id="L115">		this.profileImg = profileImg;</span>
+<span class="nc" id="L116">	}</span>
+	public String getProfileImgPath() {
+<span class="nc" id="L118">		return profileImgPath;</span>
+	}
+	public void setProfileImgPath(String profileImgPath) {
+<span class="nc" id="L121">		this.profileImgPath = profileImgPath;</span>
+<span class="nc" id="L122">	}</span>
+	public String getDateOfBirth() {
+<span class="nc" id="L124">		return dateOfBirth;</span>
+	}
+	public void setDateOfBirth(String dateOfBirth) {
+<span class="nc" id="L127">		this.dateOfBirth = dateOfBirth;</span>
+<span class="nc" id="L128">	}</span>
+	public String getFatherName() {
+<span class="nc" id="L130">		return fatherName;</span>
+	}
+	public void setFatherName(String fatherName) {
+<span class="nc" id="L133">		this.fatherName = fatherName;</span>
+<span class="nc" id="L134">	}</span>
+	public String getMotherName() {
+<span class="nc" id="L136">		return motherName;</span>
+	}
+	public void setMotherName(String motherName) {
+<span class="nc" id="L139">		this.motherName = motherName;</span>
+<span class="nc" id="L140">	}</span>
+	public String getGender() {
+<span class="nc" id="L142">		return gender;</span>
+	}
+	public void setGender(String gender) {
+<span class="nc" id="L145">		this.gender = gender;</span>
+<span class="nc" id="L146">	}</span>
+	public String getMaritalStatus() {
+<span class="nc" id="L148">		return maritalStatus;</span>
+	}
+	public void setMaritalStatus(String maritalStatus) {
+<span class="nc" id="L151">		this.maritalStatus = maritalStatus;</span>
+<span class="nc" id="L152">	}</span>
+	public String getPermanentAddress() {
+<span class="nc" id="L154">		return permanentAddress;</span>
+	}
+	public void setPermanentAddress(String permanentAddress) {
+<span class="nc" id="L157">		this.permanentAddress = permanentAddress;</span>
+<span class="nc" id="L158">	}</span>
+	public String getTempAddress() {
+<span class="nc" id="L160">		return tempAddress;</span>
+	}
+	public void setTempAddress(String tempAddress) {
+<span class="nc" id="L163">		this.tempAddress = tempAddress;</span>
+<span class="nc" id="L164">	}</span>
+	public String getPrimaryOccupation() {
+<span class="nc" id="L166">		return primaryOccupation;</span>
+	}
+	public void setPrimaryOccupation(String primaryOccupation) {
+<span class="nc" id="L169">		this.primaryOccupation = primaryOccupation;</span>
+<span class="nc" id="L170">	}</span>
+	public String getSecondaryOccupation() {
+<span class="nc" id="L172">		return secondaryOccupation;</span>
+	}
+	public void setSecondaryOccupation(String secondaryOccupation) {
+<span class="nc" id="L175">		this.secondaryOccupation = secondaryOccupation;</span>
+<span class="nc" id="L176">	}</span>
+	public String getSkills() {
+<span class="nc" id="L178">		return skills;</span>
+	}
+	public void setSkills(String skills) {
+<span class="nc" id="L181">		this.skills = skills;</span>
+<span class="nc" id="L182">	}</span>
+	public String getPhoneNumber() {
+<span class="nc" id="L184">		return phoneNumber;</span>
+	}
+	public void setPhoneNumber(String phoneNumber) {
+<span class="nc" id="L187">		this.phoneNumber = phoneNumber;</span>
+<span class="nc" id="L188">	}</span>
+	public String getSecondaryPhoneNumber() {
+<span class="nc" id="L190">		return secondaryPhoneNumber;</span>
+	}
+	public void setSecondaryPhoneNumber(String secondaryPhoneNumber) {
+<span class="nc" id="L193">		this.secondaryPhoneNumber = secondaryPhoneNumber;</span>
+<span class="nc" id="L194">	}</span>
+	public String getNationality() {
+<span class="nc" id="L196">		return nationality;</span>
+	}
+	public void setNationality(String nationality) {
+<span class="nc" id="L199">		this.nationality = nationality;</span>
+<span class="nc" id="L200">	}</span>
+	public String getLanguage() {
+<span class="nc" id="L202">		return language;</span>
+	}
+	public void setLanguage(String language) {
+<span class="nc" id="L205">		this.language = language;</span>
+<span class="nc" id="L206">	}</span>
+	public String getWorkingExperience() {
+<span class="nc" id="L208">		return workingExperience;</span>
+	}
+	public void setWorkingExperience(String workingExperience) {
+<span class="nc" id="L211">		this.workingExperience = workingExperience;</span>
+<span class="nc" id="L212">	}</span>
+	
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span></div></body></html>
