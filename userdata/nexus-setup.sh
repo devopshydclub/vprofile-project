@@ -2,7 +2,7 @@
 yum install java-1.8.0-openjdk.x86_64 wget -y   
 mkdir -p /opt/nexus/   
 mkdir -p /tmp/nexus/                           
-cd /tmp/nexus
+cd /tmp/nexus/
 NEXUSURL="https://download.sonatype.com/nexus/3/latest-unix.tar.gz"
 wget $NEXUSURL -O nexus.tar.gz
 EXTOUT=`tar xzvf nexus.tar.gz`
