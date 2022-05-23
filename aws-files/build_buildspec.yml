@@ -1,0 +1,24 @@
+version: 0.2
+env: 
+  parameter-store:
+    CODEARTIFACT_AUTH_TOKEN: CODEARTIFACT_AUTH_TOKEN
+phases:
+  install:
+    runtime-versions:
+      java: corretto8
+    commands:
+      - cp ./settings.xml /root/.m2/settings.xml
+  pre_build:
+    commands:
+      - apt-get update
+      - apt-get install -y jq 
+      - wget http://www-eu.apache.org/dist/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.tar.gz
+      - tar xzf apache-maven-3.5.4-bin.tar.gz
+      - ln -s apache-maven-3.5.4 maven
+  build:
+    commands:
+      - mvn clean install -DskipTests
+artifacts:
+  files:
+     - target/**/*.war
+  discard-paths: yes
