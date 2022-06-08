@@ -17,6 +17,9 @@ sudo systemctl status rabbitmq-server
 sudo sh -c 'echo "[{rabbit, [{loopback_users, []}]}]." > /etc/rabbitmq/rabbitmq.config'
 sudo rabbitmqctl add_user test test
 sudo rabbitmqctl set_user_tags test administrator
+firewall-cmd --add-port=5671/tcp --permanent
+firewall-cmd --add-port=5672/tcp --permanent
+firewall-cmd --reload
 sudo systemctl restart rabbitmq-server
 nohup sleep 30 &&  reboot &
 echo "going to reboot now"
