@@ -52,7 +52,7 @@
             <artifactId>hibernate-validator</artifactId>
             <version>${hibernate-validator.version}</version>
         </dependency>
-
+        
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-jpa</artifactId>
@@ -179,7 +179,11 @@
                 </configuration>
             </plugin>
 		<!-- CODE COVERAGE -->
- 		    <plugin>
+ 		      <plugin
+                         <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-war-plugin</artifactId>
+                        <version>3.3.1</version>
+
  		        <groupId>org.jacoco</groupId>
  		        <artifactId>jacoco-maven-plugin</artifactId>
  		        <version>0.7.2.201409121644</version>
