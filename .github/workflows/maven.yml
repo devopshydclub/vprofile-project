@@ -24,3 +24,25 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+      
+    - name: remove default tomcat webapps files
+      uses: appleboy/ssh-action@master
+      with:
+         host: ${{ secrets.HOST }}
+         username: ${{ secrets.USERNAME }}
+         key: ${{ secrets.KEY }}
+         port: ${{ secrets.PORT }}
+         script: rm -rf /usr/local/tomcat/webapps/*
+    
+    - name: copy artifact to tomcat
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        port: ${{ secrets.PORT }}
+        key: ${{ secrets.KEY }}
+        source: "/home/runner/work/vprofile-project/vprofile-project/target/vprofile-v2.war"
+        target: "/usr/local/tomcat/webapps/ROOT.war"
+      
+      
+      
