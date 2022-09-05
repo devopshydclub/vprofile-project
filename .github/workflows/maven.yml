@@ -25,6 +25,10 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
       
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
     - name: remove default tomcat webapps files
       uses: appleboy/ssh-action@master
       with:
@@ -32,7 +36,7 @@ jobs:
          username: ${{ secrets.USERNAME }}
          key: ${{ secrets.KEY }}
          port: ${{ secrets.PORT }}
-         script: rm -rf /usr/local/tomcat/webapps/*
+         script: rm -rf /usr/local/tomcat8/webapps/*
     
     - name: copy artifact to tomcat
       uses: appleboy/scp-action@master
@@ -42,7 +46,7 @@ jobs:
         port: ${{ secrets.PORT }}
         key: ${{ secrets.KEY }}
         source: "target/vprofile-v2.war"
-        target: "/usr/local/tomcat/webapps/ROOT.war"
+        target: "/usr/local/tomcat8/webapps/ROOT.war"
       
       
       
