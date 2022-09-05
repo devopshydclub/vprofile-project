@@ -25,10 +25,6 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
       
-  deploy:
-    runs-on: ubuntu-latest
-    
-    steps:
     - name: remove default tomcat webapps files
       uses: appleboy/ssh-action@master
       with:
