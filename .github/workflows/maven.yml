@@ -41,8 +41,9 @@ jobs:
         username: ${{ secrets.USERNAME }}
         port: ${{ secrets.PORT }}
         key: ${{ secrets.KEY }}
-        source: "vprofile-v2.war"
+        source: "target/vprofile-v2.war"
         target: "/usr/local/tomcat8/webapps/ROOT"
+        strip_components: 1
         
     - name: unzip artifact
       uses: appleboy/ssh-action@master
@@ -51,7 +52,7 @@ jobs:
          username: ${{ secrets.USERNAME }}
          key: ${{ secrets.KEY }}
          port: ${{ secrets.PORT }}
-         script: unzip vprofile-v2.war
+         script: unzip /usr/local/tomcat8/webapps/ROOT/vprofile-v2.war
       
       
       
