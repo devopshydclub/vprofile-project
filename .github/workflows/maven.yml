@@ -41,7 +41,7 @@ jobs:
         username: ${{ secrets.USERNAME }}
         port: ${{ secrets.PORT }}
         key: ${{ secrets.KEY }}
-        source: "/home/runner/work/vprofile-project/vprofile-project/target/vprofile-v2.war"
+        source: "target/vprofile-v2.war"
         target: "/usr/local/tomcat/webapps/ROOT.war"
       
       
