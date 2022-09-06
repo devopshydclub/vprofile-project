@@ -1,0 +1,5 @@
+version: 0.0
+os: linux 
+files:
+  - source: target/vprofile-v2.war
+    destination: /usr/local/tomcat8/webapps/ROOT.war
