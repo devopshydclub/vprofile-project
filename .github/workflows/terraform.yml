@@ -1,12 +1,12 @@
-name: Terraform Apply
+name: Terraform Plan
 
 on:
   push:
     branches:
-      - main
+      - "develope"
 
 jobs:
-  terraform_apply:
+  terraform_plan:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -32,9 +32,31 @@ jobs:
         run: terraform validate -no-color
       - name: Terraform Plan
         id: plan 
-        if: github.event_name == 'pull_request'
         run: terraform plan -no-color -input=false
         continue-on-error: true
+      - name: Comment
+        uses: actions/github-script@v3.0.0
+        env:
+          PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const output = `## \`${{ matrix.dir }}\`
+            #### Terraform Format and Style 🖌\`${{ steps.fmt.outcome }}\`
+            #### Terraform Plan 📖\`${{ steps.plan.outcome }}\`
+
+            <details><summary>Show Plan</summary>
+
+            \`\`\`${process.env.PLAN}\`\`\`
+
+            </details>`;
+
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: output
+            })
       - name: Terraform Plan Status
         if: steps.plan.outcome == 'failure'
         run: exit 1
