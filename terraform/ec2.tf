@@ -12,8 +12,8 @@ resource "aws_instance" "bastion" {
   subnet_id              = element(module.vpc.public_subnets, 0)
 
   tags = {
-    Name	= "Bastion"
-    Terraform   = "true"
+    Name      = "Bastion"
+    Terraform = "true"
   }
 }
 
@@ -27,11 +27,11 @@ resource "aws_instance" "tomcat" {
   monitoring             = true
   vpc_security_group_ids = [aws_security_group.tomcat.id]
   subnet_id              = element(module.vpc.private_subnets, 0)
-  user_data		         = file("./user_data/tomcat.sh")
+  user_data              = file("./user_data/tomcat.sh")
 
   tags = {
-    Name	= "Tomcat"
-    Terraform   = "true"
+    Name      = "Tomcat"
+    Terraform = "true"
   }
 }
 
@@ -40,7 +40,7 @@ resource "aws_instance" "tomcat" {
 locals {
   backend-name = ["MyMQL", "Memcache", "RabbitMQ"]
 
-  centos_userdata_path = [ "./user_data/mysql.sh", "./user_data/memcache.sh", "./user_data/rabbitmq.sh" ]
+  centos_userdata_path = ["./user_data/mysql.sh", "./user_data/memcache.sh", "./user_data/rabbitmq.sh"]
 
 }
 
@@ -54,10 +54,10 @@ resource "aws_instance" "backend" {
   monitoring             = true
   vpc_security_group_ids = [aws_security_group.internal.id]
   subnet_id              = element(module.vpc.private_subnets, 0)
-  user_data		         = file(local.centos_userdata_path[count.index])
+  user_data              = file(local.centos_userdata_path[count.index])
 
   tags = {
-    Name	= local.backend-name[count.index]
-    Terraform   = "true"
+    Name      = local.backend-name[count.index]
+    Terraform = "true"
   }
 }

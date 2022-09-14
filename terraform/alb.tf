@@ -10,18 +10,18 @@ resource "aws_lb" "alb" {
   subnets            = module.vpc.public_subnets
   ip_address_type    = "ipv4"
 
-  depends_on = [ aws_security_group.alb ]
+  depends_on = [aws_security_group.alb]
 
 }
 resource "aws_lb_target_group" "alb-target-group" {
-  name     = "vp-alb-target-grp"
+  name        = "vp-alb-target-grp"
   target_type = "instance"
-  port     = 80
-  protocol = "HTTP"
-  vpc_id   = module.vpc.vpc_id
+  port        = 80
+  protocol    = "HTTP"
+  vpc_id      = module.vpc.vpc_id
 
   health_check {
-	path = "/login"
+    path = "/login"
     port = 8080
   }
 
@@ -31,7 +31,7 @@ resource "aws_lb_listener" "alb-listener" {
   load_balancer_arn = aws_lb.alb.arn
   port              = "80"
   protocol          = "HTTP"
-default_action {
+  default_action {
     type             = "forward"
     target_group_arn = aws_lb_target_group.alb-target-group.arn
   }
