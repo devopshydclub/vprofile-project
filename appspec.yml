@@ -1,5 +1,8 @@
 version: 0.0
 os: linux 
 files:
-  - source: target/vprofile-v2.war
+  - source: /
     destination: /usr/local/tomcat8/webapps/ROOT.war
+
+#source: "/home/runner/work/vprofile-project/vprofile-project/target/vprofile-v2.war"
+#        target: "/usr/local/tomcat/webapps/ROOT.war"
