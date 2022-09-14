@@ -3,7 +3,10 @@ name: Terraform Plan
 on:
   push:
     branches:
-      - "develope"
+      - "vp-rem"
+  pull_request:
+    branches:
+      - "vp-rem"
 
 jobs:
   terraform_plan:
@@ -32,9 +35,11 @@ jobs:
         run: terraform validate -no-color
       - name: Terraform Plan
         id: plan 
+        if: github.event_name == 'pull_request'
         run: terraform plan -no-color -input=false
         continue-on-error: true
       - name: Comment
+        if: github.event_name == 'pull_request'
         uses: actions/github-script@v3.0.0
         env:
           PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
@@ -61,5 +66,5 @@ jobs:
         if: steps.plan.outcome == 'failure'
         run: exit 1
       - name: Terraform Apply
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        if: github.ref == 'refs/heads/vp-rem' && github.event_name == 'push'
         run: terraform apply -auto-approve -input=false
