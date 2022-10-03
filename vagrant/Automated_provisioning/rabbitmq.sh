@@ -1,6 +1,6 @@
 #!/bin/bash
 sudo yum install epel-release -y
-sudo yum update -y
+
 sudo yum install wget -y
 cd /tmp/
 wget http://packages.erlang-solutions.com/erlang-solutions-2.0-1.noarch.rpm
