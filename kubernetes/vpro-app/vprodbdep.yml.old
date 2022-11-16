@@ -1,11 +1,10 @@
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
   name: vprodb
   labels:
     app: vprodb
 spec:
-  serviceName: mysql
   selector:
     matchLabels:
       app: vprodb
@@ -22,7 +21,7 @@ spec:
          - "--ignore-db-dir=lost+found"
         volumeMounts:
         - mountPath: /var/lib/mysql
-          name: vpro-db-data
+          name: my-do-volume
         ports:
         - name: vprodb-port
           containerPort: 3306
@@ -34,14 +33,7 @@ spec:
                key: db-pass
       nodeSelector:
         region: fra1
-  volumeClaimTemplates:
-  - metadata:
-      name: vpro-db-data
-    spec:
-      accessModes:
-      - ReadWriteOnce
-      resources:
-        requests:
-          storage: 5Gi
-      storageClassName: do-block-storage
-
+    volumes:
+    - name: my-do-volume
+      persistentVolumeClaim:
+        claimName: vpro-db-data

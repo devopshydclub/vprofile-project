@@ -20,3 +20,6 @@ spec:
         ports:
         - name: vpromc-port
           containerPort: 11211
+
+# using the official memcached image
+# Ports abd sercerts are derived from the application.properties file

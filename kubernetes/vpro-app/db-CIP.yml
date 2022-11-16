@@ -10,3 +10,5 @@ spec:
   selector:
     app: vprodb
   type: ClusterIP
+
+# Service for the mysql StatefulSet
