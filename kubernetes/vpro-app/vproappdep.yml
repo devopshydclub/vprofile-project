@@ -27,3 +27,5 @@ spec:
       - name: init-memcache
         image: busybox
         command: ['sh', '-c', 'until nslookup vprocache01; do echo waiting for mydb; sleep 2; done;']
+
+# TomCat Application deployment

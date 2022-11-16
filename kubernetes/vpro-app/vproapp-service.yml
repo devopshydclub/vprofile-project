@@ -10,3 +10,5 @@ spec:
   selector:
     app: vproapp
   type: LoadBalancer
+
+# Service for the TomCat application

@@ -10,3 +10,6 @@ spec:
   selector:
     app: vpromc 
   type: ClusterIP
+
+# Service for the memcached deployment
+# This works just fine with my deployment on DigitalOcean
