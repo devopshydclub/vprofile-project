@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: vproapp
-        image: imranvisualpath/freshtomapp:V7
+        image: vprofile/vprofileapp:V1 
         ports:
         - name: vproapp-port
           containerPort: 8080
@@ -27,3 +27,5 @@ spec:
       - name: init-memcache
         image: busybox
         command: ['sh', '-c', 'until nslookup vprocache01; do echo waiting for mydb; sleep 2; done;']
+
+# TomCat Application deployment

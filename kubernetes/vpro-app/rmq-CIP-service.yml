@@ -4,9 +4,11 @@ metadata:
   name: vpromq01
 spec:
   ports:
-  - port: 5672
+  - port: 15672
     targetPort: vpromq01-port
     protocol: TCP
   selector:
     app: vpromq01
   type: ClusterIP
+
+# RabbitMQ serivce
