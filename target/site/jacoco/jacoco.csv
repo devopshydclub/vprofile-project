@@ -1,0 +1,16 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+Visualpathit VProfile Webapp,com.visualpathit.account.beans,Components,87,0,0,0,37,0,25,0,25,0
+Visualpathit VProfile Webapp,com.visualpathit.account.validator,UserValidator,67,0,12,0,14,0,9,0,3,0
+Visualpathit VProfile Webapp,com.visualpathit.account.controller,FileUploadController,152,0,4,0,26,0,6,0,4,0
+Visualpathit VProfile Webapp,com.visualpathit.account.controller,ElasticSearchController,165,0,2,0,45,0,6,0,5,0
+Visualpathit VProfile Webapp,com.visualpathit.account.controller,UserController,289,33,12,2,68,9,14,5,7,5
+Visualpathit VProfile Webapp,com.visualpathit.account.model,Role,0,21,0,0,0,9,0,6,0,6
+Visualpathit VProfile Webapp,com.visualpathit.account.model,User,126,35,0,0,54,15,36,10,36,10
+Visualpathit VProfile Webapp,com.visualpathit.account.utils,RabbitMqUtil,18,0,0,0,7,0,6,0,6,0
+Visualpathit VProfile Webapp,com.visualpathit.account.utils,ElasticsearchUtil,75,0,0,0,22,0,3,0,3,0
+Visualpathit VProfile Webapp,com.visualpathit.account.utils,MemcachedUtils,379,0,30,0,91,0,21,0,6,0
+Visualpathit VProfile Webapp,com.visualpathit.account.service,UserServiceImpl,40,0,0,0,8,0,5,0,5,0
+Visualpathit VProfile Webapp,com.visualpathit.account.service,ProducerServiceImpl,89,0,0,0,22,0,2,0,2,0
+Visualpathit VProfile Webapp,com.visualpathit.account.service,UserDetailsServiceImpl,41,0,2,0,8,0,3,0,2,0
+Visualpathit VProfile Webapp,com.visualpathit.account.service,ConsumerServiceImpl,21,0,0,0,4,0,2,0,2,0
+Visualpathit VProfile Webapp,com.visualpathit.account.service,SecurityServiceImpl,55,0,4,0,17,0,6,0,4,0

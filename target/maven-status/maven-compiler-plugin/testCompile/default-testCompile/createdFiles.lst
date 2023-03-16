@@ -1,0 +1,5 @@
+com\visualpathit\account\setup\StandaloneMvcTestViewResolver.class
+com\visualpathit\account\modelTest\UserTest.class
+com\visualpathit\account\controllerTest\UserControllerTest.class
+com\visualpathit\account\controllerTest\SampleTest.class
+com\visualpathit\account\modelTest\RoleTest.class

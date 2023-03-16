@@ -1,0 +1,4 @@
+{
+    "java.compile.nullAnalysis.mode": "automatic",
+    "awsconsole.ec2.region": "us-east-2"
+}
