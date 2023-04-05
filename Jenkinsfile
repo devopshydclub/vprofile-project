@@ -85,10 +85,10 @@ pipeline {
                     repository: "${RELEASE_REPO}",
                     credentialsId: "${NEXUS_LOGIN}",
                     artifacts: [
-                        [artifactId: "vprofile-project",
+                        [artifactId: 'vprofile-project',
                          classifier: '',
-                         file: "target/vprofile-v2.war",
-                         type: "jar"]
+                         file: 'target/vprofile-v2.war',
+                         type: 'jar']
                         ]
                 )
             }
