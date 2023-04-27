@@ -8,7 +8,7 @@ pipeline {
 
     environment {
         cluster = "prodcluster"
-        service = "prodservice"
+        service = "prodservice1"
     }
 
     stages {
