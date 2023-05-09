@@ -1,3 +1,7 @@
+sudo mv /etc/yum.repos.d/fedora-updates.repo /tmp/
+sudo mv /etc/yum.repos.d/fedora-updates-modular.repo /tmp/
+sudo yum clean all
+sudo yum update
 TOMURL="https://archive.apache.org/dist/tomcat/tomcat-8/v8.5.37/bin/apache-tomcat-8.5.37.tar.gz"
 yum install java-1.8.0-openjdk -y
 yum install git maven wget -y
