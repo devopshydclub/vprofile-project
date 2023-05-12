@@ -1,4 +1,4 @@
-FROM mysql:5.7.25
+FROM mysql:5.7.40
 
 ENV MYSQL_ROOT_PASSWORD="vpropass"
 ENV MYSQL_DATABASE="accounts"

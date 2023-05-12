@@ -6,7 +6,7 @@ services:
       - "80:80"
 
   vproapp:
-    image: imranvisualpath/vproappfix
+    image: kaveh61/vprofileapp
     ports:
       - "8080:8080"
 
@@ -24,7 +24,7 @@ services:
       - RABBITMQ_DEFAULT_PASS=guest
 
   vprodb:
-    image: imranvisualpath/vprdbfix
+    image: kaveh61/vprofiledb
     ports:
       - "3306:3306"
     volumes:
