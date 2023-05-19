@@ -84,6 +84,9 @@ exec zsh -l
 brew install maven
 ```
 ```
+brew install --cask visual-studio-code
+```
+```
 brew install --cask intellij-idea
 ```
 ```
