@@ -72,7 +72,13 @@ brew install --cask vagrant-manager
 brew install git
 ```
 ```
-brew install --cask homebrew/cask-versions/adoptopenjdk8
+brew install openjdk@11
+```
+```
+sudo ln -sfn $HOMEBREW_PREFIX/opt/openjdk@11/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
+```
+```
+exec zsh -l
 ```
 ```
 brew install maven
