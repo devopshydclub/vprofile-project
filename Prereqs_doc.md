@@ -14,7 +14,7 @@ choco install vagrant --version=2.3.4 -y
 choco install git -y
 ```
 ```
-choco uninstall corretto11jdk -y
+choco install corretto11jdk -y
 ```
 ```
 choco install maven -y
