@@ -48,11 +48,11 @@ Steps:
 1. OpenTerminal
 2. Execute below command
 ```
-echo-k>~/.curlrc
+echo -k > ~/.curlrc
 ```
 3. Execute below command to see -k in file ~/.curlrc 
 ```
-cat~/.curlrc
+cat ~/.curlrc
 ```
 
 Run all the below commands in Terminal
