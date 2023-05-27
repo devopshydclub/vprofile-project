@@ -309,3 +309,18 @@ We get some error says connection timeout or something. It is because in the sec
 
 -	Exit from the instance
 
+## Step 4
+### Build and Deploy Artifacts
+
+**Task 1**
+
+In order to deploy artifacts we need to install some tools
+-	jdk8  (dependency for maven)
+-	maven
+-	awscli (we use this to upload the artifacts to the s3 bucket)
+To install the above tools in windows follow the below steps
+Open the windows powershell as administrator nd enter the below command to install the tools
+-	choco install jdk8 –y
+-	choco install maven –y
+-	choco install awscli –y
+
