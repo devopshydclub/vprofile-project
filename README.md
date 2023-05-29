@@ -509,5 +509,123 @@ To create target group follow the below steps;
 
 ![image](https://github.com/Fawazcp/aws-project/assets/111639918/4721383e-667a-4d1a-a8b3-17f600b5178f)
 
+**Task 2**
 
+**Create Application Load Balancer**
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/fca7b766-c8cf-4830-b159-d8ac6e979d7a)
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/54e69d76-888c-4ed2-9c3c-28917656248a)
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/d1a7774f-bec2-40ce-a36f-1bbb79582fb4)
+
+Under mappings select all the regions available for high availabilty
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/47e25706-de22-443a-a639-ece301a111e2)
+
+Select the security group we created for the load balancer. Make sure that it is having HTTP and HTTPS inbound rule from anywhere added.
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/82d204d5-a74d-43a6-a128-1b54b0dba520)
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/49692108-6861-4b8a-8d04-84f321b97cc1)
+
+- Add 2 listeners HTTP and HTTPS and select the target group we created.
+- When we select the HTTPS listener we should add the certificate. (You can create certificate using Amazon Certificate Manager [ACM])
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/524a4c4d-5b35-45dc-8f25-2c32235e5333)
+
+Dropdown and select the certificate. If you cannot see the certificate then check the region you selected and where you have created the certificate.
+
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/770ee2ab-4abc-4e93-9f5f-86fab99895fa)
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/da7379d3-9498-45e2-9097-909ae106320c)
+
+Wait for sometime and after sometime we can see our load balancer state is active.
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/f74f1e22-09b0-4272-82ee-bedc1662fbe5)
+
+**Task 3**
+
+**Create CNAME**
+
+Copy the load balancer DNS name.
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/73159567-fcf2-4b52-9355-cba847a906c4)
+
+-	Go to route53
+-	Create new CNAME record and add paste the load balancer DNS name.(If you registered the domain using godaddy or other platform you need to add the CNAME in that domain name, I have registered a domain using route53)
+-	If you have a domain in the route53 then follow the below steps.
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/7f935047-a1e3-4ff3-b81c-0238f982c945)
+
+
+Also make sure to add the CNAME where you have already added the certificate.
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/605283ff-636b-443f-b851-b1b9a9b6166c)
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/a4bfc838-f0f9-46a1-bc67-288832adc5b5)
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/6ebc8f0a-510c-4f1f-9ab0-496f87483dc8)
+
+Copy the record name and paste it in to new browser also add **/login** in the last
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/188411c5-3351-4ef3-b4ac-4859b61852d5)
+
+Enter the username and password as admin_vp and click on log in
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/d2b83cbc-fc75-4853-ad47-b2f446de6cff)
+
+Now we have successfully logged in.
+First let’s check the rabbitmq
+-	Click on the rabbitmq icon to validate the rabbitmq is working as we expected.
+
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/f84a62fa-cf93-42df-b1f4-f0c17b9df3b5)
+
+-	Go back and click all users to check the memcached
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/da50e71d-b3ae-44fa-b233-c26bc9e99d1c)
+
+Click on any user and we can see data inserted in cache
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/c95657b4-2449-48f5-9a34-ad2eef27f65a)
+
+-	Go back and click on the same user and we can see this time it came faster than before because it is coming from the cache
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/9495097e-3dc3-46ce-8db5-6fc612cf3ef3)
+
+Wow and that was a successful attempt to the application instance
+
+## Step 5
+
+### Autoscaling Group
+
+**Task 1**
+
+Create an AMI of the application server (tomcat-server)
+To create an AMI follow the below steps;
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/62a03397-ea93-43d6-8a82-aa61420c6f76)
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/1c3b4229-2451-473c-be5f-5c1dcc051c27)
+
+Creating an image may take some time.
+Go to AMI from EC2 console and check the status of the AMI we created.
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/c71fd227-f09a-4c8f-8e26-9da7b0c8b3ae)
+
+After sometime we can see the status as Available.
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/5c1a3a5e-dc68-4a9b-a301-f5264d0b98f1)
+
+**Task 2**
+
+**Launch templates**
+
+To create a launch templates follow the below steps;
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/ffea04f1-4d6d-439e-9f16-d123af9ac6ce)
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/bd699787-5955-4fef-bf23-a688cbeabfae)
 
