@@ -21,7 +21,7 @@
 - Security Group
 
 # Pricing
-You may be charged for the domain name. But most of the service used is comes under free-tier
+You may be charged for the domain name and other services used for this project. But most of the service used is comes under free-tier
 
 # Technologies 
 - Spring MVC
