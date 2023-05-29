@@ -37,6 +37,12 @@ MSQL DB Installation Steps for Linux ubuntu 14.04:
 - $ sudo apt-get install mysql-server
 
 
+
+
+![Lift and Shift.drawio.png](https://github.com/Fawazcp/aws-project/blob/aws-LiftAndShift/Lift%20and%20Shift.drawio.png)
+
+
+
 # Let's Start
 ## Project Name
 ### Lift & Shift
