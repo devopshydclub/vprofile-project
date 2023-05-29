@@ -107,7 +107,7 @@ Click on Edit inbound rules
 ### Create EC2 Instances
 
 Before creating the EC2 instance we need to clone GitHub repo for this project source code.
-To clone the github repo enter the below command in you GitBash terminal
+To clone the github repo enter the below command in your GitBash terminal
 
 ```
 git clone https://github.com/devopshydclub/vprofile-project.git
