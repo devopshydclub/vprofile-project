@@ -629,3 +629,33 @@ To create a launch templates follow the below steps;
 
 ![image](https://github.com/Fawazcp/aws-project/assets/111639918/bd699787-5955-4fef-bf23-a688cbeabfae)
 
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/16e0f0db-2a19-4a94-a120-dd38da65415f)
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/0975fd15-7ba3-48f3-a851-2250b3596cda)
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/d4b9c7dd-a697-4474-b9c9-8b96e4f6bb67)
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/a4b6881a-c018-4969-b776-aa86fcce8407)
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/014212e0-0574-43a1-8edc-5edc228f2d3d)
+
+**Task 2**
+
+**Create Autosscaling group**
+
+To create autoscaling group follow the below steps;
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/c935190e-151d-487b-830e-c24737d80d35)
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/4f4179e6-c71d-42e8-88d3-cb64f73f8f2b)
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/e977029b-a1db-4478-a0e9-4da65bfb692a)
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/7b146e23-ef47-4a49-aa96-6fdd5d377070)
+
+Select the same vpc we used to create ec2 instance and select all the subnets are available in the region
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/5925d767-bd1e-49bd-ae58-aa8faabb9a22)
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/0369d566-03f2-4b34-aa6d-e631f5a0dbe1)
+
