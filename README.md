@@ -5,6 +5,20 @@
 - MySQL 5.6 or later
 - AWS account
 - Domain Name (Route53 or GoDaddy)
+- ACM (Amazon Certificate Manager)- Create Certificate using ACM for HTTPS protocol
+
+# Services Covered
+
+- AWS CLI
+- EC2
+- Load Balancer
+- Auto-Scaling
+- Route 53
+- ACM
+- S3
+- IAM User
+- IAM Role
+- Security Group
 
 # Pricing
 You may be charged for the domain name. But most of the service used is comes under free-tier
@@ -659,3 +673,66 @@ Select the same vpc we used to create ec2 instance and select all the subnets ar
 
 ![image](https://github.com/Fawazcp/aws-project/assets/111639918/0369d566-03f2-4b34-aa6d-e631f5a0dbe1)
 
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/34fa0733-6d26-4efd-8b41-e7e4b5b954c9)
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/8f9d1d67-d2ab-48a5-b0ef-24beca8daf1b)
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/1830d511-bedf-47fb-8d82-ec401912ba01)
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/30a6bb3d-29c2-4ccd-8b25-4a05f7b0c755)
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/139f7cda-1127-4ee1-b151-7971ea9fe16c)
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/6b491bab-682a-4e0d-8a89-fabf087b0c67)
+
+Add notification you can skip if you don’t want to get email notification whenever instance launched, terminated ……..
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/f97a3de8-bdea-41a6-9454-706291acd0b5)
+
+Verify everything and click on create autoscaling group
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/c7f2e743-2f1a-4887-8f03-7376cdaa43d3)
+
+
+This will create an instance automatically.
+
+If you want to terminate the previous instance then we can because we have launched a new instance using the autoscaling group with all the configuration required.
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/942cef40-615f-4d9d-8ab3-fae818595f9a)
+
+As we can see a new instance is created.
+
+## Step 6
+
+### Validate and summerize
+
+**Final Task**
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/f3aa4f2f-53e9-41a7-9bcd-46a6a19b092d)
+
+Now we are able to login with HTTPS protocol.
+
+## Summary 
+
+What we have achieved so far is;
+-	User access the app through a URL (which is we added in the domain name)
+-	That URL points to the Application load balancer endpoint
+-	With HTTPS connection we access application load balancer endpoint.
+-	For HTTPS we have the certificate in the ACM (Amazon Certificate Manager)
+-	Application load balancer is in a security group that allow HTTPS 443 traffic
+-	Which will forward the request to application server (Tomcat ec2 instances) on port 8080 which is in another security group
+-	For the backend servers that will access with record name we added in the route53
+-	Backend server private IP is mapped in the private DNS zone
+-	All the backend server are in the one security group
+Whenever we want we can upload the artifact in to s3 bucket and download it in the application instances.
+
+## Clean UP
+
+-	Delete Autoscaling Group
+-	Delete application load balancer
+-	Delete target group
+-	Delete launch template
+-	Delete all the intances 
+-	Delete AMI
+-	Delete the security groups
+-	Delete the DNS records
