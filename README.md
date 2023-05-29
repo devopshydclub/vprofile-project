@@ -324,3 +324,190 @@ Open the windows powershell as administrator nd enter the below command to insta
 -	choco install maven –y
 -	choco install awscli –y
 
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/13b79d06-d487-4a4f-88d6-e89ab982f7d3)
+
+To verfiy the packages installed;
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/b80ba56e-e7e6-46b7-9da2-9fe0e3bece14)
+
+**Task 2**
+
+Go to the repo that we cloned.
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/0bdb7047-98cb-4cd1-8c34-f54b90feac2d)
+
+
+<img width="472" alt="image" src="https://github.com/Fawazcp/aws-project/assets/111639918/44ae03cc-3982-42d7-867b-37053fcbd1dc">
+
+Make the above changes as per the DNS record you created and save the file
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/d5adf021-ad72-4573-bbcc-8971bde069b1)
+
+This is the one we created the record for each server that I mentioned in the application.properties file.
+Now this time generate our artifact.
+
+-	Go back to the vprofile-project directory and enter the below command.
+-	mvn install 
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/58af0a38-bfba-47d0-bf4f-b5a77d384d07)
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/d9e3481b-c04c-4e95-bee2-13e8d942251b)
+
+Make sure pom.xml file is there and after some time we can see the artifact bulid success
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/2b388995-0eae-4030-aca0-f5db471c3f0c)
+
+And now we can see a new directory named target has been created.
+
+**Task 3**
+
+Store the vprofile-v2.war file in to our s3 bucket.
+We will upload this file to s3 bucket using aws cli. In order to login to aws cli we need to have IAM user credentials.
+-	Create IAM User.
+To create an IAM user follow the below steps;
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/c5b863a3-58a4-45f0-b1fe-c8d839252976)
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/ca01a3fe-eb58-406f-88db-3f4efd2db85e)
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/ac43a79e-0658-4544-ac8e-e77004dd6be4)
+
+Now the user has been created and we need to create an access key for this user in order to log in to the aws cli
+-	Click on the user name -->Security credentials --> Create access key.
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/a140f988-a6b1-4254-883a-8ba3c708a8c4)
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/88c726ae-bcd9-44e2-b9e4-aeee7ab2d900)
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/8b8dc9c6-539c-4161-82a7-4863020cf636)
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/98afc248-68c3-46e4-a394-a9b9f892bf7c)
+
+Make sure to download the .csv file at the same time when you create the access key otherwise you can’t download afterwards. 
+Also don’t share your access key and creditials to anybody
+
+**Task 4**
+
+Log in to the aws cli.
+Go to gitbash and follow the below steps;
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/d4c5a8d2-357b-4b21-9986-19b1adf28d8b)
+
+Copy and paste the access key and secret key 
+-	Enter the region where you have created the EC2 instances.
+-	Out format you can leave or enter json.
+Now let’s create a new s3 bucket.  Make sure you should give unique bucket name otherwise you will get some error.
+To create an s3 bucket using aws cli enter the below command.
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/d19ef79a-2239-46c9-867f-73b0659d9a78)
+
+Now we have created a new bucket in the us-east-1 region.
+Next we need to copy the artifact file in to s3 bucket from the target directory.
+Follow the below steps to copy the file.
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/eb13a88f-892e-464b-afe8-ca690232d079)
+
+Now we have copied the artifact to the s3 bucket.
+In order to download this artifact in the Tomcat instance we need to create a role.
+
+**Task 5**
+
+Create role
+We need to create a role for our tomcat instance in order to download the files from the s3 bucket.
+Follow the steps to create a role.
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/c302a3ae-a82f-4ca7-9cfb-497689b0a489)
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/86e56f76-d106-40ab-ab21-d0ab227fa289)
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/8c233e79-fd17-48cc-a3d1-d599d8958175)
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/9c590154-c717-44cc-9131-6492640cebe5)
+
+Once the role has been created we need to attach this role in to our app server (tomcat)
+-	Go to EC2 instance and follow the below steps.
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/eaa51fee-3a73-4bb9-acaf-3f6acb1896a0)
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/249fe8e3-38be-4964-8bd6-99c9363c3025)
+
+Connect the tomcat instance using gitbash
+-	sudo -i 
+-	apt update -y
+-	apt install awscli -y
+-	aws s3 ls  s3://aws-project-artifact-storage1 
+
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/3da7dab7-89c8-4e0b-87aa-ca5be614f8bb)
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/382ad446-5096-420a-b30e-0550723867b7)
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/0cd5ca18-73fb-49ba-8918-693d1f86284e)
+
+We are able to access the s3 bucket from the application server (tomcat instance).
+Copy the artifact file in to this ec2 instance
+-	aws s3 cp s3://aws-project-artifact-storage1/aws-project.war /tmp/aws-project.war 
+(copy the file from s3 to /tmp directory)
+In order to delpoy this code we need to stop our application (tomcat) which is running in the server. To shutdown application enter the below command
+-	systemctl stop tomcat9
+-	cd /var/lib/tomcat9/webapps/
+-	ls
+-	rm -rf ROOT
+-	cp /tmp/aws-project.war ./ROOT.war  (copying the artifact in the current directory with ROOT.war name file)
+-	systemctl start tomcat9 (wait for few minutes)
+-	ls
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/5c5ba5bd-735d-48fe-957c-f5afc6963620)
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/e9026ea4-f14d-4141-9067-b15992e2abe3)
+
+Validate  the application.properties file that everything is correct as we mentioned especially the hostname.
+
+In order to validate our tomcat instance can connect to other instance we use a software called telnet
+Telnet we are using to check the connectivity.
+-	apt install telnet –y
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/9665333d-c1ca-4b91-85b3-4e6e854e9bb8)
+
+As we can see the telnet is already installed in the ubuntu machine
+
+If you are not able to connect the instance using telnet then go to backend instance security group and make sure that tomcat secuity group has been selected under source.
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/93fd1b74-899c-42c6-9a79-34489790ef20)
+
+To close the telnet session use the below commad
+-	cntrl+] then type ‘quit’
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/c87cf752-3559-468f-bfb7-2ac2b582c581)
+
+Now we are able to connect to the backend server inside the tomcat instance
+
+## Step 5
+### Load balancer and DNS
+
+**Task 1**
+
+**Create target group**
+
+To create target group follow the below steps;
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/5a3f546c-6073-4e9f-9eb1-15849ae5d9c7)
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/191ca2bc-59c4-4ddc-97b3-590a28bf4eea)
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/b1fb52e7-07f4-4aa2-a4be-5d5f91887aa2)
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/e4e40619-47c3-45b8-9f60-d1d7204620c5)
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/ea3f0a90-88d6-4b3a-b9b1-aacb80935596)
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/768c8534-5f5c-409a-9987-62840a94f4e7)
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/6a70a9c7-805a-4eda-819a-dda733b4e74e)
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/6736b556-a6a3-4f30-a68a-113ffdd2240b)
+
+![image](https://github.com/Fawazcp/aws-project/assets/111639918/4721383e-667a-4d1a-a8b3-17f600b5178f)
+
+
+
