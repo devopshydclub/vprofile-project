@@ -1,7 +1,10 @@
 version: '3'
 services:
   vprodb:
-    image: vpromysql8
+    build:
+      context: ./Docker-files/db
+    image: vprodb
+    container_name: vprodb
     ports:
       - "3306:3306"
     volumes:
@@ -23,14 +26,20 @@ services:
       - RABBITMQ_DEFAULT_PASS=guest
 
   vproapp:
-    image: vprotom0jdk11
+    build:
+      context: ./Docker-files/app
+    image: vproapp
+    container_name: vproapp
     ports:
       - "8080:8080"
     volumes: 
       - vproappdata:/usr/local/tomcat/webapps
 
   vproweb:
+    build:
+      context: ./Docker-files/web
     image: vproweb
+    container_name: vproweb
     ports:
       - "80:80"
 volumes:
