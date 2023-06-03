@@ -1,14 +1,13 @@
-version: '3'
+version: '3.8'
 services:
-  vpronginx:
-    image: visualpath/vpronginx
+  vprodb:
+    image: vprocontainers/vprofiledb
     ports:
-      - "80:80"
-
-  vproapp:
-    image: imranvisualpath/vproappfix
-    ports:
-      - "8080:8080"
+      - "3306:3306"
+    volumes:
+      - vprodbdata:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=vprodbpass
 
   vprocache01:
     image: memcached
@@ -23,14 +22,17 @@ services:
       - RABBITMQ_DEFAULT_USER=guest
       - RABBITMQ_DEFAULT_PASS=guest
 
-  vprodb:
-    image: imranvisualpath/vprdbfix
+  vproapp:
+    image: vprocontainers/vprofileapp
     ports:
-      - "3306:3306"
-    volumes:
-      - vprodbdata:/var/lib/mysql
-    environment:
-      - MYSQL_ROOT_PASSWORD=vprodbpass
+      - "8080:8080"
+    volumes: 
+      - vproappdata:/usr/local/tomcat/webapps
 
+  vproweb:
+    image: vprocontainers/vprofileweb
+    ports:
+      - "80:80"
 volumes:
   vprodbdata: {}
+  vproappdata: {}
