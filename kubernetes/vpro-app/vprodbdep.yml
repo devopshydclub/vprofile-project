@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: vprodb
-        image: imranvisualpath/8pmdbimg:v1
+        image: vprofile/vprofiledb
         ports:
         - name: vprodb-port
           containerPort: 3306
