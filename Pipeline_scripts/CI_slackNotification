@@ -10,11 +10,6 @@ pipeline {
 	}
 
     stages{
-        stage('Print error'){
-            steps{
-                sh 'fake comment'
-            }
-        }
         stage('Fetch code') {
           steps{
               git branch: 'vp-rem', url:'https://github.com/devopshydclub/vprofile-repo.git'
@@ -78,7 +73,7 @@ pipeline {
                 nexusArtifactUploader(
                   nexusVersion: 'nexus3',
                   protocol: 'http',
-                  nexusUrl: '172.31.18.28:8081',
+                  nexusUrl: '172.31.91.107:8081',
                   groupId: 'QA',
                   version: "${env.BUILD_ID}-${env.BUILD_TIMESTAMP}",
                   repository: 'vprofile-repo',
@@ -96,7 +91,7 @@ pipeline {
     post {
         always {
             echo 'Slack Notifications.'
-            slackSend channel: '#jenkinscicd',
+            slackSend channel: '#devopscicd',
                 color: COLOR_MAP[currentBuild.currentResult],
                 message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER} \n More info at: ${env.BUILD_URL}"
         }
