@@ -3,11 +3,11 @@ sudo yum install epel-release -y
 sudo yum update -y
 sudo yum install wget -y
 cd /tmp/
-wget http://packages.erlang-solutions.com/erlang-solutions-2.0-1.noarch.rpm
-sudo rpm -Uvh erlang-solutions-2.0-1.noarch.rpm
-sudo yum -y install erlang socat
-curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | sudo bash
-sudo yum install rabbitmq-server -y
+dnf -y install centos-release-rabbitmq-38
+ dnf --enablerepo=centos-rabbitmq-38 -y install rabbitmq-server
+ systemctl enable --now rabbitmq-server
+ firewall-cmd --add-port=5672/tcp
+ firewall-cmd --runtime-to-permanent
 sudo systemctl start rabbitmq-server
 sudo systemctl enable rabbitmq-server
 sudo systemctl status rabbitmq-server
