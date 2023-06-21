@@ -20,6 +20,8 @@
         <logback.version>1.1.3</logback.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+	   <sonar.host.url>http://172.31.86.233:9000/</sonar.host.url>
+		<sonar.login>918555513d5b6718ff9c6f83cc46e6a3d4a3f8da</sonar.login> 
     </properties>
 
     <dependencies>
@@ -177,6 +179,26 @@
                         <contextPath>/</contextPath>
                     </webApp>
                 </configuration>
+
+                 <distributionManagement>
+
+
+            <repository>
+              <id>nexus</id>
+              <name>Womm Releases Nexus Repository</name>
+              <url>http://172.31.80.65:8081/repository/vpwoma-Release/</url>
+            </repository>
+
+            <snapshotRepository>
+              <id>nexus</id>
+              <name>Woma Snapshot Nexus Repository </name>
+              <url>http://172.31.80.65:8081/repository/vpwoma-Snapshot/</url>
+            </snapshotRepository>
+
+        </distributionManagement>
+
+
+		    
             </plugin>
 		<!-- CODE COVERAGE -->
 	            <plugin>
