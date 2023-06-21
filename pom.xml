@@ -179,10 +179,7 @@
                         <contextPath>/</contextPath>
                     </webApp>
                 </configuration>
-
-                 <distributionManagement>
-
-
+        <distributionManagement>
             <repository>
               <id>nexus</id>
               <name>Womm Releases Nexus Repository</name>
@@ -193,12 +190,8 @@
               <id>nexus</id>
               <name>Woma Snapshot Nexus Repository </name>
               <url>http://172.31.80.65:8081/repository/vpwoma-Snapshot/</url>
-            </snapshotRepository>
-
-        </distributionManagement>
-
-
-		    
+            </snapshotRepository>		
+        </distributionManagement>		    
             </plugin>
 		<!-- CODE COVERAGE -->
 	            <plugin>
