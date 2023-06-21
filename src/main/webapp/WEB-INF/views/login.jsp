@@ -33,6 +33,7 @@
 </head>
 
 <body>
+background = "${contextPath}/resources/Images/login-background.png"
 <div class="mainbody container-fluid">
     <div class="row">
         <div class="navbar-wrapper">
