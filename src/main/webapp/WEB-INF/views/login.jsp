@@ -44,7 +44,7 @@
                                 <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span><span
                                     class="icon-bar"></span><span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand" href="${contextPath}/index">VISUAL PATH</a>
+                            <a class="navbar-brand" href="${contextPath}/index">HKH Infotech</a>
                             <i class="brand_network"><small><small>VProfile</small></small></i>
                         </div>
                         <div class="navbar-collapse collapse">
@@ -80,7 +80,7 @@
             <span>${error}</span>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
-            <button class="btn btn-custom-LOGIN btn-lg  btn-block" type="submit">LOGIN</button>
+            <button class="btn btn-custom-LOGIN btn-lg  btn-block" type="submit">Get Started</button>
             <h4 class="text-center"><a href="${contextPath}/registration">Create an account</a></h4>
         </div>
 
