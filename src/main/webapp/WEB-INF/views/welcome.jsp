@@ -28,7 +28,7 @@
                             <a class="navbar-brand" href="#" style="margin-right:-8px; margin-top:-5px;">
                                 <img alt="Brand" src="${contextPath}/resources/Images/user/logo.png" width="30px" height="30px">
                             </a>
-                            <a class="navbar-brand" href="#">VisualPath</a>
+                            <a class="navbar-brand" href="#">HkhInfotech</a>
                             <i class="brand_network"><small><small>VP* Network</small></small></i>
                         </div>
                         <div class="navbar-collapse collapse">
@@ -59,7 +59,7 @@
                                                     <div class="col-md-7">
                                                         <span> ${pageContext.request.userPrincipal.name}</span> <br/>
                                                         <p class="text-muted small">
-                                                            ${pageContext.request.userPrincipal.name}@visualpath.co.in</p>
+                                                            ${pageContext.request.userPrincipal.name}@HkhInfotech.co.in</p>
                                                         <div class="divider">
                                                         </div>
                                                         <a href="${contextPath}/user/${pageContext.request.userPrincipal.name}" class="btn btn-default btn-xs"><i class="fa fa-user-o" aria-hidden="true"></i> UpdateProfile </a>
@@ -101,7 +101,7 @@
                         <div class="media-body">
                             <hr>
                             <h3><strong>Bio</strong></h3>
-                            <p>DevOps For Product Management and Strategy of Application Delivery at VisualPath Technologies. Responsible of providing customers with counsel on their DevOps strategies to help them deliver higher quality software and services to market faster.</p>
+                            <p>DevOps For Product Management and Strategy of Application Delivery at HKH Infotech . Responsible of providing customers with counsel on their DevOps strategies to help them deliver higher quality software and services to market faster.</p>
                             <hr>
                             <h3><strong>Location</strong></h3>
                             <p>Earth</p>
@@ -120,7 +120,7 @@
             <div class="panel panel-default">
                 <div class="panel-body">
                     <span>
-                        <h1 class="panel-title pull-left" style="font-size:30px;">${pageContext.request.userPrincipal.name} &nbsp; <small>${pageContext.request.userPrincipal.name}@visualpath.co.in</small> <i class="fa fa-check text-success" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title=" sharing with you"></i></h1>
+                        <h1 class="panel-title pull-left" style="font-size:30px;">${pageContext.request.userPrincipal.name} &nbsp; <small>${pageContext.request.userPrincipal.name}@HkhInfotech.co.in</small> <i class="fa fa-check text-success" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title=" sharing with you"></i></h1>
                         <div class="dropdown pull-right">
 						
                             <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -254,7 +254,7 @@
                                         <img class="media-object img-circle" src="${contextPath}/resources/Images/user/user2.png" width="50px" height="50px" style="margin-right:8px; margin-top:-5px;">
                                     </a>
                                 </div>
-                                <h4><a href="#" style="text-decoration:none;"><strong>Waheed Khan</strong></a> <small><small><a href="#" style="text-decoration:none; color:grey;"><i><i class="fa fa-clock-o" aria-hidden="true"></i> about 10 hours ago</i></a></small></small></h4>
+                                <h4><a href="#" style="text-decoration:none;"><strong>Abrar Nirban</strong></a> <small><small><a href="#" style="text-decoration:none; color:grey;"><i><i class="fa fa-clock-o" aria-hidden="true"></i> about 10 hours ago</i></a></small></small></h4>
                                 <hr>
                                 <div class="post-content">
                                      <p>What are DevOps skills?</p>
