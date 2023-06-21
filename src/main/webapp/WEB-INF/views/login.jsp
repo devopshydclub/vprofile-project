@@ -80,8 +80,8 @@
             <span>${error}</span>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
-            <button class="btn btn-custom-LOGIN btn-lg  btn-block" type="submit">Get Started</button>
-            <h4 class="text-center"><a href="${contextPath}/registration">Sign up</a></h4>
+            <button class="btn btn-custom-LOGIN btn-lg  btn-block" type="submit">LOGIN</button>
+            <h4 class="text-center"><a href="${contextPath}/registration">SIGN UP</a></h4>
         </div>
 
     </form>
