@@ -3,7 +3,7 @@ sudo mv /etc/yum.repos.d/fedora-updates-modular.repo /tmp/
 sudo yum clean all
 #sudo yum update
 TOMURL="https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.75/bin/apache-tomcat-9.0.75.tar.gz"
-yum install java-11-openjdk java-11-openjdk-devel
+yum install java-11-openjdk java-11-openjdk-devel -y
 yum install git maven wget -y
 cd /tmp/
 wget $TOMURL -O tomcatbin.tar.gz
