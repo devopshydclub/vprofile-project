@@ -1,22 +1,17 @@
 sudo mv /etc/yum.repos.d/fedora-updates.repo /tmp/
 sudo mv /etc/yum.repos.d/fedora-updates-modular.repo /tmp/
 sudo yum clean all
-sudo yum update
-TOMURL="https://archive.apache.org/dist/tomcat/tomcat-8/v8.5.37/bin/apache-tomcat-8.5.37.tar.gz"
-yum install java-1.8.0-openjdk -y
+#sudo yum update
+TOMURL="https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.75/bin/apache-tomcat-9.0.75.tar.gz"
+yum install java-11-openjdk java-11-openjdk-devel
 yum install git maven wget -y
-echo 'JAVA_HOME=/usr/lib/jvm/jre-1.8.0-openjdk' > /etc/java/maven.conf
-sudo yum install java-1.8.0-openjdk-devel -y
-curl -s "https://get.sdkman.io" | bash
-source "$HOME/.sdkman/bin/sdkman-init.sh"
-sdk install java 8.0.302-open
 cd /tmp/
 wget $TOMURL -O tomcatbin.tar.gz
 EXTOUT=`tar xzvf tomcatbin.tar.gz`
 TOMDIR=`echo $EXTOUT | cut -d '/' -f1`
 useradd --shell /sbin/nologin tomcat
-rsync -avzh /tmp/$TOMDIR/ /usr/local/tomcat8/
-chown -R tomcat.tomcat /usr/local/tomcat8
+rsync -avzh /tmp/$TOMDIR/ /usr/local/tomcat/
+chown -R tomcat.tomcat /usr/local/tomcat
 
 rm -rf /etc/systemd/system/tomcat.service
 
@@ -30,17 +25,17 @@ After=network.target
 User=tomcat
 Group=tomcat
 
-WorkingDirectory=/usr/local/tomcat8
+WorkingDirectory=/usr/local/tomcat
 
 #Environment=JRE_HOME=/usr/lib/jvm/jre
 Environment=JAVA_HOME=/usr/lib/jvm/jre
 
 Environment=CATALINA_PID=/var/tomcat/%i/run/tomcat.pid
-Environment=CATALINA_HOME=/usr/local/tomcat8
-Environment=CATALINE_BASE=/usr/local/tomcat8
+Environment=CATALINA_HOME=/usr/local/tomcat
+Environment=CATALINE_BASE=/usr/local/tomcat
 
-ExecStart=/usr/local/tomcat8/bin/catalina.sh run
-ExecStop=/usr/local/tomcat8/bin/shutdown.sh
+ExecStart=/usr/local/tomcat/bin/catalina.sh run
+ExecStop=/usr/local/tomcat/bin/shutdown.sh
 
 
 RestartSec=10
@@ -55,13 +50,13 @@ systemctl daemon-reload
 systemctl start tomcat
 systemctl enable tomcat
 
-git clone -b local-setup https://github.com/devopshydclub/vprofile-project.git
+git clone -b main https://github.com/devopshydclub/vprofile-project.git
 cd vprofile-project
 mvn install
 systemctl stop tomcat
 sleep 60
-rm -rf /usr/local/tomcat8/webapps/ROOT*
-cp target/vprofile-v2.war /usr/local/tomcat8/webapps/ROOT.war
+rm -rf /usr/local/tomcat/webapps/ROOT*
+cp target/vprofile-v2.war /usr/local/tomcat/webapps/ROOT.war
 systemctl start tomcat
 firewall-cmd --add-port=8080/tcp --permanent
 firewall-cmd --reload
