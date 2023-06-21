@@ -2,7 +2,7 @@
 sudo mv /etc/yum.repos.d/fedora-updates.repo /tmp/
 sudo mv /etc/yum.repos.d/fedora-updates-modular.repo /tmp/
 sudo yum clean all
-sudo yum update -y
+#sudo yum update -y
 DATABASE_PASS='admin123'
 sudo yum install epel-release -y
 sudo yum install git zip unzip -y
@@ -14,7 +14,7 @@ sudo yum install mariadb-server -y
 sudo systemctl start mariadb
 sudo systemctl enable mariadb
 cd /tmp/
-git clone -b local-setup https://github.com/devopshydclub/vprofile-project.git
+git clone -b main https://github.com/devopshydclub/vprofile-project.git
 #restore the dump file for the application
 sudo mysqladmin -u root password "$DATABASE_PASS"
 sudo mysql -u root -p"$DATABASE_PASS" -e "UPDATE mysql.user SET Password=PASSWORD('$DATABASE_PASS') WHERE User='root'"
