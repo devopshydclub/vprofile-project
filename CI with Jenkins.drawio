@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-06-28T06:02:24.364Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36" etag="TWkpdeQ1e4dNXeFR3wIQ" version="21.5.1" type="github">
+<mxfile host="app.diagrams.net" modified="2023-06-28T06:06:23.119Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36" etag="yE3u8KBcxf2P5xfmnHEu" version="21.5.1" type="github">
   <diagram name="Page-1" id="5iRDzPjMjjliYEXpeXzi">
     <mxGraphModel dx="794" dy="470" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -73,12 +73,6 @@
         <mxCell id="OVLD5dbNgmfVlzpD7LQZ-5" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://blog.risingstack.com/wp-content/uploads/2021/08/git-tips-1.png;" parent="1" vertex="1">
           <mxGeometry x="135.95" y="237" width="67.05" height="28" as="geometry" />
         </mxCell>
-        <mxCell id="OVLD5dbNgmfVlzpD7LQZ-4" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://o.remove.bg/downloads/b2291c68-235f-45a2-b349-39b96772c153/image-removebg-preview.png;" parent="1" vertex="1">
-          <mxGeometry x="287" y="243.69" width="73.67" height="18.62" as="geometry" />
-        </mxCell>
-        <mxCell id="OVLD5dbNgmfVlzpD7LQZ-22" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://o.remove.bg/downloads/b2291c68-235f-45a2-b349-39b96772c153/image-removebg-preview.png;" parent="1" vertex="1">
-          <mxGeometry x="433" y="241.69" width="73.67" height="18.62" as="geometry" />
-        </mxCell>
         <mxCell id="OVLD5dbNgmfVlzpD7LQZ-6" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://raw.githubusercontent.com/thyrlian/SonarOnDocker/master/assets/sonarqube.png;" parent="1" vertex="1">
           <mxGeometry x="573" y="237" width="82" height="23.43" as="geometry" />
         </mxCell>
@@ -93,9 +87,6 @@
         </mxCell>
         <mxCell id="OVLD5dbNgmfVlzpD7LQZ-28" value="&lt;font style=&quot;font-size: 6px;&quot;&gt;&lt;b&gt;QUALITY GATE&lt;/b&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="586" y="93.5" width="38" height="12" as="geometry" />
-        </mxCell>
-        <mxCell id="OVLD5dbNgmfVlzpD7LQZ-30" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://o.remove.bg/downloads/b80d586d-949f-4ccc-8715-61ed28c04021/image-removebg-preview.png;" parent="1" vertex="1">
-          <mxGeometry x="92" y="301.63" width="98" height="59.55" as="geometry" />
         </mxCell>
         <mxCell id="OVLD5dbNgmfVlzpD7LQZ-45" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;dashed=1;" parent="1" source="OVLD5dbNgmfVlzpD7LQZ-14" target="OVLD5dbNgmfVlzpD7LQZ-25" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
@@ -121,8 +112,14 @@
         <mxCell id="y9szIS2qU8c-lFLcxQPa-4" value="&lt;b&gt;Amazon ECR&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="724" y="66" width="60" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="TSFWOOtpbdwKuUL_EI3N-4" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://o.remove.bg/downloads/cd884024-1bbf-4ca5-900d-e5a6c4f668ea/image-removebg-preview.png;" vertex="1" parent="1">
-          <mxGeometry x="99" y="298.63" width="96.06" height="58.37" as="geometry" />
+        <mxCell id="TSFWOOtpbdwKuUL_EI3N-5" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://o.remove.bg/downloads/cd884024-1bbf-4ca5-900d-e5a6c4f668ea/image-removebg-preview.png;" vertex="1" parent="1">
+          <mxGeometry x="104" y="304" width="88.87" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="TSFWOOtpbdwKuUL_EI3N-7" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://o.remove.bg/downloads/3cda75ed-d889-4372-ba79-58839ee5540d/image-removebg-preview.png;" vertex="1" parent="1">
+          <mxGeometry x="278" y="240" width="87.02" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="TSFWOOtpbdwKuUL_EI3N-8" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://o.remove.bg/downloads/3cda75ed-d889-4372-ba79-58839ee5540d/image-removebg-preview.png;" vertex="1" parent="1">
+          <mxGeometry x="425" y="239" width="87.02" height="22" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
