@@ -215,7 +215,7 @@
  <distributionManagement>
         <repository>
             <id>nexus</id>
-            <name>Womm Releases Nexus Repository</name>
+            <name>Woma Releases Nexus Repository</name>
             <url>http://localhost:8081/repository/OMA-Release/</url>
         </repository>
         <snapshotRepository>
