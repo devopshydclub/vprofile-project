@@ -314,6 +314,38 @@ To install enter the below commands . Steps may change based on the OS. To get u
 - Connect the jenkins server and add the below commands to install docker-engine
 
 ```
+# Run this commands one by one
 
 - apt-get update -y
-- sudo apt-get install ca-certificates curl gnupg
+- sudo apt-get install ca-certificates curl gnupg -y
+- sudo install -m 0755 -d /etc/apt/keyrings
+- curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+- sudo chmod a+r /etc/apt/keyrings/docker.gpg
+- echo \
+  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+- sudo apt-get update
+- sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
+
+```
+
+Now we have installed the docker-engine next we need to add the Jenkins user to the docker group. To add enter the below command
+- usermod -a -G docker Jenkins
+
+Install aws-cli. To install enter the below commands
+- apt install awscli -y
+
+Once it is installed restart the Jenkins server.
+
+**Create IAM user**
+- We need to create an IAM user in order to get the access key and secret key (Go to IAM and create a user --> attach ECR full access policy--> create access keys).
+
+**Create ECR (Elastic Container Registry)**
+- To create ECR go to ECR--> create
+
+Next, we need to install some plugins on Jenkins (Docker Pipeline, Amazon ECR, Amazon sdk All, and CloudBees Docker Build and Publish).
+- Install all the above plugins
+
+Store the AWS credentials on Jenkins (Go manage--> Credentials--> System--> Global--> aws credentials--> add the credentials and create)
+
