@@ -147,7 +147,7 @@ echo "System reboot in 30 sec"
 sleep 30
 reboot
 ```
-- Log in to Jenikins (Connect the jenkins server and get the password to log in)
+- Log in to Jenkins (Connect the jenkins server and get the password to log in)
 - We need to add JDK (Go to manage jenkins and add), also need to install jdk 8 then update the jdk path in jenkins
 - Add MAVEN also in Jenkins and save.
 - Log into Sonarqube server (use username and password as "**admin**")
@@ -223,4 +223,97 @@ pipeline {
 }
 
 ```
--  
+
+- If the build successful we can add quality gate condition on sonarqube. (Qulaity gate --> create --> give any and select bugs--> give condition and create )
+- Go to the projects and open the project from sonarqube --> project settings--> quality gates --> select the quality gate we created.
+- Next we need to create a webhook url in sonarqube because Sonarqube will send the information to Jenkins using Webhook URL.
+- to create webhook url open the project --> project settings--> webhook--> create--> give any name--> add the jenkins URl with 8080/any_name--> create.
+- Once we made the changes on sonarqube go to Jenkins and open the item --> configure--> under pipeline script replace the pipeline code.
+
+```
+pipeline {
+    agent any
+    tools {
+     maven "MAVEN3"
+     jdk "OracleJDK8"
+ }
+    stages{
+        stage('Fetch code') {
+          steps{
+              git branch: 'vp-rem', url:'https://github.com/devopshydclub/vprofile-repo.git'
+          }  
+        }
+
+        stage('Build') {
+            steps {
+                sh 'mvn clean install -DskipTests'
+            }
+            post {
+                success {
+                    echo "Now Archiving."
+                    archiveArtifacts artifacts: '**/*.war'
+                }
+            }
+        }
+        stage('Test'){
+            steps {
+                sh 'mvn test'
+            }
+
+        }
+
+        stage('Checkstyle Analysis'){
+            steps {
+                sh 'mvn checkstyle:checkstyle'
+            }
+        }
+
+        stage('Sonar Analysis') {
+            environment {
+                scannerHome = tool 'sonar4.7'
+            }
+            steps {
+               withSonarQubeEnv('sonar') {
+                   sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=vprofile \
+                   -Dsonar.projectName=vprofile \
+                   -Dsonar.projectVersion=1.0 \
+                   -Dsonar.sources=src/ \
+                   -Dsonar.java.binaries=target/test-classes/com/visualpathit/account/controllerTest/ \
+                   -Dsonar.junit.reportsPath=target/surefire-reports/ \
+                   -Dsonar.jacoco.reportsPath=target/jacoco.exec \
+                   -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml'''
+              }
+            }
+        }
+
+        stage("Quality Gate") {
+            steps {
+                timeout(time: 1, unit: 'HOURS') {
+                    // Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
+                    // true = set pipeline to UNSTABLE, false = don't
+                    waitForQualityGate abortPipeline: true
+                }
+            }
+        }
+
+
+
+    }
+}
+        
+```
+
+- we get error in quality gate because we have given a condition in quality gate as 60. Go to the quality gate and change the condition from 60 to 100 then build the code agian.
+
+
+**Now we have our code has build and next we want to build an artifact as docker image then upload the image into ECR**
+-  First we need to install docker-engine in the jenkins server.
+
+To install enter the below commands . Steps may change based on the OS. To get updated steps [click here](https://docs.docker.com/engine/install/ubuntu/).
+
+- Connect the jenkins server and add the below commands to install docker-engine
+
+```
+
+- apt-get update -y
+- sudo apt-get install ca-certificates curl gnupg
