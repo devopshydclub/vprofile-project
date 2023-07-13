@@ -274,8 +274,8 @@ pipeline {
             }
             steps {
                withSonarQubeEnv('sonar') {
-                   sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=vprofile \
-                   -Dsonar.projectName=vprofile \
+                   sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=awsproject \
+                   -Dsonar.projectName=awsproject-repo \
                    -Dsonar.projectVersion=1.0 \
                    -Dsonar.sources=src/ \
                    -Dsonar.java.binaries=target/test-classes/com/visualpathit/account/controllerTest/ \
@@ -356,14 +356,14 @@ Now we are good to go to build our pipeline code
 pipeline {
     agent any
     tools {
-	    maven "MAVEN3"
-	    jdk "OracleJDK8"
-	}
+        maven "MAVEN3"
+        jdk "OracleJDK8"
+    }
 
     environment {
         registryCredential = 'ecr:us-east-1:awscreds'
-        appRegistry = "951401132355.dkr.ecr.us-east-1.amazonaws.com/vprofileappimg"
-        vprofileRegistry = "https://951401132355.dkr.ecr.us-east-1.amazonaws.com"
+        appRegistry = "685901531065.dkr.ecr.us-east-1.amazonaws.com/awsproject"
+        dockerRegistry = "https://685901531065.dkr.ecr.us-east-1.amazonaws.com"
     }
   stages {
     stage('Fetch code'){
@@ -396,8 +396,8 @@ pipeline {
           }
             steps {
                 withSonarQubeEnv('sonar') {
-                 sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=vprofile \
-                   -Dsonar.projectName=vprofile-repo \
+                 sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=awspoject \
+                   -Dsonar.projectName=awsproject-repo \
                    -Dsonar.projectVersion=1.0 \
                    -Dsonar.sources=src/ \
                    -Dsonar.java.binaries=target/test-classes/com/visualpathit/account/controllerTest/ \
@@ -432,7 +432,7 @@ pipeline {
     stage('Upload App Image') {
           steps{
             script {
-              docker.withRegistry( vprofileRegistry, registryCredential ) {
+              docker.withRegistry( dockerRegistry, registryCredential ) {
                 dockerImage.push("$BUILD_NUMBER")
                 dockerImage.push('latest')
               }
