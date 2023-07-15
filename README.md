@@ -6,7 +6,6 @@
 
 **User-data to install Jenkins 👇**
 ```
-
 #!/bin/bash
 sudo apt update
 sudo apt install openjdk-11-jdk -y
@@ -20,12 +19,10 @@ echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
   /etc/apt/sources.list.d/jenkins.list > /dev/null
 sudo apt-get update
 sudo apt-get install jenkins -y
-
 ```
 **User-data to install Sonarqube👇**
 
 ```
-
 #!/bin/bash
 cp /etc/sysctl.conf /root/sysctl.conf_backup
 cat <<EOT> /etc/sysctl.conf
