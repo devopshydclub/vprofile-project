@@ -271,7 +271,7 @@ pipeline {
             steps {
                withSonarQubeEnv('sonar') {
                    sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=awsproject \
-                   -Dsonar.projectName=awsproject-repo \
+                   -Dsonar.projectName=awsproject \
                    -Dsonar.projectVersion=1.0 \
                    -Dsonar.sources=src/ \
                    -Dsonar.java.binaries=target/test-classes/com/visualpathit/account/controllerTest/ \
