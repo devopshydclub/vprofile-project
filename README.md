@@ -201,7 +201,7 @@ pipeline {
              }
             steps {
               withSonarQubeEnv('sonar') {
-                   sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=awspoject \
+                   sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=vprofile \
                    -Dsonar.projectName=awsproject \
                    -Dsonar.projectVersion=1.0 \
                    -Dsonar.sources=src/ \
@@ -270,7 +270,7 @@ pipeline {
             }
             steps {
                withSonarQubeEnv('sonar') {
-                   sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=awsproject \
+                   sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=vprofile \
                    -Dsonar.projectName=awsproject \
                    -Dsonar.projectVersion=1.0 \
                    -Dsonar.sources=src/ \
