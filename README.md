@@ -150,8 +150,8 @@ reboot
 
 Next we need to install some plugins on Jenkins
 - Go to manage jenkins --> Open plugins --> Avaialable plugins --> Search the below plugins and click on install (Sonarqube scanner, Build timestamp, Pipeline maven integration, Pipeline utility steps)
-- Go to jenkins tools and select the sonarqube scanner version and save (sonar)
-- go to sonarqube and generate a token (MySonarToken)
+- Go to jenkins tools and select the sonarqube scanner version and save (sonar4.7)
+- go to sonarqube and generate a token (sonar)(MySonarToken)
 - Add the token and private IP of sonarqube on Jenkins (manage jenkins --> System --> Soanrqube server --> select environment variables --> under sonarqube installations add the sonarqube IP and token and save)
 - Create new item on Jenkins and add the below pipeline script then click on build
 
