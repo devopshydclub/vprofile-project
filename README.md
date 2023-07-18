@@ -150,8 +150,8 @@ reboot
 
 Next we need to install some plugins on Jenkins
 - Go to manage jenkins --> Open plugins --> Avaialable plugins --> Search the below plugins and click on install (Sonarqube scanner, Build timestamp, Pipeline maven integration, Pipeline utility steps)
-- Go to jenkins tools and select the sonarqube scanner version and save
-- go to sonarqube and generate a token
+- Go to jenkins tools and select the sonarqube scanner version and save (sonar)
+- go to sonarqube and generate a token (MySonarToken)
 - Add the token and private IP of sonarqube on Jenkins (manage jenkins --> System --> Soanrqube server --> select environment variables --> under sonarqube installations add the sonarqube IP and token and save)
 - Create new item on Jenkins and add the below pipeline script then click on build
 
@@ -327,7 +327,7 @@ To install enter the below commands . Steps may change based on the OS. To get u
 ```
 
 Now we have installed the docker-engine next we need to add the Jenkins user to the docker group. To add enter the below command
-- usermod -a -G docker Jenkins
+- usermod -a -G docker jenkins
 
 Install aws-cli. To install enter the below commands
 - apt install awscli -y
