@@ -1,5 +1,5 @@
 #!/bin/bash
-yum install java-1.8.0-openjdk.x86_64 wget -y   
+yum install java-1.8.0-amazon-corretto.x86_64
 mkdir -p /opt/nexus/   
 mkdir -p /tmp/nexus/                           
 cd /tmp/nexus/
