@@ -80,7 +80,7 @@ overflow: hidden;
 }
 
 .badge-important {
-    margin-top: 3px;
+    margin-top: 4px;
     margin-left: 25px;
     position: absolute;
 }
@@ -88,7 +88,7 @@ overflow: hidden;
 body {
     background-color: #e8e8e8;
 }
-//contact forms
+
 
 .container {
 	max-width:700px;
