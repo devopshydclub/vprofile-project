@@ -27,9 +27,9 @@ phases:
       - sed -i "s/rabbitmq.password=test/rabbitmq.password=$rmqpass/" src/main/resources/application.properties
       - apt-get update
       - apt-get install -y jq 
-      - wget http://www-eu.apache.org/dist/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.tar.gz
-      - tar xzf apache-maven-3.5.4-bin.tar.gz
-      - ln -s apache-maven-3.5.4 maven
+      - wget https://downloads.apache.org/maven/maven-3/3.8.8/binaries/apache-maven-3.8.8-bin.tar.gz
+      - tar xzf apache-maven-3.8.8-bin.tar.gz
+      - ln -s apache-maven-3.8.8 maven
   build:
     commands:
       - mvn clean install -DskipTests
