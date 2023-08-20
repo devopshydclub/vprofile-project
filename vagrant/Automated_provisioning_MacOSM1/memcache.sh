@@ -2,7 +2,7 @@
 mv /etc/yum.repos.d/fedora-updates.repo /tmp/
 mv /etc/yum.repos.d/fedora-updates-modular.repo /tmp/
 yum clean all
-yum update
+#yum update
 sudo yum install epel-release -y
 sudo yum install memcached -y
 sudo systemctl start memcached
