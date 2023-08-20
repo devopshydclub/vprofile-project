@@ -2,7 +2,7 @@
 sudo mv /etc/yum.repos.d/fedora-updates.repo /tmp/
 sudo mv /etc/yum.repos.d/fedora-updates-modular.repo /tmp/
 sudo yum clean all
-sudo yum update -y
+#sudo yum update -y
 echo "SElinux changes."
 sed -i 's/SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config 
 setenforce 0
