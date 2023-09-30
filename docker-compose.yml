@@ -47,5 +47,3 @@ services:
     vprodbdata: {}
   
     
-  redis:
-    image: "redis:alpine"
