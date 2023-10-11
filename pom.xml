@@ -159,7 +159,12 @@
 		            </execution>
 		        </executions>
 		</plugin>
-        </plugins>
+		<plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-clean-plugin</artifactId>
+        <version>3.2.0</version>
+      	</plugin>
+    </plugins>
     </build>
 	<repositories>
     <repository>
