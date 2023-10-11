@@ -161,10 +161,4 @@
 		</plugin>
         </plugins>
     </build>
-	<repositories>
-    <repository>
-      <id>${NEXUS-GRP-REPO}</id>
-      <url>http://${NEXUSIP}:${NEXUSPORT}/repository/${NEXUS-GRP-REPO}/</url>
-    </repository>
-  </repositories>
 </project>
