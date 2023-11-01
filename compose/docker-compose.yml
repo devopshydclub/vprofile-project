@@ -17,7 +17,7 @@ services:
   vpromq01:
     image: rabbitmq
     ports:
-      - "15672:15672"
+      - "15691:15691"
     environment:
       - RABBITMQ_DEFAULT_USER=guest
       - RABBITMQ_DEFAULT_PASS=guest
