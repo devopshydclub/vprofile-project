@@ -1,7 +1,7 @@
 #!/bin/bash
 DATABASE_PASS='admin123'
 
-# MEmcache
+## MEmcache
 yum install epel-release -y
 yum install memcached -y
 systemctl start memcached
