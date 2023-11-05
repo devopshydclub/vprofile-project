@@ -4,9 +4,11 @@ jobs:
   first-job:
     runs-on: ubuntu-latest
     steps:
-     - name: Install packages
+     - name: Fetch Source coce
        uses: actions/checkout@v4
      - name: Build artifacts
        run: | 
           ls -l 
+          java -version
+          mvn -version
           
