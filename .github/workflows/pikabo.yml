@@ -1,0 +1,40 @@
+name: Pikabo Workflow
+on: workflow_dispatch
+jobs:
+  first-job:
+    runs-on: ubuntu-latest
+    steps:
+     - name: Code checkout
+       uses: actions/checkout@v4
+
+     - name: Maven test
+       run: mvn test
+
+     - name: Checkstyle
+       run: mvn checkstyle:checkstyle
+
+    # Setup java 11 to be default (sonar-scanner requirement as of 5.x)
+     - uses: actions/setup-java@v3
+       with:
+        distribution: 'temurin' # See 'Supported distributions' for available options
+        java-version: '11'
+   
+    # Setup sonar-scanner
+     - name: Setup SonarQube
+       uses: warchant/setup-sonar-scanner@v7
+   
+    # Run sonar-scanner
+     - name: Analyze with SonarCloud
+       uses: sonarsource/sonarcloud-github-action@master
+       with:
+         projectBaseDir: my-custom-directory
+         args: >          
+           -Dsonar.host.url=${{ secrets.SONAR_URL }}
+           -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+           -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
+           -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
+           -Dsonar.sources=$GITHUB_WORKSPACE
+           -Dsonar.junit.reportsPath=target/surefire-reports/ 
+           -Dsonar.jacoco.reportsPath=target/jacoco.exec 
+           -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml
+           -Dsonar.java.binaries=target/test-classes/com/visualpathit/account/controllerTest/
