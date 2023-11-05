@@ -24,14 +24,10 @@ jobs:
        uses: warchant/setup-sonar-scanner@v7
    
     # Run sonar-scanner
-     - name: Analyze with SonarCloud
-       uses: sonarsource/sonarcloud-github-action@master
-       env:
-       # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-       with:
-        # projectBaseDir: src/
-         args: >
+     - name: SonarQube Scan
+       run: sonar-scanner
+           -Dsonar.host.url=${{ secrets.SONAR_URL }}
+           -Dsonar.login=${{ secrets.SONAR_TOKEN }}
            -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
            -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
            -Dsonar.sources=src/
