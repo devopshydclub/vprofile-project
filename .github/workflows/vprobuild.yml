@@ -8,7 +8,10 @@ jobs:
        uses: actions/checkout@v4
      - name: Build artifacts
        run: | 
-          ls -l 
-          java -version
-          mvn -version
+          mvn install
+          mv target/vprofile-v2.war .
+          rm -rf target
+          mkdir target
+          mv vprofile-v2.war target/
+          ls -l target/
           
