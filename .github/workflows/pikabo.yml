@@ -32,7 +32,7 @@ jobs:
        with:
          projectBaseDir: my-custom-directory
          args: >          
-           -Dsonar.host.url=${{ secrets.SONAR_URL }}
+           #-Dsonar.host.url=${{ secrets.SONAR_URL }}
            #-Dsonar.login=7da51dc2b2dfe989f1617e25c2b6415577bc9790
            -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
            -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
