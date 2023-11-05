@@ -1,0 +1,8 @@
+name: First Workflow
+on: workflow_dispatch
+jobs:
+  first-job:
+    runs-on: ubuntu-latest
+    steps:
+     - name: Install packages
+       run: sudo apt update && sudo apt install openjdk-11-jdk -y && sudo apt install maven -y
