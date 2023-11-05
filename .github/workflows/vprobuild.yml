@@ -5,6 +5,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
      - name: Install packages
-       run: sudo apt update && sudo apt install openjdk-11-jdk -y && sudo apt install maven -y
+       run: |
+           echo "Running installing packages"
+           #sudo apt update 
+           #sudo apt install openjdk-11-jdk -y 
+           #sudo apt install maven -y
      - name: Build artifacts
-       run: pwd && ls -l && id
+       run: | 
+          ls -l ../
