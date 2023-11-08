@@ -216,12 +216,12 @@
         <repository>
             <id>nexus</id>
             <name>Woma Releases Nexus Repository</name>
-            <url>http://172.31.29.79:8081/repository/vprofile-repo/</url>
+            <url>http://18.237.99.210:8081/repository/UAT/</url>
         </repository>
         <snapshotRepository>
             <id>nexus</id>
             <name>Woma Snapshot Nexus Repository</name>
-            <url>http://172.31.29.79:8081/repository/vprofile-repo/</url>
+            <url>http://18.237.99.210:8081/repository/UAT/</url>
         </snapshotRepository>
     </distributionManagement>	
 </project>
