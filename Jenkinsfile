@@ -2,6 +2,7 @@ def COLOR_MAP = [
     'SUCCESS': 'good',
     'FAILURE': 'danger'
 ]
+
 pipeline {
     agent any
 
@@ -100,13 +101,13 @@ pipeline {
                             credentialsId: NEXUS_CREDENTIAL_ID,
                             artifacts: [
                                 [artifactId: pom.artifactId,
-                                 classifier: '',
-                                 file: artifactPath,
-                                 type: pom.packaging],
+                                    classifier: '',
+                                    file: artifactPath,
+                                    type: pom.packaging],
                                 [artifactId: pom.artifactId,
-                                 classifier: '',
-                                 file: "pom.xml",
-                                 type: "pom"]
+                                    classifier: '',
+                                    file: "pom.xml",
+                                    type: "pom"]
                             ]
                         )
                     } else {
@@ -116,8 +117,8 @@ pipeline {
             }
         }
     }
-}
-post {
+
+    post {
         always {
             echo 'Slack Notifications.'
             slackSend channel: '#jenkinsci',
@@ -126,4 +127,3 @@ post {
         }
     }
 }
-
