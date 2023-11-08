@@ -59,8 +59,8 @@ pipeline {
             steps {
                 withSonarQubeEnv('sonar-pro') {
                     withSonarQubeEnv('sonar-pro') {
-                        sh """${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=UAT-TESTING \
-                           -Dsonar.projectName=UAT-TESTING \
+                        sh """${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=TESTING \
+                           -Dsonar.projectName=TESTING \
                            -Dsonar.projectVersion=1.0 \
                            -Dsonar.sources=src/ \
                            -Dsonar.java.binaries=target/test-classes/com/visualpathit/account/controllerTest/ \
