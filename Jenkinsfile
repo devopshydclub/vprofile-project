@@ -15,7 +15,7 @@ pipeline {
         NEXUS_PROTOCOL = "http"
         NEXUS_URL = "172.31.29.79:8081"
         NEXUS_REPOSITORY = "UAT"
-        NEXUS_REPO_ID = "QA"
+	    NEXUS_REPO_ID    = "QA"
         NEXUS_CREDENTIAL_ID = "nexus-login"
         ARTVERSION = "${env.BUILD_ID}"
     }
