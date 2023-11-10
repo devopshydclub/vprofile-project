@@ -2,10 +2,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.visualpathit</groupId>
-    <artifactId>vprofile</artifactId>
+    <artifactId>woma</artifactId>
     <packaging>war</packaging>
     <version>v2</version>
-    <name>Visualpathit VProfile Webapp</name>
+    <name>Visualpathit woma Webapp</name>
     <url>http://maven.apache.org</url>
     <properties>
         <spring.version>4.2.0.RELEASE</spring.version>
