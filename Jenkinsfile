@@ -58,11 +58,11 @@ pipeline {
 
         stage('CODE ANALYSIS with SONARQUBE') {
             environment {
-                scannerHome = tool 'sonarscanner4'
+                scannerHome = tool 'sonar4.7'
             }
 
             steps {
-                withSonarQubeEnv('sonar-pro') {
+                withSonarQubeEnv('sonar') {
                     withSonarQubeEnv('sonar-pro') {
                         sh """${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=TESTING \
                            -Dsonar.projectName=TESTING \
