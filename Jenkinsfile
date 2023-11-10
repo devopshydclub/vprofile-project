@@ -17,7 +17,7 @@ pipeline {
         NEXUS_REPOSITORY = "UAT"
         NEXUS_REPO_ID = "QA"
         NEXUS_CREDENTIAL_ID = "nexus-login"
-        ARTVERSION = "${env.BUILD_ID,}"
+        ARTVERSION = "${env.BUILD_ID}"
     }
 
     stages {
