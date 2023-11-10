@@ -63,7 +63,7 @@ pipeline {
 
             steps {
                 withSonarQubeEnv('sonar') {
-                    withSonarQubeEnv('sonar-pro') {
+                    withSonarQubeEnv('sonar') {
                         sh """${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=TESTING \
                            -Dsonar.projectName=TESTING \
                            -Dsonar.projectVersion=1.0 \
