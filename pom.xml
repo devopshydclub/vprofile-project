@@ -185,7 +185,18 @@
                      <version>3.2.2</version>
                     </plugin>
  		    <plugin>
- 		        <groupId>org.jacoco</groupId>
+			    <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.2</version>
+                <configuration>
+                    <argLine>-Xmx1024m -XX:MaxPermSize=256m</argLine>
+                    <forkCount>1</forkCount>
+                    <reuseForks>true</reuseForks>
+                    <runOrder>alphabetical</runOrder>
+				    </configuration>
+			    </plugin>
+			    <groupId>org.jacoco</groupId>
  		        <artifactId>jacoco-maven-plugin</artifactId>
 			<version>0.8.4</version>
  		        <executions>
