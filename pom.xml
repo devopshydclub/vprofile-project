@@ -216,12 +216,12 @@
         <repository>
             <id>nexus</id>
             <name>Woma Releases Nexus Repository</name>
-            <url>http://172.31.29.79:8081/repository/UAT/</url>
+            <url>http://172.31.17.155:8081/repository/Testing-Release/</url>
         </repository>
         <snapshotRepository>
             <id>nexus</id>
             <name>Woma Snapshot Nexus Repository</name>
-            <url>http://172.31.29.79:8081/repository/UAT/</url>
+            <url>http://172.31.17.155:8081/repository/Testing-Release/</url>
         </snapshotRepository>
     </distributionManagement>	
 </project>
