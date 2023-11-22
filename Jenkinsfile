@@ -10,14 +10,21 @@ pipeline {
         maven "MAVEN3"
     }
 
-    environment {
-        NEXUS_VERSION = "nexus3"
-        NEXUS_PROTOCOL = "http"
-        NEXUS_URL = "172.31.17.155:8081"
-        NEXUS_REPOSITORY = "Testing"
-	NEXUS_REPO_ID    = "QA"
-        NEXUS_CREDENTIAL_ID = "nexus-login"
-        ARTVERSION = "${env.BUILD_ID}"
+    stage("UploadArtifact"){
+            steps{
+                nexusArtifactUploader(
+                  nexusVersion: 'nexus3',
+                  protocol: 'http',
+                  nexusUrl: '172.31.17.155:8081',
+                  groupId: 'QA',
+                  version: "${env.BUILD_ID}-${env.BUILD_TIMESTAMP}",
+                  repository: 'Testing',
+                  credentialsId: 'nexus-login',
+                  artifacts: [
+                    [artifactId: 'vproapp',
+                     classifier: '',
+                     file: 'target/vprofile-v2.war',
+                     type: 'war']
     }
 
     stages {
