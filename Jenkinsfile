@@ -1,6 +1,6 @@
 def COLOR_MAP = [
     SUCCESS: 'good',
-    FAILURE: 'danger'
+    FAILURE: 'blue'
 ]
 
 pipeline {
