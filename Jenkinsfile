@@ -1,4 +1,9 @@
-pipeline {
+def COLOR_MAP = [
+    'SUCCESS': 'good',
+    'FAILURE': 'danger'
+]
+
+ipeline {
     agent any
     tools {
         maven "maven"
@@ -58,9 +63,17 @@ pipeline {
              	classifier: '',
              	file: 'target/vprofile-v2.war',
              	type: 'war']
-       		 ]
+       		    ]
     		 )
 	     }
 	}
     }
+   post {
+        always {
+            echo 'Slack Notifications.'
+            slackSend channel: '#project',
+                color: COLOR_MAP[currentBuild.currentResult],
+                message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER} \n More info at: ${env.BUILD_URL}"
+        }
+    } 
 }
