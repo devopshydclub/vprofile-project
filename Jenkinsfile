@@ -3,7 +3,7 @@ def COLOR_MAP = [
     'FAILURE': 'danger'
 ]
 
-ipeline {
+pipeline {
     agent any
     tools {
         maven "maven"
@@ -11,7 +11,7 @@ ipeline {
     }
     
     environment {
-        SNAP_REPO = 'vprofile-snapshot'
+    SNAP_REPO = 'vprofile-snapshot'
 	NEXUS_USER = 'admin'
 	NEXUS_PASS = 'admin123'
 	RELEASE_REPO = 'vprofile-release'
