@@ -15,11 +15,11 @@ pipeline {
 	NEXUS_USER = 'admin'
 	NEXUS_PASS = 'admin123'
 	RELEASE_REPO = 'vprofile-release'
-	CENTRAL_REPO = 'vpro-maven-proxy'
+	CENTRAL_REPO = 'vprofile-central'
 	NEXUSIP = '172.31.82.159'
 	NEXUSPORT = '8081'
-	NEXUS_GRP_REPO = 'vpro-maven-group'
-    NEXUS_LOGIN = 'nexuslogin'
+	NEXUS_GRP_REPO = 'vprofile-group'
+	NEXUS_LOGIN = 'nexuslogin'
     }
 
     stages {
@@ -34,15 +34,14 @@ pipeline {
                 }
             }
         }
-    }
 
-    #   stage('Test'){
-    #        steps {
-    #           sh 'mvn -s settings.xml test'
+      stage('Test'){
+          steps {
+              sh 'mvn -s settings.xml test'
             }
-
         }
-
+}	
+}
     #    stage('Checkstyle Analysis'){
      #       steps {
                 sh 'mvn -s settings.xml checkstyle:checkstyle'
