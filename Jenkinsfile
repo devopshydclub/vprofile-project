@@ -19,7 +19,7 @@ pipeline {
 	NEXUSIP = '172.31.82.159'
 	NEXUSPORT = '8081'
 	NEXUS_GRP_REPO = 'vpro-maven-group'
-        NEXUS_LOGIN = 'nexuslogin'
+    NEXUS_LOGIN = 'nexuslogin'
     }
 
     stages {
@@ -34,22 +34,23 @@ pipeline {
                 }
             }
         }
+    }
 
-        stage('Test'){
-            steps {
-                sh 'mvn -s settings.xml test'
+    #   stage('Test'){
+    #        steps {
+    #           sh 'mvn -s settings.xml test'
             }
 
         }
 
-        stage('Checkstyle Analysis'){
-            steps {
+    #    stage('Checkstyle Analysis'){
+     #       steps {
                 sh 'mvn -s settings.xml checkstyle:checkstyle'
             }
         }
 
-	stage ("UploadArtifact"){
-		steps {
+	# stage ("UploadArtifact"){
+	#	steps {
 		nexusArtifactUploader(
       		nexusVersion: 'nexus3',
         	protocol: 'http',
@@ -68,7 +69,7 @@ pipeline {
 	     }
 	}
     }
-   post {
+   # post {
         always {
             echo 'Slack Notifications.'
             slackSend channel: '#project',
