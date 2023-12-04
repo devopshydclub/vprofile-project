@@ -6,7 +6,7 @@ pipeline {
     agent any
     tools {
         maven "maven"
-        jdk "OracleJDK8"
+        jdk "OracleJDK11"
     }
     
     environment {
@@ -21,6 +21,9 @@ pipeline {
         NEXUS_LOGIN = 'nexuslogin'
         SONARSERVER = 'sonarserver'
         SONARSCANNER = 'sonarscanner'
+        registrycredentials = 'ecr:us-east-1:awscredentials'
+        appRegistory = '967762580629.dkr.ecr.us-east-1.amazonaws.com/vprofileproject_ecr'
+        vprofileRegistory = "https://967762580629.dkr.ecr.us-east-1.amazonaws.com/vprofileproject_ecr"
     }
 
     stages {
@@ -56,6 +59,8 @@ pipeline {
             steps {
                withSonarQubeEnv("${SONARSERVER}") {
                    sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=vprofile \
+                   -Dsonar.host.url=http://54.237.90.84 \
+                   -Dsonar.login=c988e73dfd32924deb928adf419817c40f2333b4
                    -Dsonar.projectName=vprofile \
                    -Dsonar.projectVersion=1.0 \
                    -Dsonar.sources=src/ \
@@ -96,6 +101,24 @@ pipeline {
                 )
             }
         }
+    stage ('BuildAppImage'){
+        steps{
+            script {
+                dockerImage = dockert.build( appRegistory + ":$BUULD_NUMBER", "./Docker-files/app/multistage/" )
+            }
+        }
+    }
+    stage{
+        steps{
+            script{
+                docker.withRegistry( vprofileRegistory, registrycredentials ){
+                    dockerImage.push("$BUILD_NUMBER")
+                    dockerImage.push('latest')
+                }
+            }
+        }
+    }
+
 
     }
     post {
