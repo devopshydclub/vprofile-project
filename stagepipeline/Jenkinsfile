@@ -18,7 +18,7 @@ pipeline {
 		NEXUSIP = '172.31.82.159'
 		NEXUSPORT = '8081'
 		NEXUS_GRP_REPO = 'vpro-maven-group'
-        NEXUS_LOGIN = 'nexuslogin'
+        NEXUS_LOGIN = 'nexus-login'
         SONARSERVER = 'sonarserver'
         SONARSCANNER = 'sonarscanner'
         registrycredentials = 'ecr:us-east-1:awscredentials'
@@ -79,7 +79,6 @@ pipeline {
                 }
             }
         }
-
         stage("UploadArtifact"){
             steps{
                 nexusArtifactUploader(
@@ -99,6 +98,7 @@ pipeline {
                 )
             }
         }
+        
     stage ('BuildAppImage'){
         steps{
             script {
@@ -117,8 +117,8 @@ pipeline {
         }
     }
 
+ }
 
-    }
     post {
         always {
             echo 'Slack Notifications.'
