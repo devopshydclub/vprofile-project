@@ -104,7 +104,7 @@ pipeline {
                         nexusArtifactUploader(
                             nexusVersion: 'nexus3',
                             protocol: 'http',
-                            nexusUrl: 'http://172.31.17.155:8081',
+                            nexusUrl: '172.31.19.236:8081',
                             groupId: pom.groupId,
                             version: ARTVERSION,
                             repository: 'Testing',
