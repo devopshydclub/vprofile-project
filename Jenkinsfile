@@ -11,11 +11,29 @@ pipeline {
     }
 
     stages {
+        stage('UploadArtifact') {
+            steps {
+                nexusArtifactUploader(
+                    nexusVersion: 'nexus3',
+                    protocol: 'http',
+                    nexusUrl: '172.31.81.143:8081',
+                    groupId: 'QA',
+                    version: "${env.BUILD_ID}-${env.BUILD_TIMESTAMP}",
+                    repository: 'Testing',
+                    credentialsId: 'nexuslogin',
+                    artifacts: [
+                        [artifactId: 'vproapp',
+                            classifier: '',
+                            file: 'target/vprofile-v2.war',
+                            type: 'war']
+                    ]
+                )
+            }
+        }
+
         stage('BUILD') {
             steps {
-                script {
-                    sh 'mvn clean install -DskipTests'
-                }
+                sh 'mvn clean install -DskipTests'
             }
             post {
                 success {
@@ -68,6 +86,42 @@ pipeline {
 
                     timeout(time: 10, unit: 'MINUTES') {
                         waitForQualityGate abortPipeline: true
+                    }
+                }
+            }
+        }
+
+        stage("Publish to Nexus Repository Manager") {
+            steps {
+                script {
+                    pom = readMavenPom file: "pom.xml";
+                    filesByGlob = findFiles(glob: "target/*.${pom.packaging}");
+                    echo "${filesByGlob[0].name} ${filesByGlob[0].path} ${filesByGlob[0].directory} ${filesByGlob[0].length} ${filesByGlob[0].lastModified}"
+                    artifactPath = filesByGlob[0].path;
+                    artifactExists = fileExists artifactPath;
+                    if (artifactExists) {
+                        echo "*** File: ${artifactPath}, group: ${pom.groupId}, packaging: ${pom.packaging}, version ${pom.version} ARTVERSION";
+                        nexusArtifactUploader(
+                            nexusVersion: 'nexus3',
+                            protocol: 'http',
+                            nexusUrl: '172.31.81.143:8081',
+                            groupId: pom.groupId,
+                            version: ARTVERSION,
+                            repository: 'Testing',
+                            credentialsId: 'nexuslogin',
+                            artifacts: [
+                                [artifactId: pom.artifactId,
+                                    classifier: '',
+                                    file: artifactPath,
+                                    type: pom.packaging],
+                                [artifactId: pom.artifactId,
+                                    classifier: '',
+                                    file: "pom.xml",
+                                    type: "pom"]
+                            ]
+                        )
+                    } else {
+                        error "*** File: ${artifactPath}, could not be found"
                     }
                 }
             }
