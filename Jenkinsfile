@@ -20,7 +20,7 @@ pipeline {
                     groupId: 'QA',
                     version: "${env.BUILD_ID}-${env.BUILD_TIMESTAMP}",
                     repository: 'Testing',
-                    credentialsId: 'nexus-login',
+                    credentialsId: 'nexuslogin',
                     artifacts: [
                         [artifactId: 'vproapp',
                             classifier: '',
