@@ -5,7 +5,7 @@
     <artifactId>vprofile</artifactId>
     <packaging>war</packaging>
     <version>v2</version>
-    <name>Visualpathit VProfile Webapp</name>
+    <name>Visualpathit vprofile Webapp</name>
     <url>http://maven.apache.org</url>
     <properties>
         <spring.version>4.2.0.RELEASE</spring.version>
@@ -20,6 +20,9 @@
         <logback.version>1.1.3</logback.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+	   <sonar.host.url>http://172.31.30.127:9000/</sonar.host.url>
+        <sonar.login>e7282cc66604b075759870ce23caa8d1ea48c56f</sonar.login>
+
     </properties>
 
     <dependencies>
@@ -177,6 +180,7 @@
                         <contextPath>/</contextPath>
                     </webApp>
                 </configuration>
+       	    
             </plugin>
 		<!-- CODE COVERAGE -->
 	            <plugin>
@@ -208,4 +212,16 @@
 		
         </plugins>
     </build>
+ <distributionManagement>
+        <repository>
+            <id>nexus</id>
+            <name>Woma Releases Nexus Repository</name>
+            <url>http://172.31.17.155:8081/repository/Testing/</url>
+        </repository>
+        <snapshotRepository>
+            <id>nexus</id>
+            <name>Woma Snapshot Nexus Repository</name>
+            <url>http://172.31.17.155:8081/repository/Testing/</url>
+        </snapshotRepository>
+    </distributionManagement>	
 </project>
