@@ -16,7 +16,7 @@ pipeline {
                 nexusArtifactUploader(
                     nexusVersion: 'nexus3',
                     protocol: 'http',
-                    nexusUrl: '172.31.19.236:8081',
+                    nexusUrl: '172.31.81.143:8081',
                     groupId: 'QA',
                     version: "${env.BUILD_ID}-${env.BUILD_TIMESTAMP}",
                     repository: 'Testing',
@@ -104,11 +104,11 @@ pipeline {
                         nexusArtifactUploader(
                             nexusVersion: 'nexus3',
                             protocol: 'http',
-                            nexusUrl: '172.31.19.236:8081',
+                            nexusUrl: '172.31.81.143:8081',
                             groupId: pom.groupId,
                             version: ARTVERSION,
                             repository: 'Testing',
-                            credentialsId: 'nexus-login',
+                            credentialsId: 'nexuslogin',
                             artifacts: [
                                 [artifactId: pom.artifactId,
                                     classifier: '',
