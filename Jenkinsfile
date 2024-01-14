@@ -24,6 +24,7 @@ pipeline {
 
     // Define different stages of the pipeline
     stages {
+        // Stage 1: Build
         stage('Build') {
             steps {
                 // Execute Maven build with skipTests option
@@ -39,6 +40,7 @@ pipeline {
             }
         }
 
+        // Stage 2: Test
         stage('Test') {
             steps {
                 // Execute Maven tests
@@ -46,6 +48,7 @@ pipeline {
             }
         }
 
+        // Stage 3: Checkstyle Analysis
         stage('Checkstyle Analysis') {
             steps {
                 // Execute Maven Checkstyle plugin
@@ -53,6 +56,7 @@ pipeline {
             }
         }
 
+        // Stage 4: Sonar Analysis
         stage('Sonar Analysis') {
             environment {
                 scannerHome = tool "${SONARSCANNER}"
@@ -70,5 +74,17 @@ pipeline {
                 }
             }
         }
+
+        // Stage 5: Quality Gate
+        stage("Quality Gate") {
+            steps {
+                timeout(time: 1, unit: 'HOURS') {
+                    // Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
+                    // true = set pipeline to UNSTABLE, false = don't
+                    waitForQualityGate abortPipeline: true
+                }
+            }
+        }
+
     }
 }
