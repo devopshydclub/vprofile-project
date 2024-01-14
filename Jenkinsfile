@@ -14,13 +14,14 @@ pipeline {
         NEXUSPORT = '8081'
         NEXUS_GRP_REPO = 'vpro-maven-group'
         NEXUS_LOGIN = 'nexuslogin'
+        JAVA_HOME = /usr/lib/jvm/java-1.8.0-openjdk-amd64   // Replace with the actual path to Java home
     }
 
     stages {
         stage('Build') {
             steps {
                 script {
-                    sh 'mvn -s settings.xml -DskipTests install'
+                    sh 'export JAVA_HOME=$JAVA_HOME && mvn -s settings.xml -DskipTests install'
                 }
             }
         }
