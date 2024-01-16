@@ -22,6 +22,22 @@ pipeline {
             steps {
                 sh 'mvn -s settings.xml -DskipTests install'
             }
+            post {
+                success "Now Archiving..."
+                archiveArtifacts artifacts: '**/*.war'   // this basically run a post step once the stage is sucessful to archive the arifact and the archiveArtifacts pluguns need to be installed to work, so it checks for all files ending with .war and archive it.
+            }
+        }
+
+        stage('Test') {
+            steps {
+                sh 'mvn test' // This stage is basically to perform unit test which will generate a report that will later be uploaded to sonarqube 
+            }
+        }
+
+        stage('Checkstyle Analysis') {
+            steps {
+                sh 'mvn checkstyle:checkstyle' //this uses checkstyle a code analysis tool which will check for any issues with your code and suggest best practices, vulnerabilities. 
+            }
         }
     }
 }
