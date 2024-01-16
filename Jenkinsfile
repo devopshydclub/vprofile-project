@@ -32,13 +32,13 @@ pipeline {
 
         stage('Test') {
             steps {
-                sh 'mvn test' // This stage is basically to perform unit test which will generate a report that will later be uploaded to sonarqube 
+                sh 'mvn  -s settings.xml test' // This stage is basically to perform unit test which will generate a report that will later be uploaded to sonarqube 
             }
         }
 
         stage('Checkstyle Analysis') {
             steps {
-                sh 'mvn checkstyle:checkstyle' //this uses checkstyle a code analysis tool which will check for any issues with your code and suggest best practices, vulnerabilities. 
+                sh 'mvn  -s settings.xml checkstyle:checkstyle' //this uses checkstyle a code analysis tool which will check for any issues with your code and suggest best practices, vulnerabilities. 
             }
         }
     }
