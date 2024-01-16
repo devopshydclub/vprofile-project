@@ -22,9 +22,11 @@ pipeline {
             steps {
                 sh 'mvn -s settings.xml -DskipTests install'
             }
-            post {
-                success "Now Archiving..."
-                archiveArtifacts artifacts: '**/*.war'   // this basically run a post step once the stage is sucessful to archive the arifact and the archiveArtifacts pluguns need to be installed to work, so it checks for all files ending with .war and archive it.
+            post { 
+                success {
+                    echo  "Now Archiving..."
+                    archiveArtifacts artifacts: '**/*.war'   // this basically run a post step once the stage is sucessful to archive the arifact and the archiveArtifacts pluguns need to be installed to work, so it checks for all files ending with .war and archive it.
+                 }
             }
         }
 
