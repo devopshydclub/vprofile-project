@@ -7,7 +7,7 @@ pipeline {
 
     environment {
         SNAP_REPO = 'vprofile-snapshot'
-        NEXUS_USER = 'admin'
+        NEXUS_USER = 'admin' // to login to nexus using username and password 
         NEXUS_PASS = 'pius'
         RELEASE_REPO = 'vprofile-release'
         CENTRAL_REPO = 'vpro-maven-central'
@@ -15,6 +15,9 @@ pipeline {
         NEXUSPORT = '8081'
         NEXUS_GRP_REPO = 'vprofile-maven-group'
         NEXUS_LOGIN = 'nexuslogin' // from credentials in jenkins
+
+        SONARSERVER = 'sonarserver' //server name saved under system in jenkins 
+        SONARSCANNER = 'sonarscanner' // UNDER tool in jenkins, name of scanner tool added. 
     }
 
     stages {
@@ -39,6 +42,24 @@ pipeline {
         stage('Checkstyle Analysis') {
             steps {
                 sh 'mvn  -s settings.xml checkstyle:checkstyle' //this uses checkstyle a code analysis tool which will check for any issues with your code and suggest best practices, vulnerabilities. 
+            }
+        }
+
+        stage('Sonar Analysis') {
+            environment {
+                scannerHome = tool "${SONARSCANNER}"  // storing the global variable in the local variable scannerHome 
+            }
+            steps {
+               withSonarQubeEnv("${SONARSERVER}") {  // this is using the variable to pass the value stored in it as the sonar server name saved  under systems in jenkins. this also scans for the unit test report and the checkstyle reports as well. SCans the code and takes the report to the sonar server.
+                   sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=vprofile \
+                   -Dsonar.projectName=vprofile \
+                   -Dsonar.projectVersion=1.0 \
+                   -Dsonar.sources=src/ \
+                   -Dsonar.java.binaries=target/test-classes/com/visualpathit/account/controllerTest/ \
+                   -Dsonar.junit.reportsPath=target/surefire-reports/ \
+                   -Dsonar.jacoco.reportsPath=target/jacoco.exec \
+                   -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml'''
+              }
             }
         }
     }
