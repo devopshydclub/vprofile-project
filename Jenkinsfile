@@ -72,6 +72,26 @@ pipeline {
                 }
             }
         }
+
+        stage("UploadArtifact") {
+            steps {
+                nexusArtifactUploader(
+                            nexusVersion: 'nexus3', //the nexus current version 
+                            protocol: 'http', //protocol used 
+                            nexusUrl: "${NEXUSIP}:${NEXUSPORT}", //url to access your nexus server.
+                            groupId: 'QA',
+                            version: "${env.BUILD_ID}-${env.BUILD_TIMESTAMP}", // the version to give the artifact being built
+                            repository: ${RELEASE_REPO}, // the release repo on nexus to store the artifact 
+                            credentialsId: ${NEXUS_LOGIN}, // credientials saved in jenkins for nexus access 
+                            artifacts: [
+                                [artifactId: 'vproapp', // artifact name
+                                classifier: '',
+                                file: 'target/vprofile-v2.war', //artifact you want to upload 
+                                type: 'war'] 
+                            ]
+                        )
+            }
+        }
     }
 }
 
