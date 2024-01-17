@@ -8,7 +8,7 @@ pipeline {
     }
 */	
     environment {
-        NEXUS_VERSION = "nexus3"
+        NEXUS_VERSION = "nes3"
         NEXUS_PROTOCOL = "http"
         NEXUS_URL = "172.31.40.209:8081"
         NEXUS_REPOSITORY = "vprofile-release"
@@ -33,7 +33,7 @@ pipeline {
 
 	stage('UNIT TEST'){
             steps {
-                sh 'mvn test'
+                sh 'mv test'
             }
         }
 
@@ -61,7 +61,8 @@ pipeline {
           }
 
           steps {
-            withSonarQubeEnv('sonar-pro') {
+            withSonarQubeEnv('sonar-pro') { 
+		    # static source code analysis
                sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=vprofile \
                    -Dsonar.projectName=vprofile-repo \
                    -Dsonar.projectVersion=1.0 \
@@ -114,9 +115,11 @@ pipeline {
                 }
             }
         }
-
-
     }
+
+# This Jenkins file will trigger once you update the latest code in it
 
 
 }
+
+#adding the new comment to check the pr
