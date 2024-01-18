@@ -23,13 +23,13 @@ pipeline {
         NEXUS_LOGIN = 'nexuslogin' // from credentials in jenkins
 
         SONARSERVER = 'sonarserver' //server name saved under system in jenkins 
-        SONARSCANNER = 'sonarscanner' // UNDER tool in jenkins, name of scanner tool added. 
+        SONARSCANNER = 'sonarscanner' // UNDER tool in jenkins, the name of the scanner tool added under global tool in jenkins. 
     }
 
     stages {
         stage('Build') {
             steps {
-                sh 'mvn -s settings.xml -DskipTests install'
+                sh 'mvn -s settings.xml -DskipTests install' // this basically downloads the dependencies from nexus maven repo and skip unit test with the -d flag 
             }
             post { 
                 success {
@@ -47,7 +47,7 @@ pipeline {
 
         stage('Checkstyle Analysis') {
             steps {
-                sh 'mvn  -s settings.xml checkstyle:checkstyle' //this uses checkstyle a code analysis tool which will check for any issues with your code and suggest best practices, vulnerabilities. 
+                sh 'mvn  -s settings.xml checkstyle:checkstyle' //this uses checkstyle under maven a code analysis tool which will check for any issues with your code and suggest best practices, vulnerabilities. 
             }
         }
 
