@@ -17,7 +17,7 @@ pipeline {
         NEXUS_PASS = 'pius'
         RELEASE_REPO = 'vprofile-release'
         CENTRAL_REPO = 'vpro-maven-central'
-        NEXUSIP = '10.0.0.158'  // nexus server private ip 
+        NEXUSIP = '10.0.0.221'  // nexus server private ip 
         NEXUSPORT = '8081'
         NEXUS_GRP_REPO = 'vprofile-maven-group'
         NEXUS_LOGIN = 'nexuslogin' // from credentials in jenkins
