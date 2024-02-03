@@ -67,16 +67,30 @@ pipeline{
             }
 
         }
-
- //quality gates
-        stage("Quality Gate") {
-            steps {
-                timeout(time: 10, unit: 'MINUTES') {
-                    // parameter indicate wheather to set piepline to UNSTABLE
-                    //true= set piepline to UNSTABLE, false = don,t
-                    waitForQualityGate abortPipeline: true
-                }
-            }
-        }      
+        stage ("UploadArtifacts"){
+             steps {
+                nexusArtifactUploader(
+                  nexusVersion: 'nexus3',
+                  protocol: 'http',
+                  nexusUrl: "${NEXUSIP}:${NEXUSPORT}",
+                  groupId: 'QA',
+                  version: "${env.BUILD_ID}-${env.BUILD_TIMESTAMP}",
+                  repository: "${RELEASE_REPO}",
+                  credentialsId: "${NEXUS_LOGIN}",
+                  artifacts: [
+                    [artifactId: 'vproapp',
+                     classifier: '',
+                     file: 'target/vprofile-v2.war',
+                     type: 'war']
+                
+            ]
+        )
     }
 }
+
+    }
+
+}             
+
+               
+            
