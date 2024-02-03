@@ -71,7 +71,7 @@ pipeline{
  //quality gates
         stage("Quality Gate") {
             steps {
-                timeout(time: 20, unit: 'MINUTES') {
+                timeout(time: 5, unit: 'MINUTES') {
                     // parameter indicate wheather to set piepline to UNSTABLE
                     //true= set piepline to UNSTABLE, false = don,t
                     waitForQualityGate abortPipeline: true
