@@ -31,14 +31,14 @@ pipeline{
                 }
             }
         }
-#unit tests#
+//unit tests
         stage('Test'){
             steps {
                 sh 'mvn test'
             }
         }
 
-#checkstyle analysis#        
+//checkstyle analysis        
         stage ('Checkstyle Analysis'){
             steps {
                 sh 'mvn checkstyle:checkstyle'
