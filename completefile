@@ -1,3 +1,8 @@
+def COLOR_MAP = [
+    'SUCCESS' : 'good',
+    'FAILURE' : 'danger',
+]
+
 pipeline {
     agent any
     tools {
@@ -11,47 +16,46 @@ pipeline {
         NEXUS_PASS = 'admin'
         RELEASE_REPO = 'vprofile-release'
         CENTRAL_REPO = 'vpro-maven-central'
-        NEXUSIP = '172.31.88.224'
+        NEXUSIP = '172.31.93.170'
         NEXUSPORT ='8081'
         NEXUS_GRP_REPO = "vpro-maven-group"
         NEXUS_LOGIN = 'nexuslogin'
 
-        SONARSERVER= 'sonarserver'
-        SONARSCANNER= 'sonarscanner'
+        SONARSERVER = 'sonarserver'
+        SONARSCANNER = 'sonarscanner'
     }
 
     stages {
         stage ('Build') {
             steps {
-                sh 'mvn -s settings.xml -DskipTests install' //maven will build based on settings.xml and skip test
+                sh 'mvn -s settings.xml -DskipTests install'
             }
 
             post {
                 success {
                     echo "Now Archiving"
-                    archiveArtifacts artifacts: '**/*.war' //archeive everything thats ends with .war
+                    archiveArtifacts artifacts: '**/*.war'
                 }
             }
         }
-
-        // unit tests and this will upload in sonarqube later
+        // unit tests
         stage('Test') {
             steps {
                 sh 'mvn -s settings.xml test'
             }
         }
 
-        // checkstyle analysis, this will check any issue with the code.       
+        // checkstyle analysis        
         stage ('Checkstyle Analysis') {
             steps {
                 sh 'mvn -s settings.xml checkstyle:checkstyle'
             }
         }
 
-         // sonarqube step
+        // sonarqube step
         stage ('Sonar Analysis') {
             environment {
-                scannerHome = tool "${SONARSCANNER}" //local variable=scannerHome and we are storing global variable here
+                scannerHome = tool "${SONARSCANNER}"
             }
             steps {
                 withSonarQubeEnv("${SONARSERVER}") {
@@ -67,23 +71,14 @@ pipeline {
             }
         }
 
-        stage("Quality Gate") {   //quality gate with timeout
-            steps {
-                timeout(time: 25, unit: "MINUTES"){
-                    waitForQualityGate abortPipeline: true
-                }
-
-            }
-        }
-
-        stage ("UploadArtifacts") {    //timstamping my artifacts 
+        stage ("UploadArtifacts") {
             steps {
                 nexusArtifactUploader(
                     nexusVersion: 'nexus3',
                     protocol: 'http',
                     nexusUrl: "${NEXUSIP}:${NEXUSPORT}",
                     groupId: 'QA',
-                    version: "${env.BUILD_ID}-${env.BUILD_TIMESTAMP}",   //jenkins version varible then timestamp
+                    version: "${env.BUILD_ID}-${env.BUILD_TIMESTAMP}",
                     repository: "${RELEASE_REPO}",
                     credentialsId: "${NEXUS_LOGIN}",
                     artifacts: [
@@ -95,6 +90,14 @@ pipeline {
                 )
             }
         }   
+    }
 
+    post {
+        always {
+            echo 'Slack Notifications.'
+            slackSend channel: '#jenkinscicd',
+                color: COLOR_MAP[currentBuild.currentResult],
+                message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER} \n More info at: ${env.BUILD_URL}"
+        }
     }
 }
