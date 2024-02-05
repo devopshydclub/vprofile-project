@@ -67,6 +67,34 @@ pipeline {
             }
         }
 
+        stage("Quality Gate") {   //quality gate with timeout
+            steps {
+                timeout(tim: 1, units: "HOURS"){
+                    waitForQualityGate abortPipeline: true
+                }
+
+            }
+        }
+
+        stage ("UploadArtifacts") {    //timstamping my artifacts 
+            steps {
+                nexusArtifactUploader(
+                    nexusVersion: 'nexus3',
+                    protocol: 'http',
+                    nexusUrl: "${NEXUSIP}:${NEXUSPORT}",
+                    groupId: 'QA',
+                    version: "${env.BUILD_ID}-${env.BUILD_TIMESTAMP}",   //jenkins version varible then timestamp
+                    repository: "${RELEASE_REPO}",
+                    credentialsId: "${NEXUS_LOGIN}",
+                    artifacts: [
+                        [artifactId: 'vproapp',
+                        classifier: '',
+                        file: 'target/vprofile-v2.war',
+                        type: 'war']
+                    ]
+                )
+            }
+        }   
 
     }
 }
