@@ -12,36 +12,36 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=password
     
-    vprocache01:
-      image: memcached
-      ports:
-        - "11211:11211"
+  vprocache01:
+    image: memcached
+    ports:
+       - "11211:11211"
 
-    vpromq01:
-      image: rabbitmq
-      ports:
-        "15672:15672"
-      environment:
-        - RABBITMQ_DEFAULT_USER=guest
-        - RABBITMQ_DEFAULT_PASS=guest
+  vpromq01:
+    image: rabbitmq
+    ports:
+      "15672:15672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
     
-    vproapp:
-      build: 
-        context: ./Docker-files/app
-      image: damexxx/vprofileapp
-      container_name: vproapp
-      ports:
-        - "8080:8080"
-      volumes:
-        - vproappdata:/usr/local/tomcat/webapps
+  vproapp:
+    build: 
+      context: ./Docker-files/app
+    image: damexxx/vprofileapp
+    container_name: vproapp
+    ports:
+      - "8080:8080"
+    volumes:
+      - vproappdata:/usr/local/tomcat/webapps
 
-      vproweb:
-        build: 
-          context: ./Docker-files/web
-        image: damexxx/vprofileweb
-        container_name: vproweb
-        ports:
-          - "80:80"
+    vproweb:
+      build: 
+        context: ./Docker-files/web
+      image: damexxx/vprofileweb
+      container_name: vproweb
+      ports:
+        - "80:80"
 volumes:
     vprodbdata: {}
     vproappdata: {}
