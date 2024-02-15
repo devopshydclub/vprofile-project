@@ -20,7 +20,7 @@ pipeline {
         NEXUSIP = '10.0.0.209'  // nexus server private ip 
         NEXUSPORT = '8081'
         NEXUS_GRP_REPO = 'vprofile-maven-group'
-        NEXUS_LOGIN = 'nexuscred' // from credentials in jenkins
+        NEXUS_LOGIN = 'nexuslogin' // from credentials in jenkins
 
         SONARSERVER = 'sonarserver' //server name saved under system in jenkins 
         SONARSCANNER = 'sonarscanner' // UNDER tool in jenkins, the name of the scanner tool added under global tool in jenkins. 
