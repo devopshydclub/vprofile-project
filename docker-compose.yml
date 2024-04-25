@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 version: '3.8'
 services:
   vprodb:
@@ -46,3 +47,5 @@ services:
 volumes:
    vprodbdata: {}  
    vproappdata: {}
+=======
+>>>>>>> a7a5524487389d971acdd6a427d7581a8c703abd
