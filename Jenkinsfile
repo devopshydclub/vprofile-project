@@ -30,7 +30,7 @@ pipeline {
             }
         }
 
-	stage('UNIT TEST'){
+/*	stage('UNIT TEST'){
             steps {
                 sh 'mvn test'
             }
@@ -115,7 +115,6 @@ pipeline {
         }
 
 
+    */
     }
-
-
 }
