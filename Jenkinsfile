@@ -11,9 +11,11 @@ pipeline {
         NEXUS_PROTOCOL = "http"
         NEXUS_URL = "10.0.12.178:8081"
         NEXUS_REPOSITORY = "vprofile-release"
-	NEXUS_REPOGRP_ID    = "vprofile-grp-repo"
+	    NEXUS_REPOGRP_ID    = "vprofile-grp-repo"
         NEXUS_CREDENTIAL_ID = "nexuslogin"
         ARTVERSION = "${env.BUILD_ID}"
+        SONARSERVER = "sonarserver"
+        SONERSCANNER = "sonarscanner"
     }
 	
     stages{
@@ -30,7 +32,7 @@ pipeline {
             }
         }
 
-/*	stage('UNIT TEST'){
+	stage('UNIT TEST'){
             steps {
                 sh 'mvn test'
             }
@@ -56,11 +58,11 @@ pipeline {
         stage('CODE ANALYSIS with SONARQUBE') {
           
 		  environment {
-             scannerHome = tool 'sonarscanner4'
+             scannerHome = tool "${SONARSCANNER}"
           }
 
           steps {
-            withSonarQubeEnv('sonar-pro') {
+            withSonarQubeEnv("${SONARSCANNER}") {
                sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=vprofile \
                    -Dsonar.projectName=vprofile-repo \
                    -Dsonar.projectVersion=1.0 \
@@ -115,6 +117,6 @@ pipeline {
         }
 
 
-    */
+    
     }
 }
