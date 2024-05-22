@@ -7,6 +7,14 @@ pipeline {
     }
 	
     environment {
+        NEXUS_USER = 'admin'
+        NEXUS_PASS ='1010'
+        RELEASE_REPO = 'vprofile-release'
+        CENTRAL_REPO ='vpro-maven-central-24'
+        NEXUS_LOGIN = 'nexuslogin'
+        NEXUSIP ='10.0.12.178'
+        NEXUSPORT = '8081'
+        NEXUS_GRP_REPO = 'vpro-maven-group-24'
         NEXUS_VERSION = "nexus3"
         NEXUS_PROTOCOL = "http"
         NEXUS_URL = "10.0.12.178:8081"
@@ -16,6 +24,7 @@ pipeline {
         ARTVERSION = "${env.BUILD_ID}"
         SONARSERVER = "sonarserver"
         SONERSCANNER = "sonarscanner"
+        NEXUSPASS = credentials('nexuspass')
     }
 	
     stages{
@@ -116,7 +125,29 @@ pipeline {
             }
         }
 
-
+    stage('Ansible Deploy to staging'){
+        steps {
+            ansiblePlaybook([
+            inventory   : 'ansible/stage.inventory',
+            playbook    : 'ansible/site.yml',
+            installation: 'ansible',
+            colorized   : true,
+            credentialsId: 'applogin',
+            disableHostKeyChecking: true,
+            extraVars  : [
+                USER: "admin",
+                PASS: "${NEXUSPASS}",
+                nexusip: "",
+                reponame: "vprofile-release24",
+                groupid: "QA",
+                time: "${env.BUILD_TIMESTAMP}",
+                build: "${env.BUILD_ID}",
+                artifactid: "vproapp",
+                vprofile_version: "vproapp-${env.BUILD_ID}-${env.BUILD_TIMESTAMp}.war"
+            ]
+            ])
+        }
+    }
     
     }
 }
