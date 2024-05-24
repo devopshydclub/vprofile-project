@@ -9,7 +9,7 @@ pipeline {
     environment {
         NEXUS_USER = 'admin'
         NEXUS_PASS ='1010'
-        RELEASE_REPO = 'vprofile-release'
+        RELEASE_REPO = 'vprofile-release24'
         CENTRAL_REPO ='vpro-maven-central-24'
         NEXUS_LOGIN = 'nexuslogin'
         NEXUSIP ='10.0.12.178'
