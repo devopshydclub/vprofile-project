@@ -1,4 +1,5 @@
-pipeline {
+
+ pipeline {
     
 	agent any
 	
@@ -24,7 +25,7 @@ pipeline {
         ARTVERSION = "${env.BUILD_ID}"
         SONARSERVER = "sonarserver"
         SONERSCANNER = "sonarscanner"
-        /*NEXUSPASS = credentials('nexuspass') */
+        /* NEXUSPASS = credentials('nexuspass') */
     }
 	
     stages{
@@ -151,4 +152,6 @@ pipeline {
     }
     
     }
-}
+}     
+
+
