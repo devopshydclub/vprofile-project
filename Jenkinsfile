@@ -19,7 +19,7 @@ pipeline {
         NEXUS_PROTOCOL = "http"
         NEXUS_URL = "10.0.12.178:8081"
         NEXUS_REPOSITORY = "vprofile-release24"
-	    NEXUS_REPOGRP_ID    = "vprofile-grp-repo"
+	    NEXUS_REPOGRP_ID   = "vprofile-grp-repo"
         NEXUS_CREDENTIAL_ID = "nexuslogin"
         ARTVERSION = "${env.BUILD_ID}"
         SONARSERVER = "sonarserver"
@@ -138,7 +138,7 @@ pipeline {
             extraVars  : [
                 USER: "admin",
                 PASS: "${NEXUSPASS}",
-                nexusip: "",
+                nexusip: "10.0.12.178",
                 reponame: "vprofile-release24",
                 groupid: "QA",
                 time: "${env.BUILD_TIMESTAMP}",
