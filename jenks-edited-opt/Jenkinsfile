@@ -49,7 +49,7 @@ pipeline {
                 sh 'mvn -s settings.xml checkstyle:checkstyle'
             }
         }
-
+        /* edited sonarqube on jenkins */
         stage('Sonar Analysis') {
             environment {
                 scannerHome = tool "${SONARSCANNER}"
