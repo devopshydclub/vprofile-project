@@ -4,7 +4,7 @@ pipeline{
         maven "M3"
         jdk "JDK11"
 
-    environment{
+    environment {
         NEXUS_USER = "admin"
         NEXUS_PASS = "admin"
         NEXUS_VERSION = "admin"
