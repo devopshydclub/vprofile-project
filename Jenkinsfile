@@ -22,6 +22,7 @@ pipeline{
         ARTVERSION = "${env.BUILD_ID}"
         SONARSCANNER = "sonarscanner"
         SONARSERVER = "sonarserver"
+        NEXUS_CREDENTIAL_ID = "nexuslogin"
 
     }
     stages{
@@ -74,8 +75,26 @@ pipeline{
                 timeout(time: 10, unit: 'MINUTES') {
                     waitForQualityGate abortPipeline: true
                 }
+            } 
+        }
+        stage("PUBLISH ARTIFACTS"){
+            steps{
+                nexusArtifactUploader(
+                            nexusVersion: 'nexus3',
+                            protocol: 'http',
+                            nexusUrl: "${NEXUSIP}:${NEXUSPORT}",
+                            groupId: "QA",
+                            version: "${env.BUILD_ID}-${env.BUILD_TIMESTAMP}",
+                            repository: "${NEXUS_REPOSITORY}",
+                            credentialsId: "${NEXUS_CREDENTIAL_ID}",
+                            artifacts: [
+                                [artifactId: 'vproapp',
+                                classifier: '',
+                                file: 'target/*.war',
+                                type: "war"]
+                            ]
+                )
             }
-            
         }
        
     }
