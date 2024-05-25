@@ -38,7 +38,7 @@ pipeline{
         }
         stage('UNIT TEST'){
             steps{
-                sh(script: 'mvn test')
+                sh(script: 'mvn clean package')
             }
         }
         stage('INTEGRATION TEST'){
