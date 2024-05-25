@@ -5,19 +5,15 @@ pipeline{
         jdk "JDK11"
 
     environment {
-        NEXUS_USER = "admin"
-        NEXUS_PASS = "admin"
-        NEXUS_VERSION = "admin"
+        NEXUS_VERSION = "nexus3"
         NEXUS_PROTOCOL = "http"
-        NEXUS_URL = "4.240.74.220:8081"
+        NEXUS_URL = "172.31.40.209:8081"
         NEXUS_REPOSITORY = "vprofile-release"
-	    NEXUS_REPO_ID  = "vprofile-release"
-        CENTRAL_REPO = "vpro-maven-central"
-        NEXUS_GRP_REPO = "vpro-maven-group" 
+	    NEXUS_REPO_ID    = "vprofile-release"
         NEXUS_CREDENTIAL_ID = "nexuslogin"
-        SNAP_REPO = "vprofile-snapshot"
         ARTVERSION = "${env.BUILD_ID}"
     }
+
 
     }
     stages{
