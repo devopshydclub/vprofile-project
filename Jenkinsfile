@@ -9,6 +9,6 @@ pipeline{
             steps{
                 sh(script: 'mvn test')
             }
-            }
+        }
     }
 }
