@@ -25,7 +25,7 @@ pipeline{
 
     }
     stages{
-        stage("BUILD"){
+        stage('BUILD'){
             steps{
                 sh(script: 'mvn -s settings.xml -DskipTests install')
             }
@@ -36,17 +36,17 @@ pipeline{
                 }
             }
         }
-        stage("UNIT TEST"){
+        stage('UNIT TEST'){
             steps{
                 sh(script: 'mvn test')
             }
         }
-        stage("INTEGRATION TEST"){
+        stage('INTEGRATION TEST'){
             steps{
                 sh(script: 'mvn verify -DskipUnitTests')
             }
         }
-        stage("CODE ANALYSIS WITH CHECKSYTLE"){
+        stage('CODE ANALYSIS WITH CHECKSYTLE'){
             steps{
                 sh(script: 'mvn checkstyle:checkstyle')
             }
@@ -56,7 +56,7 @@ pipeline{
                 }
             }
         }
-        stage("CODE ANALYSIS WITH SONARQUBE"){
+        stage('CODE ANALYSIS WITH SONARQUBE'){
             environment{
                 scannerHome = tool "sonarscanner"
             }
