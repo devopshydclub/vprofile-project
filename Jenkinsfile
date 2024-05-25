@@ -6,7 +6,7 @@ pipeline{
     agent any
     tools{
         maven "M3"
-        jdk "JDK17"
+        jdk "JDK11"
     }
 
     environment {
