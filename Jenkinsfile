@@ -9,7 +9,7 @@ pipeline{
         NEXUS-PASS = "admin"
         NEXUS_VERSION = "admin"
         NEXUS_PROTOCOL = "http"
-        NEXUS_URL = "4.240.74.220/:8081"
+        NEXUS_URL = "4.240.74.220:8081"
         NEXUS_REPOSITORY = "vprofile-release"
 	    NEXUS_REPO_ID  = "vprofile-release"
         CENTRAL-REPO = "vpro-maven-central"
