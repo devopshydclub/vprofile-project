@@ -5,9 +5,10 @@ pipeline{
         jdk "JDK11"
     }
     stages{
-        stage("TEST")
+        stage("TEST"){
             steps{
                 sh(script: 'mvn test')
+            }
             }
     }
 }
