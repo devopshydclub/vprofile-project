@@ -22,7 +22,7 @@ pipeline{
         ARTVERSION = "${env.BUILD_ID}"
         SONARSCANNER = "sonarscanner"
         SONARSERVER = "sonarserver"
-        NEXUS_CREDENTIAL_ID = "nexuslogin"
+
 
     }
     stages{
