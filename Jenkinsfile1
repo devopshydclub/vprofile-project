@@ -10,7 +10,7 @@ pipeline {
     }
     
     environment {
-        SNAP_REPO = 'vprofile-snapshot'
+        SNAP_REPO = 'vprofile-snapshot-24'
 		NEXUS_USER = 'admin'
 		NEXUS_PASS = '1010'
 		RELEASE_REPO = 'vprofile-release24'
