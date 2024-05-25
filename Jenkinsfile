@@ -26,8 +26,6 @@ pipeline{
         stage("TEST"){
             steps{
                 sh(script: 'mvn -s settings.xml -DskipTests install')
-                sh(script: 'mvn package')
-                sh(script: 'mvn deploy')
             }
         }
     }
