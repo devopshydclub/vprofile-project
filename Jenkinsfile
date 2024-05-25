@@ -3,6 +3,7 @@ pipeline{
     tools{
         maven "M3"
         jdk "JDK11"
+    }
 
     environment {
         NEXUS_USER = "admin"
@@ -17,7 +18,6 @@ pipeline{
         NEXUS_CREDENTIAL_ID = "nexuslogin"
         SNAP_REPO = "vprofile-snapshot"
         ARTVERSION = "${env.BUILD_ID}"
-    }
 
     }
     stages{
