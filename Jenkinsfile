@@ -38,7 +38,7 @@ pipeline{
         }
         stage('UNIT TEST'){
             steps{
-                sh(script: 'mvn test')
+                sh(script: 'mvn clean package')
             }
         }
         stage('INTEGRATION TEST'){
@@ -72,14 +72,11 @@ pipeline{
                    -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml'''
                 }
             }
-        }
-        stage("QG CHECK"){
-            steps{
-                timeout(time: 10, unit: 'MINUTES') {
-                    waitForQualityGate abortPipeline: true
-                }
+             timeout(time: 10, unit: 'MINUTES') {
+               waitForQualityGate abortPipeline: true
             }
         }
+       
     }
     
 }
