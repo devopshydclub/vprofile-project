@@ -43,7 +43,7 @@ pipeline{
         }
         stage('UNIT TEST'){
             steps{
-                sh(script: 'mvn test')
+                sh(script: 'mvnm test')
             }
         }
         stage('INTEGRATION TEST'){
