@@ -3,7 +3,10 @@ pipeline{
     tools{
         maven "M3"
         jdk "JDK11"
-
+    environment {
+        DISABLE_AUTH = 'true'
+        DB_ENGINE    = 'sqlite'
+    }
 
     }
     stages{
