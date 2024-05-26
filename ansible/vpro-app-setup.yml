@@ -4,7 +4,7 @@
   become: yes
   vars:
   #  timestamp: "{{ansible_date_time.date}}_{{ansible_date_time.hour}}_{{ansible_date_time.minute}}"
-    timestamp "{{ansible_date_time.date}}"
+    timestamp: "{{ansible_date_time.date}}"
   tasks:
     - name: Download latest VProfile.war from nexus
       get_url:
