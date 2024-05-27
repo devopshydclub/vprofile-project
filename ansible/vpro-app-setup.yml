@@ -5,7 +5,7 @@
   vars:
   #  timestamp: "{{ ansible_date_time.date }}_{{ ansible_date_time.hour }}_{{ ansible_date_time.minute }}"
   #  timestamp: "{{ ansible_date_time.date }}"
-    timestamp: "{{ lookup('pipe', 'date +%Y-%m-%dT%H-%M-%S-UTC') }}"
+    time: "{{ lookup('pipe', 'date +%Y-%m-%dT%H-%M-%S-UTC') }}"
   tasks:
     - name: Download latest VProfile.war from nexus
       get_url:
