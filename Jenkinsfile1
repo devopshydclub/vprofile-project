@@ -118,7 +118,7 @@ pipeline {
 			        build: "${env.BUILD_ID}",
                     artifactid: "vproapp",
 			       // vprofile_version: "vproapp-${env.BUILD_ID}-${env.BUILD_TIMESTAMP}.war"
-                    vprofile_version: "vproapp-${env.BUILD_ID}-${env}.war"
+                    vprofile_version: "vproapp-${env.BUILD_ID}.war"
                     
                 ]
              ])
