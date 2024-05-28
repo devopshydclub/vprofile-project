@@ -37,7 +37,8 @@
       - name: Archive ROOT dir with timestamp
         archive:
           path: /usr/local/tomcat8/webapps/ROOT
-          dest: "/opt/ROOT_{{timestamp}}.tgz"
+          #dest: "/opt/ROOT_{{timestamp}}.tgz"
+          dest: "/opt/ROOT_{{time}}.tgz"
         when: artifact_stat.stat.exists
         register: archive_info
         tags:
