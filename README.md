@@ -7,7 +7,6 @@
 # Technologies 
 - Spring 
 - Spring Security
-- Spring Data JPA
 - Maven
 - JSP
 - MySQL
