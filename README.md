@@ -3,11 +3,11 @@
 - JDK 11
 - Maven 3 or later
 - MySQL 5.6 or later
+- power bi
 
 # Technologies 
-- Spring MVC
+- Spring 
 - Spring Security
-- Spring Data JPA
 - Maven
 - JSP
 - MySQL
@@ -16,7 +16,7 @@ Here,we used Mysql DB
 MSQL DB Installation Steps for Linux ubuntu 14.04:
 - $ sudo apt-get update
 - $ sudo apt-get install mysql-server
-
+jhgjhgjffjg
 Then look for the file :
 - /src/main/resources/accountsdb
 - accountsdb.sql file is a mysql dump file.we have to import this dump to mysql db server
