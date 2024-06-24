@@ -52,5 +52,5 @@ sudo apt-mark hold kubelet kubeadm kubectl
 sudo systemctl enable --now kubelet
 
 sleep 10
-/bin/bash /vagrant/joincommand.sh
+/bin/bash /vagrant/cltjoincommand.sh
 
