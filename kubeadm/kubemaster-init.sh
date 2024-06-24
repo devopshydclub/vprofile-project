@@ -64,4 +64,4 @@ sleep 10
 
 cat /tmp/initout.log | grep -A2 mkdir | /bin/bash
 sleep 10
-tail -2 /tmp/initout.log > /vagrant/joincommand.sh
+tail -2 /tmp/initout.log > /vagrant/cltjoincommand.sh
