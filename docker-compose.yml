@@ -21,7 +21,7 @@ services:
       - "15672:15672"
     environment:
       - RABBITMQ_DEFAULT_USER=guest
-      - RABBITMQ_DEFAUKT_PASS=guest    
+      - RABBITMQ_DEFAULT_PASS=guest    
 
   vproapp:
     build:
