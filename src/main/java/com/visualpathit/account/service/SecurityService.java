@@ -5,5 +5,5 @@ public interface SecurityService {
 	/** {@inheritDoc}} !*/
     String findLoggedInUsername();
 
-    void autologin(String username, String password);
+    boolean autologin(String username, String password);
 }

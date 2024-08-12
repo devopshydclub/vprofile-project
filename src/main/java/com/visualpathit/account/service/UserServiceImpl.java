@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashSet;
 import java.util.List;
 
-/** {@author waheedk}!*/
+/** {@author imrant}!*/
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
@@ -42,6 +42,6 @@ public class UserServiceImpl implements UserService {
     }
     @Override
 	public User findById(long id){
-    	return userRepository.findOne(id);
+    	return userRepository.findById(id);
     }
 }

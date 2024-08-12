@@ -1,0 +1,240 @@
+/*==================== GOOGLE FONTS ====================*/
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+/* Global Styles */
+body {
+    background-color: #e8e8e8;
+    font-family: 'Poppins', sans-serif; /* Use Poppins for a consistent font style */
+    margin: 0;
+    padding: 0;
+}
+
+/* Main Container */
+.mainbody {
+    background: #f0f0f0;
+    padding-top: 70px; /* Adjusted to fit the fixed navbar */
+}
+
+/* Navbar Styles */
+.navbar-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 20;
+    background-color: #e3f2fd; /* Navbar background color */
+    border-bottom: 2px solid #003366;
+}
+
+.container-fluid {
+    background-color: #fff;
+}
+
+.navbar-custom {
+    background-color: #e3f2fd; /* Navbar background color */
+}
+
+.navbar-brand {
+    color: black; /* Navbar brand text color */
+    font-family: 'Poppins', sans-serif; /* Updated to match fonts in the navbar */
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.navbar-toggle {
+    color: black; /* Toggle icon color */
+    background: #e3f2fd; /* Toggle background color */
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.navbar-toggle:hover {
+    background: #c5e1f5; /* Light hover effect for toggle */
+}
+
+.navbar-nav > li > a {
+    color: black; /* Navbar text color */
+    font-family: 'Poppins', sans-serif; /* Updated to match fonts in the navbar */
+    font-size: 18px;
+    font-weight: bold;
+    padding: 15px 20px; /* Adjust padding for spacing */
+}
+
+.navbar-nav > li > a:hover {
+    background-color: #c5e1f5; /* Hover effect for links */
+    border-radius: 4px; /* Rounded corners on hover */
+}
+
+.navbar-content {
+    width: auto; /* Auto width for better alignment */
+    padding: 10px;
+    padding-bottom: 0;
+    text-align: center; /* Center align content for a more balanced look */
+}
+
+.navbar-collapse.collapse {
+    display: block !important;
+    height: auto !important;
+    padding-bottom: 0;
+    overflow: visible !important;
+}
+
+.navbar-nav.navbar-right {
+    float: right; /* Float right for login and sign-up links */
+}
+
+.navbar-nav.navbar-right > li {
+    display: inline-block; /* Display inline for horizontal layout */
+    margin-left: 15px; /* Space between items */
+}
+
+/* Header Styles */
+.header-img {
+    width: 100%;
+    height: auto;
+    opacity: 0.8;
+}
+
+.header-text {
+    color: #26c6da;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    font-size: 3em;
+}
+
+/* Section Styles */
+#contact, #technologies, #about {
+    background: white;
+    padding: 25px;
+    margin: 50px 0;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#contact h3, #technologies h3, #about h3 {
+    color: black;
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Contact Form Adjustments */
+#contact-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1px;
+}
+
+form {
+    width: 100%;
+    max-width: 600px; /* Limit the maximum width of the form */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+}
+
+#contact-form p {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#contact input[type="text"],
+#contact input[type="email"],
+#contact input[type="tel"],
+#contact input[type="url"],
+#contact textarea {
+    width: 100%;
+    border: 1px solid #CCC;
+    background: #FFF;
+    margin: 0 0 10px;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+#contact input[type="text"]:hover,
+#contact input[type="email"]:hover,
+#contact input[type="tel"]:hover,
+#contact input[type="url"]:hover,
+#contact textarea:hover {
+    border-color: #AAA;
+}
+
+#contact textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+#contact button[type="submit"] {
+    cursor: pointer;
+    width: 100%;
+    border: none;
+    background: #26c6da;
+    color: #FFF;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+}
+
+#contact button[type="submit"]:hover {
+    background: #1e88e5;
+}
+
+#contact input:focus,
+#contact textarea:focus {
+    outline: 0;
+    border-color: #999;
+}
+
+::-webkit-input-placeholder {
+    color: #888;
+}
+
+:-moz-placeholder {
+    color: #888;
+}
+
+::-moz-placeholder {
+    color: #888;
+}
+
+:-ms-input-placeholder {
+    color: #888;
+}
+
+/* Blockquote Styles */
+blockquote {
+    background: #fff;
+    padding: 15px 20px;
+    margin: 0 0 20px;
+    position: relative;
+}
+
+/* Custom Styles for Index Home Page */
+.index-home-body {
+    background-color: #ffffff;
+    background-image: url('/resources/Images/bg-01.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    padding-top: 70px; /* Adjust to fit the fixed navbar */
+}
+
+.index-home-container {
+    max-width: 1200px; /* Set a maximum width for the container */
+    margin: 0 auto; /* Center the container */
+    padding: 20px;
+}
+
+.btn-custom, .btn-custom:hover, .btn-custom:focus, .btn-custom:active {
+    border-radius: 0;
+    color: #ffffff;
+    background-color: #26c6da;
+    border-color: #26c6da;
+}
+

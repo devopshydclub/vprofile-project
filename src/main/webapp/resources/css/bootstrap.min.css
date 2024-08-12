@@ -1843,7 +1843,7 @@ pre code {
 
 @media (min-width: 1200px) {
     .container {
-        width: 1170px
+        width: 100%;
     }
 }
 
@@ -1852,10 +1852,11 @@ pre code {
     padding-left: 15px;
     margin-right: auto;
     margin-left: auto
+
 }
 
 .row {
-    margin-right: -15px;
+    margin-right: 50px;
     margin-left: -15px
 }
 
@@ -4492,6 +4493,7 @@ select[multiple].input-group-sm > .form-control, select[multiple].input-group-sm
     min-height: 50px;
     margin-bottom: 20px;
     border: 1px solid transparent
+
 }
 
 @media (min-width: 768px) {
@@ -4603,7 +4605,7 @@ select[multiple].input-group-sm > .form-control, select[multiple].input-group-sm
 }
 
 .navbar-brand {
-    float: left;
+    float: right;
     height: 50px;
     padding: 15px 15px;
     font-size: 18px;
@@ -4620,7 +4622,10 @@ select[multiple].input-group-sm > .form-control, select[multiple].input-group-sm
 
 @media (min-width: 768px) {
     .navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
-        margin-left: -15px
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
     }
 }
 

@@ -1,8 +1,8 @@
 # Prerequisites
 #
-- JDK 1.8 or later
-- Maven 3 or later
-- MySQL 5.6 or later
+- JDK 18 or later
+- Maven 3.9 or later
+- MySQL 8 or later
 
 # Technologies 
 - Spring MVC

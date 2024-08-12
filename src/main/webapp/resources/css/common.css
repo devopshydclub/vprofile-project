@@ -1,56 +1,110 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
 body {
-    padding-top: 100px;
+    padding-top: 10px;
     padding-bottom: 50px;
     background-color: #ffffff;
-   
-}
-form {
-    border: 3px solid #204a87;
+    background-image: url('/resources/Images/bg-01.jpg'); /* Ensure this path is correct */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
-img.logo {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 300px;
-    height: 70px;
-    
- }
+.btn-custom, .btn-custom:hover, .btn-custom:focus, .btn-custom:active {
+    border-radius: 0;
+    color: #ffffff;
+    background-color: #26c6da;
+    border-color: #26c6da;
+}
+
+.container1 {
+    width: 100%; /* Full width of the viewport */
+    max-width: 1200px; /* Set a maximum width for the container */
+    margin: 0 auto; /* Center the container */
+}
+
+.navbar-custom {
+    background-color: #26c6da; /* Match background color of the navbar */
+    border: none; /* Remove border */
+}
+
+.navbar-custom .navbar-brand, .navbar-custom .navbar-nav > li > a {
+    color: white; /* Text color for navbar links */
+}
+
+.navbar-custom .navbar-nav > li > a:hover {
+    color: #333; /* Darker color on hover */
+}
+
+.navbar-wrapper {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.navbar {
+    background-color: #26c6da; /* Navbar background color */
+    color: black;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end; /* Align items to the right */
+    padding: .5rem 1rem;
+}
+
+.navbar .navbar-brand {
+
+}
+
+.navbar .navbar-nav {
+    display: flex;
+    flex-direction: row;
+    margin-left: auto; /* Ensures items are on the right */
+}
+
+.navbar a {
+    color: black; /* Sets the link text color */
+    font-size: 18px; /* Adjust font size for links */
+    font-family: 'Poppins', sans-serif; /* Use the Poppins font */
+}
+
+.navbar a:hover, .navbar a:focus {
+    color: #333; /* Darker color on hover/focus */
+}
+
 .form-signin {
-    max-width: 330px;
-    padding: 15px;
-    margin: 0 auto;
+    max-width: 500px; /* Increase form width */
+    padding: 50px; /* Adjust padding */
+    margin: 0 auto; /* Center form */
+    width: 500px;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
 }
-.btn-custom,.btn-custom:hover, .btn-custom:focus, .btn-custom:active {
-  border-radius: 0;
-  color: #ffffff;
-  background-color: #ef2929;
-  border-color: #ef2929;
-  
-}
+
 .btn-custom-LOGIN {
-  border-radius: 0;
-  color: #ffffff;
-  height:3em;
-  background-color: #26C6DA;
-  border-color: #ef2929;
-  
+    border-radius: 0;
+    color: #ffffff;
+    height: 3em;
+    background-color: #26c6da;
+    border-color: #26c6da;
 }
 
-.form-signin .form-signin-heading,
-.form-signin .checkbox {
-    margin-bottom: 10px;
-}
-
-.form-signin .checkbox {
-    font-weight: normal;
+.form-signin .form-signin-heading {
+    display: block;
+    font-family: 'Poppins', sans-serif;
+    font-size: 39px;
+    color: #333333;
+    line-height: 1.2;
+    text-align: center;
 }
 
 .form-signin .form-control {
     position: relative;
     height: auto;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
     box-sizing: border-box;
     padding: 10px;
     font-size: 16px;
@@ -70,6 +124,10 @@ img.logo {
     margin-top: 10px;
 }
 
-.has-error {
-    color: red
+.has-error .form-control {
+    border-color: red;
+}
+
+.has-error .help-block {
+    color: red;
 }
