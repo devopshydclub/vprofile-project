@@ -1,0 +1,25 @@
+# Ignore all files with the .log extension
+*.log
+
+# Ignore all files in the tmp/ directory
+tmp/
+
+# Ignore all .DS_Store files (macOS specific)
+.DS_Store
+
+# Ignore node_modules directory
+node_modules/
+
+# Ignore .env files for environment-specific settings
+.env
+
+# Ignore build directories
+build/
+dist/
+
+# Ignore IDE specific files
+.vscode/
+.idea/
+
+# Ignore compiled Python files
+*.pyc
