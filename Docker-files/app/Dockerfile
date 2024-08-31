@@ -1,4 +1,6 @@
 FROM openjdk:11 AS BUILD_IMAGE
+LABEL "Project"="Vprofile"
+LABEL "Author"="Spikey21"
 RUN apt update && apt install maven -y
 RUN git clone https://github.com/Spikey21/vprofile-project-devopshydclub.git
 RUN cd vprofile-project-devopshydclub && git checkout docker && mvn install
