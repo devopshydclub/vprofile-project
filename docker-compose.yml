@@ -11,6 +11,7 @@ services:
       -vprodbdata:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=vprodbpass
+
   vprocache01:
     image: memcached
     ports:
@@ -24,3 +25,24 @@ services:
       - RABBITMQ_DEFAULT_USER=guest
       - RABBITMQ_DEFAULT_PASS=guest
 
+  vproapp:
+    build: 
+      context: ./Docker-files/app
+    image: spikey21/vprofile-app
+    container_name: vproapp
+    ports:
+      - "8080:8080"
+    volumes:
+      -vproappdata:/usr/local/tomcat/webapps
+  
+  vproweb:
+    build: 
+      context: ./Docker-files/web
+    image: spikey21/vprofile-web
+    container_name: vproweb
+    ports:
+      - "80:80"
+
+volumes:
+  vprodbdata: {}
+  vproappdata: {}
