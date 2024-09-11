@@ -6,18 +6,18 @@ pipeline {
     agent any
     tools {
         maven "maven3"
-        jdk "jdk17"
+        jdk  "jdk17"
     }
     
     environment {
         SNAP_REPO = 'vprofile-snapshot'
-		NEXUS_USER = 'admin'
-		NEXUS_PASS = 'walter'
-		RELEASE_REPO = 'vprofile-release'
-		CENTRAL_REPO = 'vpro-maven-central'
-		NEXUSIP = '34.134.153.215'
-		NEXUSPORT = '8081'
-		NEXUS_GRP_REPO = 'vpro-maven-group'
+        NEXUS_USER = 'admin'
+        NEXUS_PASS = 'walter'
+        RELEASE_REPO = 'vprofile-release'
+        CENTRAL_REPO = 'vprofile-release'
+	NEXUSIP = '34.134.153.215'
+	NEXUSPORT = '8081'
+	NEXUS_GRP_REPO = 'vprofile-group'
         NEXUS_LOGIN = 'nexuslogin'
         SONARSERVER = 'sonar-server'
         SONARSCANNER = 'sonar-scanner'
@@ -29,7 +29,7 @@ pipeline {
     stages {
         stage('Build'){
             steps {
-                sh 'mvn -s settings.xml -DskipTests install'
+                sh 'mvn -s settings.xml -DskipTests clean install'
             }
             post {
                 success {
