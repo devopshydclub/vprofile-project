@@ -7,7 +7,7 @@ pipeline {
     agent any
 
     environment {
-        cluster = "vproprod"
+        cluster = "bonny-vproprod"
         service = "vproprodsvc"
     }
 
