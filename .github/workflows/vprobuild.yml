@@ -1,0 +1,17 @@
+name: Build Workflow
+on: workflow_dispatch
+jobs:
+  first-job:
+    runs-on: ubuntu-latest
+    steps:
+     - name: Fetch Source coce
+       uses: actions/checkout@v4
+     - name: Build artifacts
+       run: | 
+          mvn install
+          mv target/vprofile-v2.war .
+          rm -rf target
+          mkdir target
+          mv vprofile-v2.war target/
+          ls -l target/
+          
