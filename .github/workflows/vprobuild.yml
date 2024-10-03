@@ -1,17 +1,38 @@
-name: Build Workflow
-on: workflow_dispatch
+name: Aqua
+on: pull_request
+
 jobs:
-  first-job:
+  aqua:
+    name: Aqua scanner
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      packages: write  # Needed for upload-artifact action
     steps:
-     - name: Fetch Source coce
-       uses: actions/checkout@v4
-     - name: Build artifacts
-       run: | 
+      - name: Fetch Source coce
+        uses: actions/checkout@v4
+       
+      - name: Build artifacts
+        run: | 
           mvn install
           mv target/vprofile-v2.war .
           rm -rf target
           mkdir target
           mv vprofile-v2.war target/
           ls -l target/
-          
+
+      - name: Run Aqua scanner
+        uses: docker://aquasec/aqua-scanner
+        with:
+          args: trivy fs --sast --scanners misconfig,vuln,secret --db-repository=registry.aquasec.com/trivy-db:2 --checks-bundle-repository=registry.aquasec.com/trivy-checks:1 --java-db-repository=registry.aquasec.com/trivy-java-db:1 .
+          # Access Aqua credentials from secrets
+
+env:
+  GITHUB_TOKEN: ${{ secrets.TOKEN }}
+  TRIVY_RUN_AS_PLUGIN: 'aqua'
+  ACTIONS_RUNTIME_TOKEN: ${{ secrets.TOKEN }}  # Might not be needed depending on your workflow setup
+  AQUA_KEY: ${{ secrets.AQUA_KEY }}
+  AQUA_SECRET: ${{ secrets.AQUA_SECRET }}
+  TRIVY_USERNAME: ${{ secrets.AQUA_USERNAME }}
+  TRIVY_PASSWORD: ${{ secrets.AQUA_PASSWORD }}
