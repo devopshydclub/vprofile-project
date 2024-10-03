@@ -10,9 +10,6 @@ jobs:
       pull-requests: write
       packages: write  # Needed for upload-artifact action
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
       - name: Fetch Source coce
         uses: actions/checkout@v4
        
