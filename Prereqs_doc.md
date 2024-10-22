@@ -14,7 +14,7 @@ choco install vagrant --version=2.3.7 -y
 choco install git -y
 ```
 ```
-choco install corretto11jdk -y
+choco install corretto17jdk -y
 ```
 ```
 choco install maven -y
@@ -29,7 +29,7 @@ choco install intellijidea-community -y
 choco install vscode -y
 ```
 ```
-choco install sublimetext3.app -y
+choco install sublimetext3 -y
 ```
 
 # MacOS Tools
@@ -72,10 +72,10 @@ brew install --cask vagrant-manager
 brew install git
 ```
 ```
-brew install openjdk@11
+brew install openjdk@17
 ```
 ```
-sudo ln -sfn $HOMEBREW_PREFIX/opt/openjdk@11/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
+sudo ln -sfn $HOMEBREW_PREFIX/opt/openjdk@17/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
 ```
 ```
 exec zsh -l
