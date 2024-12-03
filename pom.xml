@@ -25,11 +25,11 @@
       <version>4.11</version>
       <scope>test</scope>
     </dependency>  
-  <dependency>
+ <!--  <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-io</artifactId>
       <version>2.18.0</version> <!-- Latest stable version -->
-    </dependency>
+    </dependency> -->
      <dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
@@ -85,6 +85,10 @@
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>
           <version>3.1.0</version>
+        </plugin>
+	<plugin>
+	  <artifactId>commons-io</artifactId>
+          <version>2.18.0</version> <!-- Latest stable version -->
         </plugin>
         <!-- default lifecycle, jar packaging: see https://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging -->
         <plugin>
